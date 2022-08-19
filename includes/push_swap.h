@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:31 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/19 15:46:51 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/20 05:57:25 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ void	init_pos(t_stack *stack);
 void	do_sa(t_stack **stack);
 void    do_ra(t_stack **stack);
 void	do_rra(t_stack **stack);
+
 /* sort */
-void	sort_2(t_stack **stack);
+int		is_sort(t_stack *stack);
 void	sort_3(int ac, t_stack **stack);
 #endif
