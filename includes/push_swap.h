@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:31 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/19 09:32:53 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/19 15:46:51 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,19 @@ typedef struct s_stack
 
 
 /* stack */
-t_stack	*stack_fill(char **av);
 void	stack_free(t_stack **stack);
+t_stack	*stack_fill(char **av);
+t_stack *stack_get_top(t_stack *stack);
 
 /* init */
-void	init_index(t_stack *stack);
+void	init_index(int ac, t_stack *stack);
+void	init_pos(t_stack *stack);
+
+/* do */
+void	do_sa(t_stack **stack);
+void    do_ra(t_stack **stack);
+void	do_rra(t_stack **stack);
+/* sort */
+void	sort_2(t_stack **stack);
+void	sort_3(int ac, t_stack **stack);
 #endif
