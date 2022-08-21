@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 13:23:03 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/20 07:06:52 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/21 15:11:59 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,15 @@ void    do_rra(t_stack **stack)
         ptr = ptr->next;
     ptr->next = NULL;
     ft_printf("rra\n");
+}
+
+void    do_push(t_stack **src, t_stack **dst)
+{
+    t_stack *head;
+
+    head = *src;
+    *src = head->next;
+    head->next = *dst;
+    *dst = head;
+    ft_printf("pb\n");
 }

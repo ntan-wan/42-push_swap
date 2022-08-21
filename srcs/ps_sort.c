@@ -6,13 +6,13 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 13:07:05 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/20 07:24:23 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/21 17:55:49 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	is_sort(t_stack *stack)
+int	is_sorted(t_stack *stack)
 {
 	while (stack && stack->next != NULL)
 	{
@@ -23,25 +23,25 @@ int	is_sort(t_stack *stack)
 	return (1);
 }
 
-void	sort_3(int ac, t_stack **stack)
+void	sort_3(t_stack **stack)
 {
 	int		pos;
 	int		index;
-	int		max_index;
 	t_stack	*ptr;
+	int		highest;
 
-	max_index = ac - 2;
-	while (!is_sort(*stack))
+	highest = find_highest(*stack);
+	while (!is_sorted(*stack))
 	{
 		ptr = *stack;
-		init_pos(ptr);
+		init_pos(*stack);
 		while (ptr)
 		{
 			pos = ptr->pos;
 			index = ptr->index;
-			if (pos == 1 && index == max_index)
+			if (pos == 1 && index == highest)
 				do_rra(stack);
-			if (pos == 0 && index == max_index)
+			if (pos == 0 && index == highest)
 				do_ra(stack);
 			else if (pos == 0 && index > ptr->next->index)
 				do_sa(stack);
@@ -49,8 +49,3 @@ void	sort_3(int ac, t_stack **stack)
 		}
 	}
 }
-
-/*void    sort()
-{
-
-}*/

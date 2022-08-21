@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:31 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/20 05:57:25 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/21 17:55:58 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,22 +29,35 @@ typedef struct s_stack
 	struct s_stack	*next;
 }	t_stack;
 
-
 /* stack */
 void	stack_free(t_stack **stack);
+int		stack_size(t_stack *stack);
 t_stack	*stack_fill(char **av);
-t_stack *stack_get_top(t_stack *stack);
+t_stack	*stack_get_top(t_stack *stack);
 
 /* init */
-void	init_index(int ac, t_stack *stack);
+void	init_index(t_stack *stack, int size);
 void	init_pos(t_stack *stack);
 
 /* do */
 void	do_sa(t_stack **stack);
-void    do_ra(t_stack **stack);
+void	do_ra(t_stack **stack);
 void	do_rra(t_stack **stack);
+void	do_push(t_stack **src, t_stack **dst);
 
 /* sort */
-int		is_sort(t_stack *stack);
-void	sort_3(int ac, t_stack **stack);
+int		is_sorted(t_stack *stack);
+void	sort_3(t_stack **stack);
+
+/* act */
+void	act_rotate(t_stack **stack, t_stack *target);
+void	act_pop_left_3(t_stack **stack_a, t_stack **stack_b);
+void	act_sort_stacks(t_stack **stack_a, t_stack **stack_b, int max_index);
+
+/* calc */
+void	calc_cost(t_stack **stack, int b);
+
+/* find */
+void	find_target_pos_b(t_stack **stack_a, t_stack **stack_b, int max_index);
+int		find_highest(t_stack *stack);
 #endif
