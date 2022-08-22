@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:16 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/21 21:30:28 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/22 12:54:06 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,22 @@ static void	util_print(t_stack **stack)
 		ptr = ptr->next;
 	}
 	ft_printf("\n");
+	ptr = *stack;
+	ft_printf("a ");
+	while (ptr)
+	{
+		ft_printf("|%d|", ptr->cost_a);
+		ptr = ptr->next;
+	}
+	ft_printf("\n");
+	ptr = *stack;
+	ft_printf("b ");
+	while (ptr)
+	{
+		ft_printf("|%d|", ptr->cost_b);
+		ptr = ptr->next;
+	}
+	ft_printf("\n");
 }
 
 static void	push_swap(t_stack **stack_a, t_stack **stack_b, int max_index)
@@ -75,6 +91,6 @@ int	main(int ac, char **av)
 	// if (!is_input) ...
 	push_swap(&stack_a, &stack_b, max_index);
 	stack_free(&stack_a);
-	//stack_free(&stack_b);
+	stack_free(&stack_b);
 	return (0);
 }

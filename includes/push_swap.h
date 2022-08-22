@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:31 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/21 17:55:58 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/22 13:26:34 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	do_sa(t_stack **stack);
 void	do_ra(t_stack **stack);
 void	do_rra(t_stack **stack);
 void	do_push(t_stack **src, t_stack **dst);
+void	do_cheapest();
 
 /* sort */
 int		is_sorted(t_stack *stack);
