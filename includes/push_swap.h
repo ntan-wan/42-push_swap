@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:31 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/23 11:52:18 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/23 15:57:22 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int		is_sorted(t_stack *stack);
 void	sort_3(t_stack **stack);
 
 /* act */
-void	act_rotate(t_stack **stack, t_stack *target);
+void	act_rotate(t_stack **stack, int cost, int b);
 void	act_pop_left_3(t_stack **stack_a, t_stack **stack_b);
 void	act_sort_stacks(t_stack **stack_a, t_stack **stack_b, int max_index);
 
@@ -59,7 +59,7 @@ void	act_sort_stacks(t_stack **stack_a, t_stack **stack_b, int max_index);
 void	calc_cost(t_stack **stack, int b);
 
 /* find */
-void	find_target_pos_b(t_stack **stack_a, t_stack **stack_b, int max_index);
+void	find_target_pos_b(t_stack **stack_a, t_stack **stack_b);
 int		find_highest(t_stack *stack);
 size_t 	absolutes(int num);
 void	do_cheapest(t_stack **stack_a, t_stack **stack_b);

@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 06:36:36 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/23 11:58:51 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/23 15:57:17 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,43 +51,12 @@ size_t absolutes(int num)
 	return (num);
 }
 
-void	do_cheapest(t_stack **stack_a, t_stack **stack_b)
-{
-	t_stack *ptr_a;
-	t_stack *ptr_b;
-	size_t	cheapest;
-	int		cost_a;
-	int		cost_b;
-
-	cheapest = INT_MAX;
-	ptr_b = *stack_b;
-	while (ptr_b)
-	{
-	    ptr_a = *stack_a;
-		while (ptr_a)
-		{
-            if (ptr_a->pos == ptr_b->target_pos)
-                break ;
-			ptr_a = ptr_a->next;
-		}
-        if (absolutes(ptr_a->cost_a + ptr_b->cost_b) < cheapest)
-		{
-            cheapest = absolutes(ptr_a->cost_a + ptr_b->cost_b);
-			cost_a = ptr_a->cost_a;
-			cost_b = ptr_b->cost_b;
-		}
-		ptr_b = ptr_b->next;
-	}
-	act_rotate();
-}
-
-void	find_target_pos_b(t_stack **stack_a, t_stack **stack_b, int max_index)
+void	find_target_pos_b(t_stack **stack_a, t_stack **stack_b)
 {
 	int	target_index;
 	t_stack *ptr_a;
 	t_stack *ptr_b;
 
-	(void)max_index;
 	ptr_b = *stack_b;
 	target_index = INT_MAX;
 	init_pos(*stack_a);

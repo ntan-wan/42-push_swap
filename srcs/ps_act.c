@@ -6,22 +6,33 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 15:29:11 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/23 11:57:34 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/23 15:58:12 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	act_rotate(t_stack **stack, int cost)
+void	act_rotate(t_stack **stack, int cost, int b)
 {
-	int	size;
+	t_stack	*target;
 
-	size = stack_size(*stack);
+	target = *stack;
+	while (target)
+	{
+		if (b)
+		{
+			if (target->cost_b == cost)
+				break;
+		}
+		else if (target->cost_a == cost)
+			break ;
+		target = target->next;
+	}
 	while (*stack != target)
 	{
-		if (target->pos <= size / 2)
+		if (cost > 0)
 			do_ra(stack);
-		else if (target->pos > size / 2)
+		else
 			do_rra(stack);
 	}
 }
@@ -52,7 +63,7 @@ void	act_sort_stacks(t_stack **stack_a, t_stack **stack_b, int max_index)
 {
 	(void)max_index;
 	//init_pos(*stack_a);
-	find_target_pos_b(stack_a, stack_b, max_index);
+	find_target_pos_b(stack_a, stack_b);
 	calc_cost(stack_a, 0);
 	calc_cost(stack_b, 1);
 	do_cheapest_move(stack_a, stack_b);
