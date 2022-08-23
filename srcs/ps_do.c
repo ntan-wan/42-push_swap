@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 13:23:03 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/23 16:00:59 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/23 16:09:52 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,13 +102,4 @@ void	do_cheapest(t_stack **stack_a, t_stack **stack_b)
 	calc_cost(stack_a, 0);
 	calc_cost(stack_b, 1);
 	find_target_pos_b(stack_a, stack_b);
-}
-
-void    do_cheapest_move(t_stack **stack_a, t_stack **stack_b)
-{
-	//compare cost first
-	//total cost =  target_pos->cost_a + stack_b->cost_b
-	//while (!is_sorted(*stack_a) && *stack_b != NULL)
-		do_cheapest(stack_a, stack_b);
-    
 }
