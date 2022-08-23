@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 13:23:03 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/23 16:09:52 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/23 17:51:49 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,16 +84,16 @@ void	do_cheapest(t_stack **stack_a, t_stack **stack_b)
                 break ;
 			ptr_a = ptr_a->next;
 		}
-        if (absolutes(ptr_a->cost_a + ptr_b->cost_b) < cheapest)
+        if (absolutes(ptr_a->cost_a) + absolutes(ptr_b->cost_b) < cheapest)
 		{
-            cheapest = absolutes(ptr_a->cost_a + ptr_b->cost_b);
+            cheapest = absolutes(ptr_a->cost_a) + absolutes(ptr_b->cost_b);
 			cost_a = ptr_a->cost_a;
 			cost_b = ptr_b->cost_b;
 		}
 		ptr_b = ptr_b->next;
 	}
-	//ft_printf("%d\n", cost_a);
-	//ft_printf("%d\n", cost_b);
+	ft_printf("%d\n", cost_a);
+	ft_printf("%d\n", cost_b);
 	act_rotate(stack_a, cost_a, 0);
 	act_rotate(stack_b, cost_b, 1);
 	do_push(stack_b, stack_a);
