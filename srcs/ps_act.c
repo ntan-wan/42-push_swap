@@ -6,12 +6,13 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 15:29:11 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/23 23:39:25 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/24 00:44:13 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
+// can refactor
 void	act_rotate(t_stack **stack, int cost, int a, int b)
 {
 	t_stack	*target;
@@ -31,15 +32,9 @@ void	act_rotate(t_stack **stack, int cost, int a, int b)
 	while (*stack != target)
 	{
 		if (cost > 0)
-		{
-			do_rotate_left(stack,a, b);
-			//print_instruct("ra\n", "rb\n", b);
-		}
+			do_rotate_left(stack, a, b);
 		else
-		{
-			do_rotate_right(stack,a ,b);
-			//print_instruct("rra\n", "rrb\n", b);
-		}
+			do_rotate_right(stack, a ,b);
 	}
 }
 

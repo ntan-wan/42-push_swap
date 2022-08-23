@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 13:23:03 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/23 23:43:13 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/24 01:05:40 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void    do_swap(t_stack **stack, int a, int b)
 	second->next = first;
 	*stack = second;
 	//ft_printf("sa\n");
-	print_instruct("sa\n", "sb\n", a, b);
+	print_instruct("sa ", "sb ", a, b);
 }
 
 void    do_rotate_left(t_stack **stack, int a, int b)
@@ -37,7 +37,7 @@ void    do_rotate_left(t_stack **stack, int a, int b)
 	tail->next = head;
 	head->next = NULL;
 	//ft_printf("ra\n");
-	print_instruct("ra\n", "rb\n", a, b);
+	print_instruct("ra ", "rb ", a, b);
 }
 
 void    do_rotate_right(t_stack **stack, int a, int b)
@@ -55,7 +55,7 @@ void    do_rotate_right(t_stack **stack, int a, int b)
 		ptr = ptr->next;
 	ptr->next = NULL;
 	//ft_printf("rra\n");
-	print_instruct("rra\n", "rrb\n", a, b);
+	print_instruct("rra ", "rrb ", a, b);
 }
 
 void    do_push(t_stack **src, t_stack **dst, int a, int b)
@@ -67,7 +67,7 @@ void    do_push(t_stack **src, t_stack **dst, int a, int b)
 	head->next = *dst;
 	*dst = head;
 	//ft_printf("pb\n");
-	print_instruct("pa\n", "pb\n", a, b);
+	print_instruct("pa ", "pb ", a, b);
 }
 void	do_cheapest(t_stack **stack_a, t_stack **stack_b)
 {
@@ -98,6 +98,27 @@ void	do_cheapest(t_stack **stack_a, t_stack **stack_b)
 	}
 	//ft_printf("%d\n", cost_a);
 	//ft_printf("%d\n", cost_b);
+	int i = 0;
+	while (cost_a -i > 0 && cost_b -i > 0)
+	{
+		//if (cost_a > 0 && cost_b > 0)
+		//{
+		do_rotate_left(stack_a, 0, 0);
+		do_rotate_left(stack_b, 0, 0);
+		ft_printf("rr ");
+		i++;
+		//}
+	}
+	while (cost_a + i < 0 && cost_b + i < 0)
+	{
+		do_rotate_right(stack_a, 0, 0);
+		do_rotate_right(stack_b, 0, 0);
+		ft_printf("rrr ");
+		i++;
+	}
+	//init_pos(*stack_a);
+	//init_pos(*stack_b);
+	//find_target_pos_b(stack_a, stack_b);
 	act_rotate(stack_a, cost_a, 1,0);
 	act_rotate(stack_b, cost_b, 0, 1);
 	do_push(stack_b, stack_a, 1, 0);

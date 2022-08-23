@@ -6,13 +6,13 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:16 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/23 23:33:24 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/24 01:06:18 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static void	util_print(t_stack **stack)
+/*static void	util_print(t_stack **stack)
 {
 	t_stack	*ptr;
 
@@ -64,7 +64,7 @@ static void	util_print(t_stack **stack)
 		ptr = ptr->next;
 	}
 	ft_printf("\n");
-}
+}*/
 
 void	print_instruct(char *instruct_a, char *instruct_b, int a, int b)
 {
@@ -129,7 +129,7 @@ int	main(int ac, char **av)
 	push_swap(&stack_a, &stack_b);
 	//stack_free(&stack_a);
 	//stack_free(&stack_b);
-	util_print(&stack_a);
-	util_print(&stack_b);
+	//util_print(&stack_a);
+	//util_print(&stack_b);
 	return (0);
 }
