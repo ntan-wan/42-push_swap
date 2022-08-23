@@ -6,13 +6,13 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 15:29:11 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/23 16:09:34 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/23 23:39:25 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	act_rotate(t_stack **stack, int cost, int b)
+void	act_rotate(t_stack **stack, int cost, int a, int b)
 {
 	t_stack	*target;
 
@@ -31,9 +31,15 @@ void	act_rotate(t_stack **stack, int cost, int b)
 	while (*stack != target)
 	{
 		if (cost > 0)
-			do_ra(stack);
+		{
+			do_rotate_left(stack,a, b);
+			//print_instruct("ra\n", "rb\n", b);
+		}
 		else
-			do_rra(stack);
+		{
+			do_rotate_right(stack,a ,b);
+			//print_instruct("rra\n", "rrb\n", b);
+		}
 	}
 }
 
@@ -48,13 +54,13 @@ void	act_pop_left_3(t_stack **stack_a, t_stack **stack_b)
 	{
 		if ((*stack_a)->index < size / 2)
 		{
-			do_push(stack_a, stack_b);
+			do_push(stack_a, stack_b, 0, 1);
 			pushed++;
 			size--;
 		}
 		else
-			do_ra(stack_a);
+			do_rotate_left(stack_a, 1, 0);
 	}
 	while (size-- > 3)
-		do_push(stack_a, stack_b);
+		do_push(stack_a, stack_b, 0, 1);
 }

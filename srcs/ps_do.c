@@ -6,13 +6,13 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 13:23:03 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/23 18:43:04 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/23 23:43:13 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void    do_sa(t_stack **stack)
+void    do_swap(t_stack **stack, int a, int b)
 {
 	t_stack *first;
 	t_stack *second;
@@ -22,10 +22,11 @@ void    do_sa(t_stack **stack)
 	first->next = second->next;
 	second->next = first;
 	*stack = second;
-	ft_printf("sa\n");
+	//ft_printf("sa\n");
+	print_instruct("sa\n", "sb\n", a, b);
 }
 
-void    do_ra(t_stack **stack)
+void    do_rotate_left(t_stack **stack, int a, int b)
 {
 	t_stack *head;
 	t_stack *tail;
@@ -35,10 +36,11 @@ void    do_ra(t_stack **stack)
 	*stack = head->next;
 	tail->next = head;
 	head->next = NULL;
-	ft_printf("ra\n");
+	//ft_printf("ra\n");
+	print_instruct("ra\n", "rb\n", a, b);
 }
 
-void    do_rra(t_stack **stack)
+void    do_rotate_right(t_stack **stack, int a, int b)
 {
 	t_stack *head;
 	t_stack *ptr;
@@ -52,10 +54,11 @@ void    do_rra(t_stack **stack)
 	while (ptr->next != tail)
 		ptr = ptr->next;
 	ptr->next = NULL;
-	ft_printf("rra\n");
+	//ft_printf("rra\n");
+	print_instruct("rra\n", "rrb\n", a, b);
 }
 
-void    do_push(t_stack **src, t_stack **dst)
+void    do_push(t_stack **src, t_stack **dst, int a, int b)
 {
 	t_stack *head;
 
@@ -63,7 +66,8 @@ void    do_push(t_stack **src, t_stack **dst)
 	*src = head->next;
 	head->next = *dst;
 	*dst = head;
-	ft_printf("pb\n");
+	//ft_printf("pb\n");
+	print_instruct("pa\n", "pb\n", a, b);
 }
 void	do_cheapest(t_stack **stack_a, t_stack **stack_b)
 {
@@ -92,11 +96,11 @@ void	do_cheapest(t_stack **stack_a, t_stack **stack_b)
 		}
 		ptr_b = ptr_b->next;
 	}
-	ft_printf("%d\n", cost_a);
-	ft_printf("%d\n", cost_b);
-	act_rotate(stack_a, cost_a, 0);
-	act_rotate(stack_b, cost_b, 1);
-	do_push(stack_b, stack_a);
+	//ft_printf("%d\n", cost_a);
+	//ft_printf("%d\n", cost_b);
+	act_rotate(stack_a, cost_a, 1,0);
+	act_rotate(stack_b, cost_b, 0, 1);
+	do_push(stack_b, stack_a, 1, 0);
 	init_pos(*stack_a);
 	init_pos(*stack_b);
 	calc_cost(stack_a, 0);

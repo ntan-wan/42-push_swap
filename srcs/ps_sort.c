@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 13:07:05 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/21 17:55:49 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/23 23:32:55 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ void	sort_3(t_stack **stack)
 			pos = ptr->pos;
 			index = ptr->index;
 			if (pos == 1 && index == highest)
-				do_rra(stack);
+				do_rotate_right(stack, 1, 0);
 			if (pos == 0 && index == highest)
-				do_ra(stack);
+				do_rotate_left(stack, 1, 0);
 			else if (pos == 0 && index > ptr->next->index)
-				do_sa(stack);
+				do_swap(stack, 1, 0);
 			ptr = ptr->next;
 		}
 	}

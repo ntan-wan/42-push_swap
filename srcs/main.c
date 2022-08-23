@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:16 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/23 18:52:52 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/23 23:33:24 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,14 @@ static void	util_print(t_stack **stack)
 	ft_printf("\n");
 }
 
+void	print_instruct(char *instruct_a, char *instruct_b, int a, int b)
+{
+	if (a)
+		ft_printf(instruct_a);
+	else if (b)
+		ft_printf(instruct_b);
+}
+
 static void	push_swap(t_stack **stack_a, t_stack **stack_b)
 {
 	act_pop_left_3(stack_a, stack_b);
@@ -97,9 +105,9 @@ static void	push_swap(t_stack **stack_a, t_stack **stack_b)
 	while (*stack_a != smallest)
 	{
 		if (smallest->pos <= size / 2)
-			do_ra(stack_a);
+			do_rotate_left(stack_a, 1, 0);
 		else
-			do_rra(stack_a);
+			do_rotate_right(stack_a, 1, 0);
 	}
 
 	//util_print(stack_a);
@@ -112,12 +120,10 @@ int	main(int ac, char **av)
 	t_stack *stack_a;
 	t_stack *stack_b;
 	int		size;
-	int		max_index;
 
 	stack_a = stack_fill(av);
 	stack_b = NULL;
 	size = stack_size(stack_a);
-	max_index = size -1;
 	init_index(stack_a, size);
 	// if (!is_input) ...
 	push_swap(&stack_a, &stack_b);
