@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 06:36:36 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/23 15:57:17 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/23 18:52:01 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ size_t absolutes(int num)
 		num = -num;
 	return (num);
 }
-
+// got error below this function
 void	find_target_pos_b(t_stack **stack_a, t_stack **stack_b)
 {
 	int	target_index;
@@ -58,11 +58,11 @@ void	find_target_pos_b(t_stack **stack_a, t_stack **stack_b)
 	t_stack *ptr_b;
 
 	ptr_b = *stack_b;
-	target_index = INT_MAX;
 	init_pos(*stack_a);
 	while (ptr_b)
 	{
 		ptr_a = NULL;
+		target_index = INT_MAX;
 		while (!ptr_a)
 		{
 			ptr_a = *stack_a;

@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:16 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/23 17:52:07 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/23 18:52:52 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,15 @@ static void	push_swap(t_stack **stack_a, t_stack **stack_b)
 	find_target_pos_b(stack_a, stack_b);
 	calc_cost(stack_a, 0);
 	calc_cost(stack_b, 1);
+	//int i;
+
+	//i = 0;
+	//while (i < 7)
 	while (*stack_b != NULL)
+	{
 		do_cheapest(stack_a, stack_b);
+		//i++;
+	}
 	int	size;
 
 	size = stack_size(*stack_a);
