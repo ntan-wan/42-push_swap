@@ -6,13 +6,13 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 15:29:11 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/22 13:25:41 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/23 11:57:34 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	act_rotate(t_stack **stack, t_stack *target)
+void	act_rotate(t_stack **stack, int cost)
 {
 	int	size;
 
@@ -55,5 +55,5 @@ void	act_sort_stacks(t_stack **stack_a, t_stack **stack_b, int max_index)
 	find_target_pos_b(stack_a, stack_b, max_index);
 	calc_cost(stack_a, 0);
 	calc_cost(stack_b, 1);
-	do_cheapest_move();
+	do_cheapest_move(stack_a, stack_b);
 }
