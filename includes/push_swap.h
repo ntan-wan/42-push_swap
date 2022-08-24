@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:31 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/24 18:14:28 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/24 18:52:12 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,18 @@ typedef struct s_stack
 void	stack_free(t_stack **stack);
 int		stack_size(t_stack *stack);
 t_stack	*stack_fill(char **av);
-t_stack	*stack_get_top(t_stack *stack);
+t_stack	*stack_get_bottom(t_stack *stack);
 
 /* init */
 void	init_index(t_stack *stack);
 void	init_pos(t_stack *stack);
 
 /* do */
-void	do_swap(t_stack **stack);
-void	do_rotate_left(t_stack **stack);
-void	do_rotate_right(t_stack **stack);
-void	do_push(t_stack **src, t_stack **dst);
-void	do_cheapest_cost(t_stack **stack_a, t_stack **stack_b);
+void	do_swap(t_stack **stack, int a, int b);
+void	do_rotate_left(t_stack **stack, int a, int b);
+void	do_rotate_right(t_stack **stack, int a, int b);
+void	do_push(t_stack **src, t_stack **dst, int a, int b);
+void	do_cheapest(t_stack **stack_a, t_stack **stack_b);
 
 /* sort */
 int		is_sorted(t_stack *stack);
@@ -57,7 +57,8 @@ int		find_highest(t_stack *stack);
 int		find_lowest(t_stack *stack);
 
 /* util */
-void	utils_rotate(t_stack **stack, int cost, int b);
+void	utils_rotate(t_stack **stack, int cost, int a, int b);
 void	utils_calc_cost(t_stack **stack, int b);
+void	utils_print(char *instruct_a, char *instruct_b, int a, int b);
 size_t 	utils_absolutes(int num);
 #endif

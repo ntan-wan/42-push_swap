@@ -6,15 +6,18 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 18:00:52 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/24 18:20:10 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/24 18:52:12 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	utils_print()
+void	utils_print(char *instruct_a, char *instruct_b, int a, int b)
 {
-
+	if (a)
+		ft_printf(instruct_a);
+	else if (b)
+		ft_printf(instruct_b);
 }
 
 size_t utils_absolutes(int num)
@@ -24,7 +27,7 @@ size_t utils_absolutes(int num)
 	return (num);
 }
 
-void	utils_rotate(t_stack **stack, int cost, int b)
+void	utils_rotate(t_stack **stack, int cost,int a, int b)
 {
 	t_stack	*target;
 
@@ -43,9 +46,9 @@ void	utils_rotate(t_stack **stack, int cost, int b)
 	while (*stack != target)
 	{
 		if (cost > 0)
-			do_rotate_left(stack);
+			do_rotate_left(stack,a, b);
 		else
-			do_rotate_right(stack);
+			do_rotate_right(stack,a, b);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:16 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/24 18:14:09 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/24 18:53:55 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@
 	}
 	ft_printf("\n");
 }*/
-static void final_rotation(t_stack **stack_a)
+
+static void	smallest_on_top(t_stack **stack_a)
 {
 	int		size;
 	t_stack	*smallest;
@@ -81,9 +82,9 @@ static void final_rotation(t_stack **stack_a)
 	while (*stack_a != smallest)
 	{
 		if (smallest->pos <= size / 2)
-			do_rotate_left(stack_a);
+			do_rotate_left(stack_a, 1, 0);
 		else
-			do_rotate_right(stack_a);
+			do_rotate_right(stack_a, 1, 0);
 	}
 }
 
@@ -95,8 +96,8 @@ static void	push_swap(t_stack **stack_a, t_stack **stack_b)
 	utils_calc_cost(stack_a, 0);
 	utils_calc_cost(stack_b, 1);
 	while (*stack_b != NULL)
-		do_cheapest_cost(stack_a, stack_b);
-	final_rotation(stack_a);
+		do_cheapest(stack_a, stack_b);
+	smallest_on_top(stack_a);
 }
 
 int	main(int ac, char **av)
@@ -112,5 +113,6 @@ int	main(int ac, char **av)
 	push_swap(&stack_a, &stack_b);
 	stack_free(&stack_a);
 	stack_free(&stack_b);
+	//util_print(&stack_a);
 	return (0);
 }

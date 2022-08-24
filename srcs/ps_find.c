@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 06:36:36 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/24 18:02:32 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/24 18:48:15 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	find_highest(t_stack *stack)
 }
 
 // got error below this function
-void	find_target_pos_b(t_stack **stack_a, t_stack **stack_b)
+void	find_target_pos(t_stack **stack_a, t_stack **stack_b)
 {
 	int	target_index;
 	t_stack *ptr_a;
