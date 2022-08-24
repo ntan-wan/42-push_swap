@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 13:23:03 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/24 13:35:56 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/24 13:54:56 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,17 @@ void    do_swap(t_stack **stack, int a, int b)
 {
 	t_stack *first;
 	t_stack *second;
+	t_stack	*third;
 
 	first = *stack;
 	second = first->next;
+	third = second->next;
 	first->prev = second;
-	first->next = second->next;
-	second->next->prev = first;
+	first->next = third;
 	second->prev = NULL;
 	second->next = first;
+	third->prev = first;
 	*stack = second;
-	//ft_printf("sa\n");
 	print_instruct("sa ", "sb ", a, b);
 }
 
@@ -40,9 +41,7 @@ void    do_rotate_left(t_stack **stack, int a, int b)
 	head->next->prev = NULL;
 	head->prev = tail;
 	head->next = NULL;
-	//tail->prev = stack_second_bottom(head, tail);
 	tail->next = head;
-	//ft_printf("ra\n");
 	print_instruct("ra ", "rb ", a, b);
 }
 
@@ -56,11 +55,10 @@ void    do_rotate_right(t_stack **stack, int a, int b)
 	tail = stack_get_bottom(*stack);
 	*stack = tail;
 	head->prev = tail;
-	tail->prev = NULL;
-	tail->next = head;
 	second_bottom = stack_second_bottom(head, tail);
 	second_bottom->next = NULL;
-	//ft_printf("rra\n");
+	tail->prev = NULL;
+	tail->next = head;
 	print_instruct("rra ", "rrb ", a, b);
 }
 
@@ -79,7 +77,6 @@ void    do_push(t_stack **src, t_stack **dst, int a, int b)
 	*dst = head_src;
 	if (head_dst)
 		head_dst->prev = head_src;
-	//ft_printf("pb\n");
 	print_instruct("pa ", "pb ", a, b);
 }
 void	do_cheapest(t_stack **stack_a, t_stack **stack_b)

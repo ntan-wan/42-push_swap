@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 15:29:11 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/24 09:30:16 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/24 14:39:23 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	act_rotate(t_stack **stack, int cost, int a, int b)
 
 void	act_pop_left_3(t_stack **stack_a, t_stack **stack_b)
 {
-	int	size;
+	/*int	size;
 	int	pushed;
 
 	pushed = 0;
@@ -57,27 +57,34 @@ void	act_pop_left_3(t_stack **stack_a, t_stack **stack_b)
 			do_rotate_left(stack_a, 1, 0);
 	}
 	while (size-- > 3)
-		do_push(stack_a, stack_b, 0, 1);
+		do_push(stack_a, stack_b, 0, 1);*/
 
-	/*t_stack	*ptr_top;
+	t_stack	*ptr_top;
 	t_stack	*ptr_bottom;
 	int		size;
 	int		pushed;
 
-	ptr_top = *stack_a;
-	ptr_bottom = stack_get_bottom(*stack_a);
 	size = stack_size(*stack_a);
 	pushed = 0;
 	calc_cost(stack_a, 0);
 	while (size > 3)
-	{
+	{	
+		ptr_top = *stack_a;
 		while (ptr_top)
 		{
 			if (ptr_top->index < size / 5)
 				break ;
 			ptr_top = ptr_top->next;
 		}
+		ptr_bottom = stack_get_bottom(*stack_a);
 		while (ptr_bottom)
+		{
+			if (ptr_bottom->index < size / 5)
+				break ;
+			ptr_bottom = ptr_bottom->prev;
+		}
 		
-	}*/
+		if (absolutes(ptr_top->cost_a) > absolutes(ptr_bottom->cost_a))
+			do_rotate_right(stack_a)
+	}
 }
