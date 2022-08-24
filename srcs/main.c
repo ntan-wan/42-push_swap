@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:16 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/24 13:05:20 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/24 15:56:18 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,24 @@
 static void	util_print(t_stack **stack)
 {
 	t_stack	*ptr;
-	t_stack	*bottom;
+	//t_stack	*bottom;
 
 	ptr = *stack;
-	bottom = stack_get_bottom(*stack);
+	//bottom = stack_get_bottom(*stack);
 	ft_printf("v ");
+	while (ptr)
+	{
+		ft_printf("|%d|", ptr->value);
+		ptr = ptr->next;
+	}
+	ft_printf("\n");
+	/*ft_printf("v ");
 	while (bottom)
 	{
 		ft_printf("|%d|", bottom->value);
 		bottom = bottom->prev;
 	}
-	ft_printf("\n");
+	ft_printf("\n");*/
 	ptr = *stack;
 	ft_printf("i ");
 	while (ptr)
@@ -79,15 +86,15 @@ void	print_instruct(char *instruct_a, char *instruct_b, int a, int b)
 static void	push_swap(t_stack **stack_a, t_stack **stack_b)
 {
 	act_pop_left_3(stack_a, stack_b);
-	sort_3(stack_a);
-	find_target_pos_b(stack_a, stack_b);
+	//sort_3(stack_a);
+	/*find_target_pos_b(stack_a, stack_b);
 	calc_cost(stack_a, 0);
-	calc_cost(stack_b, 1);
+	calc_cost(stack_b, 1);*/
 	//int i;
 
 	//i = 0;
 	//while (i < 7)
-	while (*stack_b != NULL)
+	/*while (*stack_b != NULL)
 	{
 		do_cheapest(stack_a, stack_b);
 		//i++;
@@ -110,7 +117,7 @@ static void	push_swap(t_stack **stack_a, t_stack **stack_b)
 			do_rotate_left(stack_a, 1, 0);
 		else
 			do_rotate_right(stack_a, 1, 0);
-	}
+	}*/
 
 	//util_print(stack_a);
 	//util_print(stack_b);
