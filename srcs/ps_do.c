@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 13:23:03 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/24 07:49:25 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/24 10:19:59 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ void    do_swap(t_stack **stack, int a, int b)
 
 	first = *stack;
 	second = first->next;
+	first->prev = first->next;
 	first->next = second->next;
+	second->prev = NULL;
 	second->next = first;
 	*stack = second;
 	//ft_printf("sa\n");
@@ -34,8 +36,10 @@ void    do_rotate_left(t_stack **stack, int a, int b)
 	head = *stack;
 	tail = stack_get_bottom(*stack);
 	*stack = head->next;
-	tail->next = head;
+	head->prev = tail;
 	head->next = NULL;
+	tail->prev = stack_second_bottom(head, tail);
+	tail->next = head;
 	//ft_printf("ra\n");
 	print_instruct("ra ", "rb ", a, b);
 }
@@ -43,29 +47,34 @@ void    do_rotate_left(t_stack **stack, int a, int b)
 void    do_rotate_right(t_stack **stack, int a, int b)
 {
 	t_stack *head;
-	t_stack *ptr;
+	t_stack *second_bottom;
 	t_stack *tail;
 
 	head = *stack;
-	ptr = head;
 	tail = stack_get_bottom(*stack);
 	*stack = tail;
+	head->prev = tail;
+	tail->prev = NULL;
 	tail->next = head;
-	while (ptr->next != tail)
-		ptr = ptr->next;
-	ptr->next = NULL;
+	second_bottom = stack_second_bottom(head, tail);
+	second_bottom->next = NULL;
 	//ft_printf("rra\n");
 	print_instruct("rra ", "rrb ", a, b);
 }
 
 void    do_push(t_stack **src, t_stack **dst, int a, int b)
 {
-	t_stack *head;
+	t_stack *head_a;
+	//t_stack	*head_b;
 
-	head = *src;
-	*src = head->next;
-	head->next = *dst;
-	*dst = head;
+	head_a = *src;
+	//head_b = *dst;
+	*src = head_a->next;
+	//head_a->next->prev = NULL;
+	head_a->prev = NULL;
+	head_a->next = *dst;
+	*dst = head_a;
+	//head_b->prev = head_a;
 	//ft_printf("pb\n");
 	print_instruct("pa ", "pb ", a, b);
 }

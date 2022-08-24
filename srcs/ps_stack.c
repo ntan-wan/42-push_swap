@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 18:15:43 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/24 07:49:25 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/24 09:37:23 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_stack	*stack_new(int value)
 	new = malloc(sizeof *new);
 	if (!new)
 		return (NULL);
+	new->prev = NULL;
 	new->value = value;
 	new->index = 0;
 	new->pos = -1;
@@ -27,6 +28,13 @@ t_stack	*stack_new(int value)
 	new->cost_b = -1;
 	new->next = NULL;
 	return (new);
+}
+
+t_stack	*stack_second_bottom(t_stack *head, t_stack *tail)
+{
+	while (head && head->next != tail)
+		head = head->next;
+	return (head);	
 }
 
 t_stack *stack_get_bottom(t_stack *stack)
@@ -38,10 +46,11 @@ t_stack *stack_get_bottom(t_stack *stack)
 
 void	stack_add_bottom(t_stack *new, t_stack **stack)
 {
-	t_stack *top;
+	t_stack *bottom;
 
-	top = stack_get_bottom(*stack);
-	top->next = new;
+	bottom = stack_get_bottom(*stack);
+	bottom->next = new;
+	new->prev = bottom;
 }
 
 int	stack_size(t_stack *stack)
