@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:16 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/24 10:21:15 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/24 13:05:20 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 static void	util_print(t_stack **stack)
 {
 	t_stack	*ptr;
-	//t_stack	*bottom;
+	t_stack	*bottom;
 
 	ptr = *stack;
-	//bottom = stack_get_bottom(*stack);
+	bottom = stack_get_bottom(*stack);
 	ft_printf("v ");
-	while (ptr)
+	while (bottom)
 	{
-		ft_printf("|%d|", ptr->value);
-		ptr = ptr->next;
+		ft_printf("|%d|", bottom->value);
+		bottom = bottom->prev;
 	}
 	ft_printf("\n");
 	ptr = *stack;

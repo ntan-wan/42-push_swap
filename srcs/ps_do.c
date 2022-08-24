@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 13:23:03 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/24 10:19:59 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/24 13:35:56 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ void    do_swap(t_stack **stack, int a, int b)
 
 	first = *stack;
 	second = first->next;
-	first->prev = first->next;
+	first->prev = second;
 	first->next = second->next;
+	second->next->prev = first;
 	second->prev = NULL;
 	second->next = first;
 	*stack = second;
@@ -36,9 +37,10 @@ void    do_rotate_left(t_stack **stack, int a, int b)
 	head = *stack;
 	tail = stack_get_bottom(*stack);
 	*stack = head->next;
+	head->next->prev = NULL;
 	head->prev = tail;
 	head->next = NULL;
-	tail->prev = stack_second_bottom(head, tail);
+	//tail->prev = stack_second_bottom(head, tail);
 	tail->next = head;
 	//ft_printf("ra\n");
 	print_instruct("ra ", "rb ", a, b);
@@ -64,17 +66,19 @@ void    do_rotate_right(t_stack **stack, int a, int b)
 
 void    do_push(t_stack **src, t_stack **dst, int a, int b)
 {
-	t_stack *head_a;
-	//t_stack	*head_b;
+	t_stack *head_src;
+	t_stack	*head_dst;
 
-	head_a = *src;
-	//head_b = *dst;
-	*src = head_a->next;
-	//head_a->next->prev = NULL;
-	head_a->prev = NULL;
-	head_a->next = *dst;
-	*dst = head_a;
-	//head_b->prev = head_a;
+	head_src = *src;
+	head_dst = *dst;
+	*src = head_src->next;
+	if (head_src->next)
+		head_src->next->prev = NULL;
+	head_src->prev = NULL;
+	head_src->next = *dst;
+	*dst = head_src;
+	if (head_dst)
+		head_dst->prev = head_src;
 	//ft_printf("pb\n");
 	print_instruct("pa ", "pb ", a, b);
 }
