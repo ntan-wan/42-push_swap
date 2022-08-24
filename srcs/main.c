@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:16 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/24 15:56:18 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/24 22:33:40 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,30 +75,8 @@ static void	util_print(t_stack **stack)
 	ft_printf("\n");
 }
 
-void	print_instruct(char *instruct_a, char *instruct_b, int a, int b)
+static void	smallest_rotate_top(t_stack **stack_a)
 {
-	if (a)
-		ft_printf(instruct_a);
-	else if (b)
-		ft_printf(instruct_b);
-}
-
-static void	push_swap(t_stack **stack_a, t_stack **stack_b)
-{
-	act_pop_left_3(stack_a, stack_b);
-	//sort_3(stack_a);
-	/*find_target_pos_b(stack_a, stack_b);
-	calc_cost(stack_a, 0);
-	calc_cost(stack_b, 1);*/
-	//int i;
-
-	//i = 0;
-	//while (i < 7)
-	/*while (*stack_b != NULL)
-	{
-		do_cheapest(stack_a, stack_b);
-		//i++;
-	}
 	int	size;
 
 	size = stack_size(*stack_a);
@@ -117,10 +95,19 @@ static void	push_swap(t_stack **stack_a, t_stack **stack_b)
 			do_rotate_left(stack_a, 1, 0);
 		else
 			do_rotate_right(stack_a, 1, 0);
-	}*/
+	}	
+}
 
-	//util_print(stack_a);
-	//util_print(stack_b);
+static void	push_swap(t_stack **stack_a, t_stack **stack_b)
+{
+	sort_left_3(stack_a, stack_b);
+	sort_3(stack_a);
+	find_target_pos(stack_a, stack_b);
+	utils_calc_cost(stack_a, 0);
+	utils_calc_cost(stack_b, 1);
+	while (*stack_b != NULL)
+		do_cheapest(stack_a, stack_b);
+	smallest_rotate_top(stack_a);
 }
 
 int	main(int ac, char **av)
@@ -128,17 +115,15 @@ int	main(int ac, char **av)
 	(void)ac;
 	t_stack *stack_a;
 	t_stack *stack_b;
-	int		size;
 
 	stack_a = stack_fill(av);
 	stack_b = NULL;
-	size = stack_size(stack_a);
-	init_index(stack_a, size);
+	init_index(stack_a);
 	// if (!is_input) ...
 	push_swap(&stack_a, &stack_b);
 	//stack_free(&stack_a);
-	//stack_free(&stack_b);
+	stack_free(&stack_b);
 	util_print(&stack_a);
-	util_print(&stack_b);
+	//util_print(&stack_b);
 	return (0);
 }
