@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 06:36:36 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/24 22:34:27 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/25 07:36:40 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,41 +44,47 @@ int	find_highest(t_stack *stack)
 	return (index);
 }
 
-// got error below this function
+static int	find_target_index(t_stack **stack_a, t_stack *ptr_b)
+{
+	t_stack	*ptr_a;
+	int		target_index;
+
+	ptr_a = *stack_a;
+	target_index = INT_MAX;
+	while (ptr_a)
+	{
+		if (ptr_a->index > ptr_b->index && ptr_a->index < target_index)
+				target_index = ptr_a->index;
+		ptr_a = ptr_a->next;
+	}
+	if (target_index != INT_MAX)
+		return (target_index);
+	else
+		return (find_lowest(*stack_a));
+}
+
+static t_stack	*find_target_list(t_stack **stack, int target_index)
+{
+	t_stack	*ptr;
+
+	ptr = *stack;
+	while (ptr && ptr->index != target_index)
+		ptr = ptr->next;
+	return (ptr);
+}
+
 void	find_target_pos(t_stack **stack_a, t_stack **stack_b)
 {
-	int	target_index;
-	t_stack *ptr_a;
-	t_stack *ptr_b;
+	int		target_index;
+	t_stack	*ptr_a;
+	t_stack	*ptr_b;
 
 	ptr_b = *stack_b;
 	init_pos(*stack_a);
 	while (ptr_b)
 	{
-		ptr_a = NULL;
-		target_index = INT_MAX;
-		while (!ptr_a)
-		{
-			ptr_a = *stack_a;
-			while (ptr_a)
-			{
-				if (ptr_a->index > ptr_b->index && ptr_a->index < target_index)
-					target_index = ptr_a->index;
-				ptr_a = ptr_a->next;
-			}
-			if (target_index != INT_MAX)
-			{
-				ptr_a = *stack_a;
-				while (ptr_a && ptr_a->index != target_index) 
-					ptr_a = ptr_a->next;
-			}	
-			else
-			{
-				ptr_a = *stack_a;
-				while (ptr_a->index != find_lowest(*stack_a))
-					ptr_a = ptr_a->next;
-			}
-		}
+		target_index = find_target_index(stack_a, ptr_b);
+		ptr_a = find_target_list(stack_a, target_index);
 		ptr_b->target_pos = ptr_a->pos;
 		ptr_b = ptr_b->next;
 	}

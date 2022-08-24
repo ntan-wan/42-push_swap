@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 13:23:03 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/24 22:34:46 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/25 07:49:45 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void    do_rotate_left(t_stack **stack, int a, int b)
 	t_stack *tail;
 
 	head = *stack;
-	tail = stack_get_bottom(*stack);
+	tail = stack_find(*stack, NULL);
 	*stack = head->next;
 	head->next->prev = NULL;
 	head->prev = tail;
@@ -52,10 +52,10 @@ void    do_rotate_right(t_stack **stack, int a, int b)
 	t_stack *tail;
 
 	head = *stack;
-	tail = stack_get_bottom(*stack);
+	tail = stack_find(*stack, NULL);
 	*stack = tail;
 	head->prev = tail;
-	second_bottom = stack_second_bottom(head, tail);
+	second_bottom = stack_find(head, tail);
 	second_bottom->next = NULL;
 	tail->prev = NULL;
 	tail->next = head;

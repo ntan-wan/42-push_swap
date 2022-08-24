@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 18:15:43 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/24 09:37:23 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/25 07:56:42 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_stack	*stack_new(int value)
 {
 	t_stack	*new;
 
-	new = malloc(sizeof *new);
+	new = malloc(sizeof * new);
 	if (!new)
 		return (NULL);
 	new->prev = NULL;
@@ -30,25 +30,21 @@ t_stack	*stack_new(int value)
 	return (new);
 }
 
-t_stack	*stack_second_bottom(t_stack *head, t_stack *tail)
+t_stack	*stack_find(t_stack *stack, t_stack *find)
 {
-	while (head && head->next != tail)
-		head = head->next;
-	return (head);	
+	t_stack	*ptr;
+
+	ptr = stack;
+	while (ptr && ptr->next != find)
+		ptr = ptr->next;
+	return (ptr);
 }
 
-t_stack *stack_get_bottom(t_stack *stack)
-{	
-	while (stack && stack->next != NULL)
-		stack = stack->next;
-	return (stack);
-}
-
-void	stack_add_bottom(t_stack *new, t_stack **stack)
+static void	stack_add_bottom(t_stack *new, t_stack **stack)
 {
-	t_stack *bottom;
+	t_stack	*bottom;
 
-	bottom = stack_get_bottom(*stack);
+	bottom = stack_find(*stack, NULL);
 	bottom->next = new;
 	new->prev = bottom;
 }
@@ -68,8 +64,8 @@ int	stack_size(t_stack *stack)
 
 t_stack	*stack_fill(char **av)
 {
-	int	i;
-	int	num;
+	int		i;
+	int		num;
 	t_stack	*stack;
 
 	i = 1;
@@ -86,16 +82,4 @@ t_stack	*stack_fill(char **av)
 		i++;
 	}
 	return (stack);
-}
-
-void	stack_free(t_stack **stack)
-{
-	t_stack *temp;
-	
-	while (*stack)
-	{
-		temp = (*stack)->next;
-		free(*stack);
-		*stack = temp;
-	}
 }

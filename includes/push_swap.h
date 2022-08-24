@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:31 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/24 22:34:46 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/25 07:55:51 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,12 @@ typedef struct s_stack
 }	t_stack;
 
 /* stack */
-void	stack_free(t_stack **stack);
 int		stack_size(t_stack *stack);
 t_stack	*stack_fill(char **av);
-t_stack	*stack_get_bottom(t_stack *stack);
-t_stack	*stack_second_bottom(t_stack *head, t_stack *tail);
+t_stack	*stack_find(t_stack *stack, t_stack *find);
 
 /* init */
-void	init_index(t_stack *stack);
+void	init_index(t_stack *stack, int size);
 void	init_pos(t_stack *stack);
 
 /* do */
@@ -63,4 +61,5 @@ void	utils_calc_cost(t_stack **stack, int b);
 void	utils_rotate(t_stack **stack, int cost, int a, int b);
 void	utils_print(char *instruct_a, char *instruct_b, int a, int b);
 size_t 	utils_absolutes(int num);
+void	utils_free_stack(t_stack **stack);
 #endif

@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 22:24:31 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/24 22:34:46 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/25 07:54:24 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,16 @@ size_t utils_absolutes(int num)
 	if (num < 0)
 		num = -num;
 	return (num);
+}
+
+void	utils_free_stack(t_stack **stack)
+{
+	t_stack	*temp;
+
+	while (*stack)
+	{
+		temp = (*stack)->next;
+		free(*stack);
+		*stack = temp;
+	}
 }

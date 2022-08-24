@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:16 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/24 22:33:40 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/25 07:54:24 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	util_print(t_stack **stack)
 	//t_stack	*bottom;
 
 	ptr = *stack;
-	//bottom = stack_get_bottom(*stack);
+	//bottom = stack_find(*stack);
 	ft_printf("v ");
 	while (ptr)
 	{
@@ -113,16 +113,18 @@ static void	push_swap(t_stack **stack_a, t_stack **stack_b)
 int	main(int ac, char **av)
 {
 	(void)ac;
+	int		size;
 	t_stack *stack_a;
 	t_stack *stack_b;
 
 	stack_a = stack_fill(av);
 	stack_b = NULL;
-	init_index(stack_a);
+	size = stack_size(stack_a);
+	init_index(stack_a, size);
 	// if (!is_input) ...
 	push_swap(&stack_a, &stack_b);
-	//stack_free(&stack_a);
-	stack_free(&stack_b);
+	//utils_free_stack(&stack_a);
+	utils_free_stack(&stack_b);
 	util_print(&stack_a);
 	//util_print(&stack_b);
 	return (0);
