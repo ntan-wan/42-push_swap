@@ -6,13 +6,13 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:16 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/23 18:52:52 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/24 18:14:09 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static void	util_print(t_stack **stack)
+/*static void	util_print(t_stack **stack)
 {
 	t_stack	*ptr;
 
@@ -64,30 +64,14 @@ static void	util_print(t_stack **stack)
 		ptr = ptr->next;
 	}
 	ft_printf("\n");
-}
-
-static void	push_swap(t_stack **stack_a, t_stack **stack_b)
+}*/
+static void final_rotation(t_stack **stack_a)
 {
-	act_pop_left_3(stack_a, stack_b);
-	sort_3(stack_a);
-	find_target_pos_b(stack_a, stack_b);
-	calc_cost(stack_a, 0);
-	calc_cost(stack_b, 1);
-	//int i;
-
-	//i = 0;
-	//while (i < 7)
-	while (*stack_b != NULL)
-	{
-		do_cheapest(stack_a, stack_b);
-		//i++;
-	}
-	int	size;
-
-	size = stack_size(*stack_a);
+	int		size;
 	t_stack	*smallest;
 
 	smallest = *stack_a;
+	size = stack_size(*stack_a);
 	while (smallest)
 	{
 		if (smallest->index == 0)
@@ -97,13 +81,22 @@ static void	push_swap(t_stack **stack_a, t_stack **stack_b)
 	while (*stack_a != smallest)
 	{
 		if (smallest->pos <= size / 2)
-			do_ra(stack_a);
+			do_rotate_left(stack_a);
 		else
-			do_rra(stack_a);
+			do_rotate_right(stack_a);
 	}
+}
 
-	//util_print(stack_a);
-	//util_print(stack_b);
+static void	push_swap(t_stack **stack_a, t_stack **stack_b)
+{
+	sort_left_3(stack_a, stack_b);
+	sort_3(stack_a);
+	find_target_pos(stack_a, stack_b);
+	utils_calc_cost(stack_a, 0);
+	utils_calc_cost(stack_b, 1);
+	while (*stack_b != NULL)
+		do_cheapest_cost(stack_a, stack_b);
+	final_rotation(stack_a);
 }
 
 int	main(int ac, char **av)
@@ -111,19 +104,13 @@ int	main(int ac, char **av)
 	(void)ac;
 	t_stack *stack_a;
 	t_stack *stack_b;
-	int		size;
-	int		max_index;
 
 	stack_a = stack_fill(av);
 	stack_b = NULL;
-	size = stack_size(stack_a);
-	max_index = size -1;
-	init_index(stack_a, size);
+	init_index(stack_a);
 	// if (!is_input) ...
 	push_swap(&stack_a, &stack_b);
-	//stack_free(&stack_a);
-	//stack_free(&stack_b);
-	util_print(&stack_a);
-	util_print(&stack_b);
+	stack_free(&stack_a);
+	stack_free(&stack_b);
 	return (0);
 }

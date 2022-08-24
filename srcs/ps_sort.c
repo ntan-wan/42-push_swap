@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 13:07:05 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/21 17:55:49 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/24 17:53:09 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,34 @@ int	is_sorted(t_stack *stack)
 	return (1);
 }
 
+void	sort_left_3(t_stack **stack_a, t_stack **stack_b)
+{
+	int	size;
+	int	pushed;
+
+	pushed = 0;
+	size = stack_size(*stack_a);
+	while (size > 3 && pushed < size / 2)
+	{
+		if ((*stack_a)->index < size / 2)
+		{
+			do_push(stack_a, stack_b);
+			pushed++;
+			size--;
+		}
+		else
+			do_rotate_left(stack_a);
+	}
+	while (size-- > 3)
+		do_push(stack_a, stack_b);
+}
+
 void	sort_3(t_stack **stack)
 {
 	int		pos;
 	int		index;
-	t_stack	*ptr;
 	int		highest;
+	t_stack	*ptr;
 
 	highest = find_highest(*stack);
 	while (!is_sorted(*stack))
@@ -40,11 +62,11 @@ void	sort_3(t_stack **stack)
 			pos = ptr->pos;
 			index = ptr->index;
 			if (pos == 1 && index == highest)
-				do_rra(stack);
+				do_rotate_right(stack);
 			if (pos == 0 && index == highest)
-				do_ra(stack);
+				do_rotate_left(stack);
 			else if (pos == 0 && index > ptr->next->index)
-				do_sa(stack);
+				do_swap(stack);
 			ptr = ptr->next;
 		}
 	}

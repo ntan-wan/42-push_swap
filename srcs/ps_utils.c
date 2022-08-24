@@ -1,18 +1,55 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_calc.c                                          :+:      :+:    :+:   */
+/*   ps_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/21 13:48:32 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/21 15:01:29 by ntan-wan         ###   ########.fr       */
+/*   Created: 2022/08/24 18:00:52 by ntan-wan          #+#    #+#             */
+/*   Updated: 2022/08/24 18:20:10 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	calc_cost(t_stack **stk, int b)
+void	utils_print()
+{
+
+}
+
+size_t utils_absolutes(int num)
+{
+	if (num < 0)
+		num = -num;
+	return (num);
+}
+
+void	utils_rotate(t_stack **stack, int cost, int b)
+{
+	t_stack	*target;
+
+	target = *stack;
+	while (target)
+	{
+		if (b)
+		{
+			if (target->cost_b == cost)
+				break;
+		}
+		else if (target->cost_a == cost)
+			break ;
+		target = target->next;
+	}
+	while (*stack != target)
+	{
+		if (cost > 0)
+			do_rotate_left(stack);
+		else
+			do_rotate_right(stack);
+	}
+}
+
+void	utils_calc_cost(t_stack **stk, int b)
 {
 	int	size;
 	t_stack *ptr;
