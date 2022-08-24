@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 13:23:03 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/24 01:05:40 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/24 07:49:25 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void    do_rotate_left(t_stack **stack, int a, int b)
 	t_stack *tail;
 
 	head = *stack;
-	tail = stack_get_top(*stack);
+	tail = stack_get_bottom(*stack);
 	*stack = head->next;
 	tail->next = head;
 	head->next = NULL;
@@ -48,7 +48,7 @@ void    do_rotate_right(t_stack **stack, int a, int b)
 
 	head = *stack;
 	ptr = head;
-	tail = stack_get_top(*stack);
+	tail = stack_get_bottom(*stack);
 	*stack = tail;
 	tail->next = head;
 	while (ptr->next != tail)
@@ -99,7 +99,7 @@ void	do_cheapest(t_stack **stack_a, t_stack **stack_b)
 	//ft_printf("%d\n", cost_a);
 	//ft_printf("%d\n", cost_b);
 	int i = 0;
-	while (cost_a -i > 0 && cost_b -i > 0)
+	while (cost_a - i > 0 && cost_b - i > 0)
 	{
 		//if (cost_a > 0 && cost_b > 0)
 		//{

@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 18:15:43 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/20 07:47:17 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/24 07:49:25 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,18 @@ t_stack	*stack_new(int value)
 	return (new);
 }
 
-t_stack *stack_get_top(t_stack *stack)
+t_stack *stack_get_bottom(t_stack *stack)
 {	
 	while (stack && stack->next != NULL)
 		stack = stack->next;
 	return (stack);
 }
 
-void	stack_add_top(t_stack *new, t_stack **stack)
+void	stack_add_bottom(t_stack *new, t_stack **stack)
 {
 	t_stack *top;
 
-	top = stack_get_top(*stack);
+	top = stack_get_bottom(*stack);
 	top->next = new;
 }
 
@@ -73,7 +73,7 @@ t_stack	*stack_fill(char **av)
 		if (i == 1)
 			stack = stack_new(num);
 		else
-			stack_add_top(stack_new(num), &stack);
+			stack_add_bottom(stack_new(num), &stack);
 		i++;
 	}
 	return (stack);

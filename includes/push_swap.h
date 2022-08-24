@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:31 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/23 23:42:15 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/24 07:49:25 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct s_stack
 void	stack_free(t_stack **stack);
 int		stack_size(t_stack *stack);
 t_stack	*stack_fill(char **av);
-t_stack	*stack_get_top(t_stack *stack);
+t_stack	*stack_get_bottom(t_stack *stack);
 
 /* init */
 void	init_index(t_stack *stack, int size);

@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 15:29:11 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/24 00:44:13 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/24 09:20:20 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,26 @@ void	act_pop_left_3(t_stack **stack_a, t_stack **stack_b)
 	}
 	while (size-- > 3)
 		do_push(stack_a, stack_b, 0, 1);
+
+	/*t_stack	*ptr_top;
+	t_stack	*ptr_bottom;
+	int		size;
+	int		pushed;
+
+	ptr_top = *stack_a;
+	ptr_bottom = stack_get_bottom(*stack_a);
+	size = stack_size(*stack_a);
+	pushed = 0;
+	calc_cost(stack_a, 0);
+	while (size > 3)
+	{
+		while (ptr_top)
+		{
+			if (ptr_top->index < size / 5)
+				break ;
+			ptr_top = ptr_top->next;
+		}
+		while (ptr_bottom)
+		
+	}*/
 }
