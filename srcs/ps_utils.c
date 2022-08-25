@@ -6,13 +6,13 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 22:24:31 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/25 15:00:04 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/25 18:00:29 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	utils_rotate_to_top(t_stack **stack, t_stack *target, int a, int b)
+void	utils_rotate_to_top(t_stk **stack, t_stk *target, int a, int b)
 {
 	int		size;
 
@@ -26,10 +26,10 @@ void	utils_rotate_to_top(t_stack **stack, t_stack *target, int a, int b)
 	}
 }
 
-void	utils_calc_cost(t_stack **stk, int b)
+void	utils_calc_cost(t_stk **stk, int b)
 {
 	int		size;
-	t_stack	*ptr;
+	t_stk	*ptr;
 
 	ptr = *stk;
 	size = stack_size(*stk);
@@ -68,9 +68,9 @@ size_t	utils_abs(int num)
 	return (num);
 }
 
-void	utils_free_stack(t_stack **stack)
+void	utils_free_stack(t_stk **stack)
 {
-	t_stack	*temp;
+	t_stk	*temp;
 
 	while (*stack)
 	{

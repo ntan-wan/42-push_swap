@@ -6,17 +6,17 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 08:31:17 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/25 16:13:50 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/25 18:00:29 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	init_index(t_stack *stack, int size)
+void	init_index(t_stk *stack, int size)
 {
 	int		value;
-	t_stack	*highest;
-	t_stack	*ptr;
+	t_stk	*highest;
+	t_stk	*ptr;
 
 	while (size--)
 	{
@@ -41,7 +41,7 @@ void	init_index(t_stack *stack, int size)
 	}
 }
 
-void	init_pos(t_stack *stack)
+void	init_pos(t_stk *stack)
 {
 	int	pos;
 
@@ -54,10 +54,10 @@ void	init_pos(t_stack *stack)
 	}
 }
 
-void	init_target_pos(t_stack **stack_a, t_stack **stack_b)
+void	init_target_pos(t_stk **stack_a, t_stk **stack_b)
 {
-	t_stack	*ptr_a;
-	t_stack	*ptr_b;
+	t_stk	*ptr_a;
+	t_stk	*ptr_b;
 
 	ptr_b = *stack_b;
 	while (ptr_b)

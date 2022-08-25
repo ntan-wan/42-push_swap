@@ -6,16 +6,16 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:16 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/25 17:58:14 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/25 18:05:47 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static void	util_print(t_stack **stack)
+/*static void	util_print(t_stk **stack)
 {
-	t_stack	*ptr;
-	//t_stack	*bottom;
+	t_stk	*ptr;
+	//t_stk	*bottom;
 
 	ptr = *stack;
 	//bottom = stack_find(*stack);
@@ -32,7 +32,7 @@ static void	util_print(t_stack **stack)
 		ft_printf("|%d|", bottom->value);
 		bottom = bottom->prev;
 	}
-	ft_printf("\n");*/
+	ft_printf("\n");
 	ptr = *stack;
 	ft_printf("i ");
 	while (ptr)
@@ -73,12 +73,12 @@ static void	util_print(t_stack **stack)
 		ptr = ptr->next;
 	}
 	ft_printf("\n");
-}
+}*/
 
-static void	get_costs(t_stk **stack_a, t_stk **stack_b, int *cost_a, int *cost_b)
+static void	get_costs(t_stk **stk_a, t_stk **stk_b, int *cost_a, int *cost_b)
 {
-	t_stack	*ptr_a;
-	t_stack	*ptr_b;
+	t_stk	*ptr_a;
+	t_stk	*ptr_b;
 	size_t	cheapest;
 
 	cheapest = INT_MAX;
@@ -98,15 +98,15 @@ static void	get_costs(t_stk **stack_a, t_stk **stack_b, int *cost_a, int *cost_b
 	}	
 }
 
-static void	cheapeast_action(t_stack **stack_a, t_stack **stack_b)
+static void	cheapeast_action(t_stk **stack_a, t_stk **stack_b)
 {
-	int i;
-	int	cost_a;
-	int	cost_b;
-	t_stack	*target_a;
-	t_stack	*target_b;
-	
-	i = 0;	
+	int		i;
+	int		cost_a;
+	int		cost_b;
+	t_stk	*target_a;
+	t_stk	*target_b;
+
+	i = 0;
 	get_costs(stack_a, stack_b, &cost_a, &cost_b);
 	while ((cost_a - i > 0) && (cost_b - i++ > 0))
 		rotate_both_left(stack_a, stack_b);
@@ -119,9 +119,9 @@ static void	cheapeast_action(t_stack **stack_a, t_stack **stack_b)
 	do_push(stack_b, stack_a, 1, 0);
 }
 
-static void	push_swap(t_stack **stack_a, t_stack **stack_b)
+static void	push_swap(t_stk **stack_a, t_stk **stack_b)
 {
-	t_stack	*smallest;
+	t_stk	*smallest;
 
 	sort_left_3(stack_a, stack_b);
 	sort_3(stack_a);
@@ -140,20 +140,20 @@ static void	push_swap(t_stack **stack_a, t_stack **stack_b)
 
 int	main(int ac, char **av)
 {
-	(void)ac;
 	int		size;
-	t_stack *stack_a;
-	t_stack *stack_b;
+	t_stk	*stack_a;
+	t_stk	*stack_b;
 
 	// if (!is_input) ...
+	(void)ac;
 	stack_a = stack_fill(av);
 	stack_b = NULL;
 	size = stack_size(stack_a);
 	init_index(stack_a, size);
 	push_swap(&stack_a, &stack_b);
-	//utils_free_stack(&stack_a);
+	utils_free_stack(&stack_a);
 	utils_free_stack(&stack_b);
-	util_print(&stack_a);
+	//util_print(&stack_a);
 	//util_print(&stack_b);
 	return (0);
 }

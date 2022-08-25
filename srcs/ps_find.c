@@ -6,15 +6,15 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 06:36:36 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/25 16:41:51 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/25 18:00:29 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	find_lowest_index(t_stack *stack)
+int	find_lowest_index(t_stk *stack)
 {
-	t_stack	*ptr;
+	t_stk	*ptr;
 	int		index;
 
 	ptr = stack;
@@ -28,9 +28,9 @@ int	find_lowest_index(t_stack *stack)
 	return (index);
 }
 
-int	find_highest_index(t_stack *stack)
+int	find_highest_index(t_stk *stack)
 {
-	t_stack	*ptr;
+	t_stk	*ptr;
 	int		index;
 
 	ptr = stack;
@@ -44,9 +44,9 @@ int	find_highest_index(t_stack *stack)
 	return (index);
 }
 
-int	find_target_index(t_stack **stack_a, t_stack *ptr_b)
+int	find_target_index(t_stk **stack_a, t_stk *ptr_b)
 {
-	t_stack	*ptr_a;
+	t_stk	*ptr_a;
 	int		target_index;
 
 	ptr_a = *stack_a;
@@ -63,9 +63,9 @@ int	find_target_index(t_stack **stack_a, t_stack *ptr_b)
 		return (find_lowest_index(*stack_a));
 }
 
-t_stack	*find_target_i(t_stack **stack, int target_index)
+t_stk	*find_target_i(t_stk **stack, int target_index)
 {
-	t_stack	*ptr;
+	t_stk	*ptr;
 
 	ptr = *stack;
 	while (ptr && ptr->index != target_index)
@@ -73,9 +73,9 @@ t_stack	*find_target_i(t_stack **stack, int target_index)
 	return (ptr);
 }
 
-t_stack	*find_target_c(t_stack **stack, int cost, int b)
+t_stk	*find_target_c(t_stk **stack, int cost, int b)
 {
-	t_stack	*target;
+	t_stk	*target;
 
 	target = *stack;
 	while (target)

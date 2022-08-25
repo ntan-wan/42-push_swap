@@ -6,15 +6,15 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 18:15:43 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/25 10:40:25 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/25 18:00:29 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-t_stack	*stack_new(int value)
+t_stk	*stack_new(int value)
 {
-	t_stack	*new;
+	t_stk	*new;
 
 	new = malloc(sizeof * new);
 	if (!new)
@@ -30,9 +30,9 @@ t_stack	*stack_new(int value)
 	return (new);
 }
 
-t_stack	*stack_find(t_stack *stack, t_stack *stopper)
+t_stk	*stack_find(t_stk *stack, t_stk *stopper)
 {
-	t_stack	*ptr;
+	t_stk	*ptr;
 
 	ptr = stack;
 	while (ptr && ptr->next != stopper)
@@ -40,16 +40,16 @@ t_stack	*stack_find(t_stack *stack, t_stack *stopper)
 	return (ptr);
 }
 
-static void	stack_add_bottom(t_stack *new, t_stack **stack)
+static void	stack_add_bottom(t_stk *new, t_stk **stack)
 {
-	t_stack	*bottom;
+	t_stk	*bottom;
 
 	bottom = stack_find(*stack, NULL);
 	bottom->next = new;
 	new->prev = bottom;
 }
 
-int	stack_size(t_stack *stack)
+int	stack_size(t_stk *stack)
 {
 	int	count;
 
@@ -62,11 +62,11 @@ int	stack_size(t_stack *stack)
 	return (count);
 }
 
-t_stack	*stack_fill(char **av)
+t_stk	*stack_fill(char **av)
 {
 	int		i;
 	int		num;
-	t_stack	*stack;
+	t_stk	*stack;
 
 	i = 1;
 	num = 0;

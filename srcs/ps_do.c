@@ -6,17 +6,17 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 13:23:03 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/25 12:31:34 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/25 18:00:29 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	do_swap(t_stack **stack, int a, int b)
+void	do_swap(t_stk **stack, int a, int b)
 {
-	t_stack	*first;
-	t_stack	*second;
-	t_stack	*third;
+	t_stk	*first;
+	t_stk	*second;
+	t_stk	*third;
 
 	first = *stack;
 	second = first->next;
@@ -30,10 +30,10 @@ void	do_swap(t_stack **stack, int a, int b)
 	utils_print("sa ", "sb ", a, b);
 }
 
-void	do_rotate_left(t_stack **stack, int a, int b)
+void	do_rotate_left(t_stk **stack, int a, int b)
 {
-	t_stack	*head;
-	t_stack	*tail;
+	t_stk	*head;
+	t_stk	*tail;
 
 	head = *stack;
 	tail = stack_find(*stack, NULL);
@@ -45,11 +45,11 @@ void	do_rotate_left(t_stack **stack, int a, int b)
 	utils_print("ra ", "rb ", a, b);
 }
 
-void	do_rotate_right(t_stack **stack, int a, int b)
+void	do_rotate_right(t_stk **stack, int a, int b)
 {
-	t_stack	*head;
-	t_stack	*second_bottom;
-	t_stack	*tail;
+	t_stk	*head;
+	t_stk	*second_bottom;
+	t_stk	*tail;
 
 	head = *stack;
 	tail = stack_find(*stack, NULL);
@@ -62,10 +62,10 @@ void	do_rotate_right(t_stack **stack, int a, int b)
 	utils_print("rra ", "rrb ", a, b);
 }
 
-void	do_push(t_stack **src, t_stack **dst, int a, int b)
+void	do_push(t_stk **src, t_stk **dst, int a, int b)
 {
-	t_stack	*head_src;
-	t_stack	*head_dst;
+	t_stk	*head_src;
+	t_stk	*head_dst;
 
 	head_src = *src;
 	head_dst = *dst;

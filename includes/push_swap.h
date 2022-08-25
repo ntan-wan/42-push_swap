@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:31 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/25 16:26:20 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/25 18:00:29 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,44 +28,44 @@ typedef struct s_stack
 	int				cost_a;
 	int				cost_b;
 	struct s_stack	*next;
-}	t_stack;
+}	t_stk;
 
 /* stack */
-int		stack_size(t_stack *stack);
-t_stack	*stack_fill(char **av);
-t_stack	*stack_find(t_stack *stack, t_stack *stopper);
+int		stack_size(t_stk *stack);
+t_stk	*stack_fill(char **av);
+t_stk	*stack_find(t_stk *stack, t_stk *stopper);
 
 /* init */
-void	init_index(t_stack *stack, int size);
-void	init_pos(t_stack *stack);
-void	init_target_pos(t_stack **stack_a, t_stack **stack_b);
+void	init_index(t_stk *stack, int size);
+void	init_pos(t_stk *stack);
+void	init_target_pos(t_stk **stack_a, t_stk **stack_b);
 
 /* do */
-void	do_swap(t_stack **stack, int a, int b);
-void	do_push(t_stack **src, t_stack **dst, int a, int b);
-void	do_rotate_left(t_stack **stack, int a, int b);
-void	do_rotate_right(t_stack **stack, int a, int b);
+void	do_swap(t_stk **stack, int a, int b);
+void	do_push(t_stk **src, t_stk **dst, int a, int b);
+void	do_rotate_left(t_stk **stack, int a, int b);
+void	do_rotate_right(t_stk **stack, int a, int b);
 
 /* rotate_both */
-void	rotate_both_left(t_stack **stack_a, t_stack **stack_b);
-void	rotate_both_right(t_stack **stack_a, t_stack **stack_b);
+void	rotate_both_left(t_stk **stack_a, t_stk **stack_b);
+void	rotate_both_right(t_stk **stack_a, t_stk **stack_b);
 
 /* sort */
-int		is_sorted(t_stack *stack);
-void	sort_left_3(t_stack **stack_a, t_stack **stack_b);
-void	sort_3(t_stack **stack);
+int		is_sorted(t_stk *stack);
+void	sort_left_3(t_stk **stack_a, t_stk **stack_b);
+void	sort_3(t_stk **stack);
 
 /* find */
-int		find_highest_index(t_stack *stack);
-int		find_lowest_index(t_stack *stack);
-int		find_target_index(t_stack **stack_a, t_stack *ptr_b);
-t_stack	*find_target_i(t_stack **stack, int target_index);
-t_stack	*find_target_c(t_stack **stack, int cost, int b);
+int		find_highest_index(t_stk *stack);
+int		find_lowest_index(t_stk *stack);
+int		find_target_index(t_stk **stack_a, t_stk *ptr_b);
+t_stk	*find_target_i(t_stk **stack, int target_index);
+t_stk	*find_target_c(t_stk **stack, int cost, int b);
 
 /* utils */
-void	utils_calc_cost(t_stack **stack, int b);
-void	utils_rotate_to_top(t_stack **stack, t_stack *target, int a, int b);
+void	utils_calc_cost(t_stk **stack, int b);
+void	utils_rotate_to_top(t_stk **stack, t_stk *target, int a, int b);
 void	utils_print(char *instruct_a, char *instruct_b, int a, int b);
 size_t 	utils_abs(int num);
-void	utils_free_stack(t_stack **stack);
+void	utils_free_stack(t_stk **stack);
 #endif

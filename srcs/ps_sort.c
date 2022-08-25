@@ -6,13 +6,13 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 13:07:05 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/25 15:00:04 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/25 18:00:29 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	is_sorted(t_stack *stack)
+int	is_sorted(t_stk *stack)
 {
 	while (stack && stack->next != NULL)
 	{
@@ -23,7 +23,7 @@ int	is_sorted(t_stack *stack)
 	return (1);
 }
 
-void	sort_left_3(t_stack **stack_a, t_stack **stack_b)
+void	sort_left_3(t_stk **stack_a, t_stk **stack_b)
 {
 	int	size;
 	int	pushed;
@@ -43,8 +43,8 @@ void	sort_left_3(t_stack **stack_a, t_stack **stack_b)
 	}
 	while (size-- > 3)
 		do_push(stack_a, stack_b, 0, 1);
-	/*t_stack	*ptr_top;
-	t_stack	*ptr_bottom;
+	/*t_stk	*ptr_top;
+	t_stk	*ptr_bottom;
 	int		size;
 	int		pushed;
 	int		i;
@@ -81,11 +81,11 @@ void	sort_left_3(t_stack **stack_a, t_stack **stack_b)
 	}*/
 }
 
-void	sort_3(t_stack **stack)
+void	sort_3(t_stk **stack)
 {
 	int		pos;
 	int		index;
-	t_stack	*ptr;
+	t_stk	*ptr;
 	int		highest;
 
 	highest = find_highest_index(*stack);
