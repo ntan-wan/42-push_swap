@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 18:15:43 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/25 07:56:42 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/25 10:40:25 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ t_stack	*stack_new(int value)
 	return (new);
 }
 
-t_stack	*stack_find(t_stack *stack, t_stack *find)
+t_stack	*stack_find(t_stack *stack, t_stack *stopper)
 {
 	t_stack	*ptr;
 
 	ptr = stack;
-	while (ptr && ptr->next != find)
+	while (ptr && ptr->next != stopper)
 		ptr = ptr->next;
 	return (ptr);
 }

@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 22:24:31 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/25 08:11:08 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/25 11:45:53 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void	utils_calc_cost(t_stack **stk, int b)
 
 	ptr = *stk;
 	size = stack_size(*stk);
-	init_pos(*stk);
 	while (ptr)
 	{
 		if (ptr->pos <= size / 2)
@@ -73,7 +72,7 @@ void	utils_print(char *instruct_a, char *instruct_b, int a, int b)
 		ft_printf(instruct_b);
 }
 
-size_t	utils_absolutes(int num)
+size_t	utils_abs(int num)
 {
 	if (num < 0)
 		num = -num;
