@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:16 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/25 18:10:51 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/25 21:46:04 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ static void	push_swap(t_stk **stk_a, t_stk **stk_b)
 
 	sort_left_3(stk_a, stk_b);
 	sort_3(stk_a);
-	while (*stk_b != NULL)
+	while (*stk_b)
 	{
 		init_pos(*stk_a);
 		init_pos(*stk_b);
@@ -144,13 +144,15 @@ int	main(int ac, char **av)
 	t_stk	*stk_a;
 	t_stk	*stk_b;
 
-	// if error input ...
+	//if (!is_input(av))
+	//	error_exit();
 	(void)ac;
 	stk_a = stack_fill(av);
 	stk_b = NULL;
 	size = stack_size(stk_a);
 	init_index(stk_a, size);
-	push_swap(&stk_a, &stk_b);
+	if (!is_sorted(stk_a))
+		push_swap(&stk_a, &stk_b);
 	utils_free_stack(&stk_a);
 	utils_free_stack(&stk_b);
 	return (0);

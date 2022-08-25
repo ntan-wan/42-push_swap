@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 18:15:43 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/25 18:14:05 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/25 21:56:19 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ t_stk	*stack_fill(char **av)
 	{
 		num = ft_atoi(av[i]);
 		//if (num > INT_MAX || NUM < INT_MIN)
+			//error_exit();
 		if (i == 1)
 			stack = stack_new(num);
 		else

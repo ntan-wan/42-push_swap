@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:31 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/25 18:08:09 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/25 20:05:20 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ typedef struct s_stack
 	int				cost_b;
 	struct s_stack	*next;
 }	t_stk;
+
+/* input */
+int		is_input(char **av);
 
 /* stack */
 int		stack_size(t_stk *stack);
@@ -66,6 +69,6 @@ t_stk	*find_target_c(t_stk **stack, int cost, int b);
 void	utils_calc_cost(t_stk **stack, int b);
 void	utils_rotate_to_top(t_stk **stack, t_stk *target, int a, int b);
 void	utils_print(char *instruct_a, char *instruct_b, int a, int b);
-size_t 	utils_abs(int num);
+size_t	utils_abs(int num);
 void	utils_free_stack(t_stk **stack);
 #endif
