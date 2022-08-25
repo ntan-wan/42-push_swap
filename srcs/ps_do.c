@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 13:23:03 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/25 11:26:44 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/25 12:31:34 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,20 +78,4 @@ void	do_push(t_stack **src, t_stack **dst, int a, int b)
 	if (head_dst)
 		head_dst->prev = head_src;
 	utils_print("pa ", "pb ", a, b);
-}
-
-void	do_rotate_both( t_stack **stack_a, t_stack **stack_b, int cost_a, int cost_b)
-{
-	if (cost_a > 0 && cost_b > 0)
-	{
-		do_rotate_left(stack_a, 0, 0);
-		do_rotate_left(stack_b, 0, 0);
-		ft_printf("rr ");	
-	}
-	else if (cost_a < 0 && cost_b < 0)
-	{
-		do_rotate_right(stack_a, 0, 0);
-		do_rotate_right(stack_b, 0, 0);
-		ft_printf("rrr ");
-	}
 }

@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:16 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/25 11:44:28 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/25 14:36:23 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,16 +99,35 @@ static void	cheapeast_action(t_stack **stack_a, t_stack **stack_b)
 		ptr_b = ptr_b->next;
 	}
 	int i = 0;
+	/*while (cost_a && cost_b)
+	{
+		
+	}*/
 	while (cost_a - i > 0 && cost_b - i > 0)
 	{
-		do_rotate_both(stack_a, stack_b, cost_a, cost_b);
+		rotate_both_left(stack_a, stack_b);
 		i++;
 	}
 	while (cost_a + i < 0 && cost_b + i < 0)
 	{
-		do_rotate_both(stack_a, stack_b, cost_a, cost_b);
+		rotate_both_right(stack_a, stack_b);
 		i++;
 	}
+	//
+	t_stack	*target;
+	target = *stack;
+	while (target)
+	{
+		if (b)
+		{
+			if (target->cost_b == cost)
+				break ;
+		}
+		else if (target->cost_a == cost)
+			break ;
+		target = target->next;
+	}
+	//
 	utils_rotate(stack_a, cost_a, 1, 0);
 	utils_rotate(stack_b, cost_b, 0, 1);
 	do_push(stack_b, stack_a, 1, 0);
@@ -120,9 +139,7 @@ static void	smallest_rotate_top(t_stack **stack_a)
 	t_stack	*smallest;
 
 	size = stack_size(*stack_a);
-	smallest = *stack_a;
-	while (smallest && smallest->index != 0)
-		smallest = smallest->next;
+	smallest = find_target(stack_a, 0);
 	while (*stack_a != smallest)
 	{
 		if (smallest->pos <= size / 2)

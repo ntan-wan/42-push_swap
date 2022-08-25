@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:31 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/25 11:13:11 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/25 14:15:32 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,10 @@ void	do_swap(t_stack **stack, int a, int b);
 void	do_push(t_stack **src, t_stack **dst, int a, int b);
 void	do_rotate_left(t_stack **stack, int a, int b);
 void	do_rotate_right(t_stack **stack, int a, int b);
-void	do_rotate_both(t_stack **stack_a, t_stack **stack_b, int cost_a, int cost_b);
+
+/* rotate_both */
+void	rotate_both_left(t_stack **stack_a, t_stack **stack_b);
+void	rotate_both_right(t_stack **stack_a, t_stack **stack_b);
 
 /* sort */
 int		is_sorted(t_stack *stack);
@@ -55,6 +58,7 @@ void	sort_3(t_stack **stack);
 void	find_target_pos(t_stack **stack_a, t_stack **stack_b);
 int		find_highest_index(t_stack *stack);
 int		find_lowest_index(t_stack *stack);
+t_stack	*find_target(t_stack **stack, int target_index);
 
 /* utils */
 void	utils_calc_cost(t_stack **stack, int b);

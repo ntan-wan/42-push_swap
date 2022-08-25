@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 22:24:31 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/25 11:45:53 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/25 14:34:42 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 void	utils_rotate(t_stack **stack, int cost, int a, int b)
 {
 	t_stack	*target;
+	int		size;
 
+	size = stack_size(*stack);
 	target = *stack;
 	while (target)
 	{
@@ -30,7 +32,8 @@ void	utils_rotate(t_stack **stack, int cost, int a, int b)
 	}
 	while (*stack != target)
 	{
-		if (cost > 0)
+		/*if (cost > 0)*/
+		if (target->pos <= size / 2)
 			do_rotate_left(stack, a, b);
 		else
 			do_rotate_right(stack, a, b);
