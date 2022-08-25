@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 13:23:03 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/25 18:00:29 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/25 18:22:11 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	do_swap(t_stk **stack, int a, int b)
 	second->next = first;
 	third->prev = first;
 	*stack = second;
-	utils_print("sa ", "sb ", a, b);
+	utils_print("sa\n", "sb\n", a, b);
 }
 
 void	do_rotate_left(t_stk **stack, int a, int b)
@@ -42,7 +42,7 @@ void	do_rotate_left(t_stk **stack, int a, int b)
 	head->prev = tail;
 	head->next = NULL;
 	tail->next = head;
-	utils_print("ra ", "rb ", a, b);
+	utils_print("ra\n", "rb\n", a, b);
 }
 
 void	do_rotate_right(t_stk **stack, int a, int b)
@@ -59,7 +59,7 @@ void	do_rotate_right(t_stk **stack, int a, int b)
 	second_bottom->next = NULL;
 	tail->prev = NULL;
 	tail->next = head;
-	utils_print("rra ", "rrb ", a, b);
+	utils_print("rra\n", "rrb\n", a, b);
 }
 
 void	do_push(t_stk **src, t_stk **dst, int a, int b)
@@ -77,5 +77,5 @@ void	do_push(t_stk **src, t_stk **dst, int a, int b)
 	*dst = head_src;
 	if (head_dst)
 		head_dst->prev = head_src;
-	utils_print("pa ", "pb ", a, b);
+	utils_print("pa\n", "pb\n", a, b);
 }
