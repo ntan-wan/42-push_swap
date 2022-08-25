@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:31 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/25 14:15:32 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/25 16:26:20 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ t_stack	*stack_find(t_stack *stack, t_stack *stopper);
 /* init */
 void	init_index(t_stack *stack, int size);
 void	init_pos(t_stack *stack);
+void	init_target_pos(t_stack **stack_a, t_stack **stack_b);
 
 /* do */
 void	do_swap(t_stack **stack, int a, int b);
@@ -55,14 +56,15 @@ void	sort_left_3(t_stack **stack_a, t_stack **stack_b);
 void	sort_3(t_stack **stack);
 
 /* find */
-void	find_target_pos(t_stack **stack_a, t_stack **stack_b);
 int		find_highest_index(t_stack *stack);
 int		find_lowest_index(t_stack *stack);
-t_stack	*find_target(t_stack **stack, int target_index);
+int		find_target_index(t_stack **stack_a, t_stack *ptr_b);
+t_stack	*find_target_i(t_stack **stack, int target_index);
+t_stack	*find_target_c(t_stack **stack, int cost, int b);
 
 /* utils */
 void	utils_calc_cost(t_stack **stack, int b);
-void	utils_rotate(t_stack **stack, int cost, int a, int b);
+void	utils_rotate_to_top(t_stack **stack, t_stack *target, int a, int b);
 void	utils_print(char *instruct_a, char *instruct_b, int a, int b);
 size_t 	utils_abs(int num);
 void	utils_free_stack(t_stack **stack);

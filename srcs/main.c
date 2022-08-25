@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:16 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/25 14:36:23 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/25 16:43:46 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,10 +99,7 @@ static void	cheapeast_action(t_stack **stack_a, t_stack **stack_b)
 		ptr_b = ptr_b->next;
 	}
 	int i = 0;
-	/*while (cost_a && cost_b)
-	{
-		
-	}*/
+	
 	while (cost_a - i > 0 && cost_b - i > 0)
 	{
 		rotate_both_left(stack_a, stack_b);
@@ -113,56 +110,33 @@ static void	cheapeast_action(t_stack **stack_a, t_stack **stack_b)
 		rotate_both_right(stack_a, stack_b);
 		i++;
 	}
-	//
-	t_stack	*target;
-	target = *stack;
-	while (target)
-	{
-		if (b)
-		{
-			if (target->cost_b == cost)
-				break ;
-		}
-		else if (target->cost_a == cost)
-			break ;
-		target = target->next;
-	}
-	//
-	utils_rotate(stack_a, cost_a, 1, 0);
-	utils_rotate(stack_b, cost_b, 0, 1);
+	t_stack	*target_a;
+	t_stack	*target_b;
+	
+	target_a = find_target_c(stack_a, cost_a, 0);
+	target_b = find_target_c(stack_b, cost_b, 1);
+	utils_rotate_to_top(stack_a, target_a, 1, 0);
+	utils_rotate_to_top(stack_b, target_b, 0, 1);
 	do_push(stack_b, stack_a, 1, 0);
-}
-
-static void	smallest_rotate_top(t_stack **stack_a)
-{
-	int	size;
-	t_stack	*smallest;
-
-	size = stack_size(*stack_a);
-	smallest = find_target(stack_a, 0);
-	while (*stack_a != smallest)
-	{
-		if (smallest->pos <= size / 2)
-			do_rotate_left(stack_a, 1, 0);
-		else
-			do_rotate_right(stack_a, 1, 0);
-	}	
 }
 
 static void	push_swap(t_stack **stack_a, t_stack **stack_b)
 {
+	t_stack	*smallest;
+
 	sort_left_3(stack_a, stack_b);
 	sort_3(stack_a);
 	while (*stack_b != NULL)
 	{
 		init_pos(*stack_a);
 		init_pos(*stack_b);
-		find_target_pos(stack_a, stack_b);
+		init_target_pos(stack_a, stack_b);
 		utils_calc_cost(stack_a, 0);
 		utils_calc_cost(stack_b, 1);
 		cheapeast_action(stack_a, stack_b);
 	}
-	smallest_rotate_top(stack_a);
+	smallest = find_target_i(stack_a, 0);
+	utils_rotate_to_top(stack_a, smallest, 1, 0);
 }
 
 int	main(int ac, char **av)

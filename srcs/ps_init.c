@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 08:31:17 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/25 07:25:06 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/25 16:13:50 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,19 @@ void	init_pos(t_stack *stack)
 		stack->pos = pos;
 		stack = stack->next;
 		pos++;
+	}
+}
+
+void	init_target_pos(t_stack **stack_a, t_stack **stack_b)
+{
+	t_stack	*ptr_a;
+	t_stack	*ptr_b;
+
+	ptr_b = *stack_b;
+	while (ptr_b)
+	{
+		ptr_a = find_target_i(stack_a, find_target_index(stack_a, ptr_b));
+		ptr_b->target_pos = ptr_a->pos;
+		ptr_b = ptr_b->next;
 	}
 }

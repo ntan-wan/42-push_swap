@@ -6,33 +6,19 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 22:24:31 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/25 14:34:42 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/25 15:00:04 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	utils_rotate(t_stack **stack, int cost, int a, int b)
+void	utils_rotate_to_top(t_stack **stack, t_stack *target, int a, int b)
 {
-	t_stack	*target;
 	int		size;
 
 	size = stack_size(*stack);
-	target = *stack;
-	while (target)
-	{
-		if (b)
-		{
-			if (target->cost_b == cost)
-				break ;
-		}
-		else if (target->cost_a == cost)
-			break ;
-		target = target->next;
-	}
 	while (*stack != target)
 	{
-		/*if (cost > 0)*/
 		if (target->pos <= size / 2)
 			do_rotate_left(stack, a, b);
 		else
