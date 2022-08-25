@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:16 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/25 16:43:46 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/25 17:58:14 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,44 +75,43 @@ static void	util_print(t_stack **stack)
 	ft_printf("\n");
 }
 
-static void	cheapeast_action(t_stack **stack_a, t_stack **stack_b)
+static void	get_costs(t_stk **stack_a, t_stk **stack_b, int *cost_a, int *cost_b)
 {
 	t_stack	*ptr_a;
 	t_stack	*ptr_b;
 	size_t	cheapest;
-	int		cost_a;
-	int		cost_b;
 
 	cheapest = INT_MAX;
-	ptr_b = *stack_b;
+	ptr_b = *stk_b;
 	while (ptr_b)
 	{
-		ptr_a = *stack_a;
+		ptr_a = *stk_a;
 		while (ptr_a && ptr_a->pos != ptr_b->target_pos)
 			ptr_a = ptr_a->next;
 		if (utils_abs(ptr_a->cost_a) + utils_abs(ptr_b->cost_b) < cheapest)
 		{
 			cheapest = utils_abs(ptr_a->cost_a) + utils_abs(ptr_b->cost_b);
-			cost_a = ptr_a->cost_a;
-			cost_b = ptr_b->cost_b;
+			*cost_a = ptr_a->cost_a;
+			*cost_b = ptr_b->cost_b;
 		}
 		ptr_b = ptr_b->next;
-	}
-	int i = 0;
-	
-	while (cost_a - i > 0 && cost_b - i > 0)
-	{
-		rotate_both_left(stack_a, stack_b);
-		i++;
-	}
-	while (cost_a + i < 0 && cost_b + i < 0)
-	{
-		rotate_both_right(stack_a, stack_b);
-		i++;
-	}
+	}	
+}
+
+static void	cheapeast_action(t_stack **stack_a, t_stack **stack_b)
+{
+	int i;
+	int	cost_a;
+	int	cost_b;
 	t_stack	*target_a;
 	t_stack	*target_b;
 	
+	i = 0;	
+	get_costs(stack_a, stack_b, &cost_a, &cost_b);
+	while ((cost_a - i > 0) && (cost_b - i++ > 0))
+		rotate_both_left(stack_a, stack_b);
+	while ((cost_a + i < 0) && (cost_b + i++ < 0))
+		rotate_both_right(stack_a, stack_b);
 	target_a = find_target_c(stack_a, cost_a, 0);
 	target_b = find_target_c(stack_b, cost_b, 1);
 	utils_rotate_to_top(stack_a, target_a, 1, 0);
