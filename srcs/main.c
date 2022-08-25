@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:16 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/25 07:54:24 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/25 08:18:22 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ static void	push_swap(t_stack **stack_a, t_stack **stack_b)
 	utils_calc_cost(stack_a, 0);
 	utils_calc_cost(stack_b, 1);
 	while (*stack_b != NULL)
-		do_cheapest(stack_a, stack_b);
+		do_cheapest_action(stack_a, stack_b);
 	smallest_rotate_top(stack_a);
 }
 

@@ -6,16 +6,16 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 13:23:03 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/25 07:49:45 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/25 08:20:28 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void    do_swap(t_stack **stack, int a, int b)
+void	do_swap(t_stack **stack, int a, int b)
 {
-	t_stack *first;
-	t_stack *second;
+	t_stack	*first;
+	t_stack	*second;
 	t_stack	*third;
 
 	first = *stack;
@@ -30,10 +30,10 @@ void    do_swap(t_stack **stack, int a, int b)
 	utils_print("sa ", "sb ", a, b);
 }
 
-void    do_rotate_left(t_stack **stack, int a, int b)
+void	do_rotate_left(t_stack **stack, int a, int b)
 {
-	t_stack *head;
-	t_stack *tail;
+	t_stack	*head;
+	t_stack	*tail;
 
 	head = *stack;
 	tail = stack_find(*stack, NULL);
@@ -45,11 +45,11 @@ void    do_rotate_left(t_stack **stack, int a, int b)
 	utils_print("ra ", "rb ", a, b);
 }
 
-void    do_rotate_right(t_stack **stack, int a, int b)
+void	do_rotate_right(t_stack **stack, int a, int b)
 {
-	t_stack *head;
-	t_stack *second_bottom;
-	t_stack *tail;
+	t_stack	*head;
+	t_stack	*second_bottom;
+	t_stack	*tail;
 
 	head = *stack;
 	tail = stack_find(*stack, NULL);
@@ -62,9 +62,9 @@ void    do_rotate_right(t_stack **stack, int a, int b)
 	utils_print("rra ", "rrb ", a, b);
 }
 
-void    do_push(t_stack **src, t_stack **dst, int a, int b)
+void	do_push(t_stack **src, t_stack **dst, int a, int b)
 {
-	t_stack *head_src;
+	t_stack	*head_src;
 	t_stack	*head_dst;
 
 	head_src = *src;
@@ -79,10 +79,11 @@ void    do_push(t_stack **src, t_stack **dst, int a, int b)
 		head_dst->prev = head_src;
 	utils_print("pa ", "pb ", a, b);
 }
-void	do_cheapest(t_stack **stack_a, t_stack **stack_b)
+
+void	do_cheapest_action(t_stack **stack_a, t_stack **stack_b)
 {
-	t_stack *ptr_a;
-	t_stack *ptr_b;
+	t_stack	*ptr_a;
+	t_stack	*ptr_b;
 	size_t	cheapest;
 	int		cost_a;
 	int		cost_b;
@@ -91,16 +92,16 @@ void	do_cheapest(t_stack **stack_a, t_stack **stack_b)
 	ptr_b = *stack_b;
 	while (ptr_b)
 	{
-	    ptr_a = *stack_a;
+		ptr_a = *stack_a;
 		while (ptr_a)
 		{
-            if (ptr_a->pos == ptr_b->target_pos)
-                break ;
+			if (ptr_a->pos == ptr_b->target_pos)
+				break ;
 			ptr_a = ptr_a->next;
 		}
-        if (utils_absolutes(ptr_a->cost_a) + utils_absolutes(ptr_b->cost_b) < cheapest)
+		if (utils_absolutes(ptr_a->cost_a) + utils_absolutes(ptr_b->cost_b) < cheapest)
 		{
-            cheapest = utils_absolutes(ptr_a->cost_a) + utils_absolutes(ptr_b->cost_b);
+			cheapest = utils_absolutes(ptr_a->cost_a) + utils_absolutes(ptr_b->cost_b);
 			cost_a = ptr_a->cost_a;
 			cost_b = ptr_b->cost_b;
 		}

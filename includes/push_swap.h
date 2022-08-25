@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:31 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/25 07:55:51 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/25 08:18:22 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	do_swap(t_stack **stack, int a, int b);
 void	do_rotate_left(t_stack **stack, int a, int b);
 void	do_rotate_right(t_stack **stack, int a, int b);
 void	do_push(t_stack **src, t_stack **dst, int a, int b);
-void	do_cheapest(t_stack **stack_a, t_stack **stack_b);
+void	do_cheapest_action(t_stack **stack_a, t_stack **stack_b);
 
 /* sort */
 int		is_sorted(t_stack *stack);
