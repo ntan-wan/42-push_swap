@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:31 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/25 18:00:29 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/25 18:08:09 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_stk	*stack_find(t_stk *stack, t_stk *stopper);
 /* init */
 void	init_index(t_stk *stack, int size);
 void	init_pos(t_stk *stack);
-void	init_target_pos(t_stk **stack_a, t_stk **stack_b);
+void	init_target_pos(t_stk **stk_a, t_stk **stk_b);
 
 /* do */
 void	do_swap(t_stk **stack, int a, int b);
@@ -47,18 +47,18 @@ void	do_rotate_left(t_stk **stack, int a, int b);
 void	do_rotate_right(t_stk **stack, int a, int b);
 
 /* rotate_both */
-void	rotate_both_left(t_stk **stack_a, t_stk **stack_b);
-void	rotate_both_right(t_stk **stack_a, t_stk **stack_b);
+void	rotate_both_left(t_stk **stk_a, t_stk **stk_b);
+void	rotate_both_right(t_stk **stk_a, t_stk **stk_b);
 
 /* sort */
 int		is_sorted(t_stk *stack);
-void	sort_left_3(t_stk **stack_a, t_stk **stack_b);
+void	sort_left_3(t_stk **stk_a, t_stk **stk_b);
 void	sort_3(t_stk **stack);
 
 /* find */
 int		find_highest_index(t_stk *stack);
 int		find_lowest_index(t_stk *stack);
-int		find_target_index(t_stk **stack_a, t_stk *ptr_b);
+int		find_target_index(t_stk **stk_a, t_stk *ptr_b);
 t_stk	*find_target_i(t_stk **stack, int target_index);
 t_stk	*find_target_c(t_stk **stack, int cost, int b);
 

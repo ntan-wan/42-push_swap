@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 06:36:36 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/25 18:00:29 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/25 18:12:47 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,12 @@ int	find_highest_index(t_stk *stack)
 	return (index);
 }
 
-int	find_target_index(t_stk **stack_a, t_stk *ptr_b)
+int	find_target_index(t_stk **stk_a, t_stk *ptr_b)
 {
 	t_stk	*ptr_a;
 	int		target_index;
 
-	ptr_a = *stack_a;
+	ptr_a = *stk_a;
 	target_index = INT_MAX;
 	while (ptr_a)
 	{
@@ -60,7 +60,7 @@ int	find_target_index(t_stk **stack_a, t_stk *ptr_b)
 	if (target_index != INT_MAX)
 		return (target_index);
 	else
-		return (find_lowest_index(*stack_a));
+		return (find_lowest_index(*stk_a));
 }
 
 t_stk	*find_target_i(t_stk **stack, int target_index)

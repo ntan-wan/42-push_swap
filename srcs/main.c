@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:16 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/25 18:05:47 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/25 18:10:51 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 		ptr = ptr->next;
 	}
 	ft_printf("\n");
-	/*ft_printf("v ");
+	ft_printf("v ");
 	while (bottom)
 	{
 		ft_printf("|%d|", bottom->value);
@@ -98,7 +98,7 @@ static void	get_costs(t_stk **stk_a, t_stk **stk_b, int *cost_a, int *cost_b)
 	}	
 }
 
-static void	cheapeast_action(t_stk **stack_a, t_stk **stack_b)
+static void	cheapeast_action(t_stk **stk_a, t_stk **stk_b)
 {
 	int		i;
 	int		cost_a;
@@ -107,53 +107,51 @@ static void	cheapeast_action(t_stk **stack_a, t_stk **stack_b)
 	t_stk	*target_b;
 
 	i = 0;
-	get_costs(stack_a, stack_b, &cost_a, &cost_b);
+	get_costs(stk_a, stk_b, &cost_a, &cost_b);
 	while ((cost_a - i > 0) && (cost_b - i++ > 0))
-		rotate_both_left(stack_a, stack_b);
+		rotate_both_left(stk_a, stk_b);
 	while ((cost_a + i < 0) && (cost_b + i++ < 0))
-		rotate_both_right(stack_a, stack_b);
-	target_a = find_target_c(stack_a, cost_a, 0);
-	target_b = find_target_c(stack_b, cost_b, 1);
-	utils_rotate_to_top(stack_a, target_a, 1, 0);
-	utils_rotate_to_top(stack_b, target_b, 0, 1);
-	do_push(stack_b, stack_a, 1, 0);
+		rotate_both_right(stk_a, stk_b);
+	target_a = find_target_c(stk_a, cost_a, 0);
+	target_b = find_target_c(stk_b, cost_b, 1);
+	utils_rotate_to_top(stk_a, target_a, 1, 0);
+	utils_rotate_to_top(stk_b, target_b, 0, 1);
+	do_push(stk_b, stk_a, 1, 0);
 }
 
-static void	push_swap(t_stk **stack_a, t_stk **stack_b)
+static void	push_swap(t_stk **stk_a, t_stk **stk_b)
 {
 	t_stk	*smallest;
 
-	sort_left_3(stack_a, stack_b);
-	sort_3(stack_a);
-	while (*stack_b != NULL)
+	sort_left_3(stk_a, stk_b);
+	sort_3(stk_a);
+	while (*stk_b != NULL)
 	{
-		init_pos(*stack_a);
-		init_pos(*stack_b);
-		init_target_pos(stack_a, stack_b);
-		utils_calc_cost(stack_a, 0);
-		utils_calc_cost(stack_b, 1);
-		cheapeast_action(stack_a, stack_b);
+		init_pos(*stk_a);
+		init_pos(*stk_b);
+		init_target_pos(stk_a, stk_b);
+		utils_calc_cost(stk_a, 0);
+		utils_calc_cost(stk_b, 1);
+		cheapeast_action(stk_a, stk_b);
 	}
-	smallest = find_target_i(stack_a, 0);
-	utils_rotate_to_top(stack_a, smallest, 1, 0);
+	smallest = find_target_i(stk_a, 0);
+	utils_rotate_to_top(stk_a, smallest, 1, 0);
 }
 
 int	main(int ac, char **av)
 {
 	int		size;
-	t_stk	*stack_a;
-	t_stk	*stack_b;
+	t_stk	*stk_a;
+	t_stk	*stk_b;
 
-	// if (!is_input) ...
+	// if error input ...
 	(void)ac;
-	stack_a = stack_fill(av);
-	stack_b = NULL;
-	size = stack_size(stack_a);
-	init_index(stack_a, size);
-	push_swap(&stack_a, &stack_b);
-	utils_free_stack(&stack_a);
-	utils_free_stack(&stack_b);
-	//util_print(&stack_a);
-	//util_print(&stack_b);
+	stk_a = stack_fill(av);
+	stk_b = NULL;
+	size = stack_size(stk_a);
+	init_index(stk_a, size);
+	push_swap(&stk_a, &stk_b);
+	utils_free_stack(&stk_a);
+	utils_free_stack(&stk_b);
 	return (0);
 }
