@@ -6,13 +6,13 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 18:15:43 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/25 21:56:19 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/26 09:57:34 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-t_stk	*stack_new(int value)
+static t_stk	*stack_new(int value)
 {
 	t_stk	*new;
 
@@ -73,8 +73,8 @@ t_stk	*stack_fill(char **av)
 	while (av[i])
 	{
 		num = ft_atoi(av[i]);
-		//if (num > INT_MAX || NUM < INT_MIN)
-			//error_exit();
+		//if (num > INT_MAX || num < INT_MIN)
+			//error_exit("Error\n");
 		if (i == 1)
 			stack = stack_new(num);
 		else

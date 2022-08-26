@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:31 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/25 20:05:20 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/26 10:46:29 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <stdlib.h>
 # include <limits.h>
 # include "../libft/libft.h"
+
+#define MIN_ARGS 1
 
 typedef struct s_stack
 {
@@ -29,6 +31,9 @@ typedef struct s_stack
 	int				cost_b;
 	struct s_stack	*next;
 }	t_stk;
+
+/* main */
+void	error_exit(char *message);
 
 /* input */
 int		is_input(char **av);
