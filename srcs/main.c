@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:16 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/26 10:47:48 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/30 19:14:16 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,15 +146,47 @@ static void	push_swap(t_stk **stk_a, t_stk **stk_b)
 
 int	main(int ac, char **av)
 {
+	/*int		size;
+	t_stk	*stk_a;
+	t_stk	*stk_b;
+	int		**inputs;
+
+	inputs = NULL;
+	if (ac > MIN_ARGS)
+	{
+		if (ac == 2)
+			inputs = ft_split(av[1], ' ');
+		if (!is_input(ac, av))
+			error_exit("Error\n");
+		stk_a = stack_fill(av);
+		stk_b = NULL;
+		size = stack_size(stk_a);
+		init_index(stk_a, size);
+		if (!is_sorted(stk_a))
+			push_swap(&stk_a, &stk_b);
+		utils_free_stack(&stk_a);
+		utils_free_stack(&stk_b);
+	}
+	return (0);*/
+
 	int		size;
 	t_stk	*stk_a;
 	t_stk	*stk_b;
+	char	**inputs;
 
+	inputs = NULL;
 	if (ac > MIN_ARGS)
 	{
-		if (!is_input(av))
+		if (ac == 2)
+			inputs = ft_split(av[1], ' ');
+		else
+			inputs = av;
+		//int i = -1;
+		//while (inputs[++i])
+			//printf("%s |", inputs[i]);
+		if (!is_input(inputs))
 			error_exit("Error\n");
-		stk_a = stack_fill(av);
+		stk_a = stack_fill(ac, inputs);
 		stk_b = NULL;
 		size = stack_size(stk_a);
 		init_index(stk_a, size);

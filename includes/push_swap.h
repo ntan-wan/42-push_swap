@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:31 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/26 10:46:29 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/30 19:14:28 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int		is_input(char **av);
 
 /* stack */
 int		stack_size(t_stk *stack);
-t_stk	*stack_fill(char **av);
+t_stk	*stack_fill(int ac, char **av);
 t_stk	*stack_find(t_stk *stack, t_stk *stopper);
 
 /* init */

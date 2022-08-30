@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 20:02:42 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/26 11:39:52 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/30 19:00:21 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,10 @@ static int	have_duplicates(char **av)
 	return (0);
 }
 
+//remember to free
 int	is_input(char **av)
 {
-	int	i;
+	/*int		i;
 
 	i = 1;
 	if (have_duplicates(av))
@@ -72,6 +73,25 @@ int	is_input(char **av)
 		if (!is_number(av[i]))
 			return (0);
 		if (!in_int_range(av[i]))
+			return (0);
+		i++;
+	}
+	return (1);*/
+
+	int		i;
+	char	**inputs;
+
+	i = 1;
+	inputs = av;
+	//if (ac == 2)
+		//inputs = ft_split(av[1], ' ');
+	if (have_duplicates(inputs))
+		return (0);
+	while (inputs[i])
+	{
+		if (!is_number(inputs[i]))
+			return (0);
+		if (!in_int_range(inputs[i]))
 			return (0);
 		i++;
 	}
