@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:16 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/31 15:24:57 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/31 18:04:05 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,7 @@ int	main(int ac, char **av)
 		//int i = -1;
 		//while (inputs[++i])
 			//printf("%s |", inputs[i]);
-		if (!is_input(ac, av))
+		if (!is_input(av))
 			error_exit("Error\n");
 		/*stk_a = stack_fill(ac, inputs);
 		stk_b = NULL;

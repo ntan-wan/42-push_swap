@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:31 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/31 15:25:21 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/31 18:04:12 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct s_stack
 void	error_exit(char *message);
 
 /* input */
-int		is_input(int ac, char **av);
+int		is_input(char **av);
 
 /* stack */
 int		stack_size(t_stk *stack);

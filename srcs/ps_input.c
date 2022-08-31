@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 20:02:42 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/31 16:30:25 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/31 23:19:19 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int in_int_range(char *str)
 	return (1);
 }
 
-static int	have_duplicates(char **av)
+static int	is_duplicates(char **av)
 {
 	int	i;
 	int	j;
@@ -77,7 +77,43 @@ static int	is_valid_zero(char *num)
 	return (1);
 }
 
-int	is_input(int ac, char **av)
+static int	have_duplicates(char **av, int *count)
+{
+	int		i;
+	int		j;
+	int		k;
+	char	**input;
+	char	**all_inputs;
+
+	all_inputs = malloc(sizeof(char *) * ((*count) + 1));
+	if (!all_inputs)
+		return (1);
+	all_inputs[*count] = NULL;
+	i = 0;
+	k = -1;
+	while (av[++i])
+	{	
+		j = -1;
+		input = ft_split(av[i], ' ');
+		while (input[++j])
+			all_inputs[++k] = input[j];
+	}
+	i = -1;
+	if (is_duplicates(all_inputs))
+	{
+		while (all_inputs[++i])
+			free(all_inputs[i]);
+		free(all_inputs);
+		return (1);
+	}
+	i = -1;
+	while (all_inputs[++i])
+		free(all_inputs[i]);
+	free(all_inputs);
+	return (0);
+}
+
+int	is_input(char **av)
 {
 	int		i;
 	int		j;
@@ -85,7 +121,6 @@ int	is_input(int ac, char **av)
 	char	**input;
 	char	**all_inputs;
 
-	(void)ac;
 	i = 0;
 	count = 0;
 	while (av[++i])
@@ -94,8 +129,6 @@ int	is_input(int ac, char **av)
 		input = ft_split(av[i], ' ');
 		while (input[++j])
 		{
-			//
-			//printf("%s |", input[k]);
 			if (!is_valid_zero(input[j]))
 			return (0);
 			if (!is_number(input[j]))
@@ -107,22 +140,7 @@ int	is_input(int ac, char **av)
 		}
 		free(input);
 	}
-	//
-	all_inputs = malloc(sizeof(char *) * (count + 1));
-	all_inputs[count] = NULL;
-	i = 0;
-	while (av[++i])
-	{	
-		j = -1;
-		input = ft_split(av[i], ' ');
-		while (input[++j])
-		{
-			all_inputs[j] = input[j];
-			//
-			//printf("%s |", all_inputs[j]);
-		}
-	}
-	if (have_duplicates(all_inputs))
+	if (have_duplicates(av, &count))
 		return (0);
 	return (1);
 }
