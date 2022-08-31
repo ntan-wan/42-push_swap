@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:31 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/31 08:40:01 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/31 15:25:21 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ t_stk	*stack_find(t_stk *stack, t_stk *stopper);
 void	init_index(t_stk *stack, int size);
 void	init_pos(t_stk *stack);
 void	init_target_pos(t_stk **stk_a, t_stk **stk_b);
-void	init_free_input(int ac, char ***inputs);
 
 /* do */
 void	do_swap(t_stk **stack, int a, int b);

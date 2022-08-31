@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 08:31:17 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/31 00:46:16 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/31 15:25:11 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,18 +65,5 @@ void	init_target_pos(t_stk **stk_a, t_stk **stk_b)
 		ptr_a = find_target_i(stk_a, find_target_index(stk_a, ptr_b));
 		ptr_b->target_pos = ptr_a->pos;
 		ptr_b = ptr_b->next;
-	}
-}
-
-void	init_free_input(int ac, char ***inputs)
-{
-	int	i;
-
-	i = -1;
-	if ((*inputs) && ac == 2)
-	{
-		while ((*inputs)[++i])
-			free((*inputs)[i]);
-		free(*inputs);
 	}
 }

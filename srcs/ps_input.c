@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 20:02:42 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/31 15:14:00 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/31 16:30:25 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,12 @@ static int in_int_range(char *str)
 	return (1);
 }
 
-/*static int	have_duplicates(char **av)
+static int	have_duplicates(char **av)
 {
 	int	i;
 	int	j;
 
-	i = 1;
+	i = 0;
 	while (av[i])
 	{
 		j = i + 1;
@@ -65,7 +65,7 @@ static int in_int_range(char *str)
 		i++;
 	}
 	return (0);
-}*/
+}
 
 static int	is_valid_zero(char *num)
 {
@@ -79,29 +79,50 @@ static int	is_valid_zero(char *num)
 
 int	is_input(int ac, char **av)
 {
-	int	j;
-	int	k;
+	int		i;
+	int		j;
+	int		count;
 	char	**input;
+	char	**all_inputs;
 
 	(void)ac;
-	j = 0;
-	while (av[++j])
+	i = 0;
+	count = 0;
+	while (av[++i])
 	{
-		k = -1;
-		input = ft_split(av[j], ' ');
-		while (input[++k])
+		j = -1;
+		input = ft_split(av[i], ' ');
+		while (input[++j])
 		{
 			//
 			//printf("%s |", input[k]);
-			if (!is_valid_zero(input[k]))
+			if (!is_valid_zero(input[j]))
 			return (0);
-			if (!is_number(input[k]))
+			if (!is_number(input[j]))
 			return (0);
-			if (!in_int_range(input[k]))
+			if (!in_int_range(input[j]))
 			return (0);
-			free(input[k]);
+			count++;
+			free(input[j]);
 		}
 		free(input);
 	}
+	//
+	all_inputs = malloc(sizeof(char *) * (count + 1));
+	all_inputs[count] = NULL;
+	i = 0;
+	while (av[++i])
+	{	
+		j = -1;
+		input = ft_split(av[i], ' ');
+		while (input[++j])
+		{
+			all_inputs[j] = input[j];
+			//
+			//printf("%s |", all_inputs[j]);
+		}
+	}
+	if (have_duplicates(all_inputs))
+		return (0);
 	return (1);
 }

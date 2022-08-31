@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:16 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/31 08:57:01 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/31 15:24:57 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,7 +169,6 @@ int	main(int ac, char **av)
 		init_index(stk_a, size);
 		if (!is_sorted(stk_a))
 			push_swap(&stk_a, &stk_b);
-		init_free_input(ac, &inputs);
 		utils_free_stack(&stk_a);
 		utils_free_stack(&stk_b);*/
 	}
