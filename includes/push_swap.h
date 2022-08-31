@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:31 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/30 19:14:28 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/31 08:40:01 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct s_stack
 void	error_exit(char *message);
 
 /* input */
-int		is_input(char **av);
+int		is_input(int ac, char **av);
 
 /* stack */
 int		stack_size(t_stk *stack);
@@ -47,6 +47,7 @@ t_stk	*stack_find(t_stk *stack, t_stk *stopper);
 void	init_index(t_stk *stack, int size);
 void	init_pos(t_stk *stack);
 void	init_target_pos(t_stk **stk_a, t_stk **stk_b);
+void	init_free_input(int ac, char ***inputs);
 
 /* do */
 void	do_swap(t_stk **stack, int a, int b);

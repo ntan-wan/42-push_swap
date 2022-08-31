@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 20:02:42 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/30 19:00:21 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/08/31 15:14:00 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,21 @@ static int	is_number(char *av)
 
 static int in_int_range(char *str)
 {
-	if (str[0] != '-' && ft_atoi(str) < 0)
-		return (0);
-	if (str[0] == '-' && ft_atoi(str) >= 0)
+	char	*int_num;
+	char 	*char_num;
+
+	char_num = str;
+	int_num = ft_itoa(ft_atoi(str));
+	while (is_sign(*int_num))
+		int_num++;
+	while (is_sign(*char_num) || *char_num == '0')
+		char_num++;	
+	if (ft_strncmp(int_num, char_num, ft_strlen(char_num)))
 		return (0);
 	return (1);
 }
 
-static int	have_duplicates(char **av)
+/*static int	have_duplicates(char **av)
 {
 	int	i;
 	int	j;
@@ -58,42 +65,43 @@ static int	have_duplicates(char **av)
 		i++;
 	}
 	return (0);
+}*/
+
+static int	is_valid_zero(char *num)
+{
+	int	i;
+
+	i = -1;
+	if (num[0] == '-' && ft_atoi(num) == 0)
+		return (0);
+	return (1);
 }
 
-//remember to free
-int	is_input(char **av)
+int	is_input(int ac, char **av)
 {
-	/*int		i;
+	int	j;
+	int	k;
+	char	**input;
 
-	i = 1;
-	if (have_duplicates(av))
-		return (0);
-	while (av[i])
+	(void)ac;
+	j = 0;
+	while (av[++j])
 	{
-		if (!is_number(av[i]))
+		k = -1;
+		input = ft_split(av[j], ' ');
+		while (input[++k])
+		{
+			//
+			//printf("%s |", input[k]);
+			if (!is_valid_zero(input[k]))
 			return (0);
-		if (!in_int_range(av[i]))
+			if (!is_number(input[k]))
 			return (0);
-		i++;
-	}
-	return (1);*/
-
-	int		i;
-	char	**inputs;
-
-	i = 1;
-	inputs = av;
-	//if (ac == 2)
-		//inputs = ft_split(av[1], ' ');
-	if (have_duplicates(inputs))
-		return (0);
-	while (inputs[i])
-	{
-		if (!is_number(inputs[i]))
+			if (!in_int_range(input[k]))
 			return (0);
-		if (!in_int_range(inputs[i]))
-			return (0);
-		i++;
+			free(input[k]);
+		}
+		free(input);
 	}
 	return (1);
 }
