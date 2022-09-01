@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:31 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/01 11:58:24 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/01 13:20:07 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <limits.h>
 # include "../libft/libft.h"
 
-#define MIN_ARGS 1
+# define MIN_ARGS 1
 
 typedef struct s_stack
 {
@@ -37,19 +37,19 @@ void	error_exit(char *message);
 
 /* input */
 int		is_input(char **av);
+int		get_input_size(char	**av);
 void	free_input_arr(char ***arr);
 char	**get_all_inputs(char **av, int size);
 
 /* input_utils */
-int	is_sign(char c);
-int	is_number(char *str);
-int	is_int_range(char *str);
-int	is_valid_zero(char *num);
-int	is_dup(char **all_inputs);
+int		is_sign(char c);
+int		is_number(char *str);
+int		is_int_range(char *str);
+int		is_dup(char **all_inputs);
 
 /* stack */
 int		stack_size(t_stk *stack);
-t_stk	*stack_fill(int ac, char **av);
+t_stk	*stack_fill(char **av);
 t_stk	*stack_find(t_stk *stack, t_stk *stopper);
 
 /* init */

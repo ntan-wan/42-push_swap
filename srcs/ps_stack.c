@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 18:15:43 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/31 00:39:09 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/01 13:18:30 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,32 +62,24 @@ int	stack_size(t_stk *stack)
 	return (count);
 }
 
-t_stk	*stack_fill(int ac, char **av)
+t_stk	*stack_fill(char **av)
 {
 	int		i;
-	int		first_num;
 	int		num;
 	t_stk	*stack;
+	char	**inputs;
 
-	if (ac == 2)
-	{
-		i = 0;
-		first_num = 0;
-	}
-	else
-	{
-		i = 1;
-		first_num = 1;
-	}
+	i = -1;
 	num = 0;
-	while (av[i])
+	inputs = get_all_inputs(av, get_input_size(av));
+	while (inputs[++i])
 	{
-		num = ft_atoi(av[i]);
-		if (i == first_num)
+		num = ft_atoi(inputs[i]);
+		if (i == 0)
 			stack = stack_new(num);
 		else
 			stk_add_bottom(stack_new(num), &stack);
-		i++;
 	}
+	free_input_arr(&inputs);
 	return (stack);
 }

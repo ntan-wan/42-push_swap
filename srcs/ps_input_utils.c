@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 09:34:19 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/01 11:26:03 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/01 12:17:27 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,6 @@
 int	is_sign(char c)
 {
 	return (c == '+' || c == '-');
-}
-
-int	is_valid_zero(char *num)
-{
-	if (num[0] == '-' && ft_atoi(num) == 0)
-		return (0);
-	return (1);
 }
 
 int	is_number(char *str)

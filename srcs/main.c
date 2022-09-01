@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:16 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/01 11:52:25 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/01 13:17:15 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@
 		ptr = ptr->next;
 	}
 	ft_printf("\n");
-	ft_printf("v ");
-	while (bottom)
-	{
-		ft_printf("|%d|", bottom->value);
-		bottom = bottom->prev;
-	}
-	ft_printf("\n");
+	//ft_printf("v ");
+	//while (bottom)
+	//{
+		//ft_printf("|%d|", bottom->value);
+		//bottom = bottom->prev;
+	//}
+	//ft_printf("\n");
 	ptr = *stack;
 	ft_printf("i ");
 	while (ptr)
@@ -81,7 +81,7 @@ void	error_exit(char *message)
 	exit(EXIT_FAILURE);
 }
 
-/*static void	get_costs(t_stk **stk_a, t_stk **stk_b, int *cost_a, int *cost_b)
+static void	get_costs(t_stk **stk_a, t_stk **stk_b, int *cost_a, int *cost_b)
 {
 	t_stk	*ptr_a;
 	t_stk	*ptr_b;
@@ -142,36 +142,26 @@ static void	push_swap(t_stk **stk_a, t_stk **stk_b)
 	}
 	smallest = find_target_i(stk_a, 0);
 	utils_rotate_to_top(stk_a, smallest, 1, 0);
-}*/
+}
 
 int	main(int ac, char **av)
 {
-	//int		size;
-	//t_stk	*stk_a;
-	//t_stk	*stk_b;
-	//char	**inputs;
+	int		size;
+	t_stk	*stk_a;
+	t_stk	*stk_b;
 
-	//inputs = NULL;
 	if (ac > MIN_ARGS)
 	{
-		/*if (ac == 2)
-			inputs = ft_split(av[1], ' ');
-		else
-			inputs = av;*/
-		//int i = -1;
-		//while (inputs[++i])
-			//printf("%s |", inputs[i]);
 		if (!is_input(av))
 			error_exit("Error\n");
-		/*stk_a = stack_fill(ac, inputs);
+		stk_a = stack_fill(av);
 		stk_b = NULL;
 		size = stack_size(stk_a);
 		init_index(stk_a, size);
 		if (!is_sorted(stk_a))
 			push_swap(&stk_a, &stk_b);
 		utils_free_stack(&stk_a);
-		utils_free_stack(&stk_b);*/
-		system("leaks push_swap");
+		utils_free_stack(&stk_b);
 	}
 	return (0);
 }

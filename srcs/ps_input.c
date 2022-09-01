@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 20:02:42 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/01 12:00:01 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/01 12:18:22 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ int	get_input_size(char	**av)
 		input = ft_split(av[i], ' ');
 		while (input[++j])
 		{
-			size++;
 			free(input[j]);
+			size++;
 		}
 		free(input);
 	}
@@ -79,14 +79,11 @@ int	is_input(char **av)
 		return (0);
 	while (inputs[++i])
 	{
-		if (!is_valid_zero(inputs[i]))
-			return (0);
 		if (!is_number(inputs[i]))
 			return (0);
 		if (!is_int_range(inputs[i]))
 			return (0);
-		free(inputs[i]);
 	}
-	free(inputs);
+	free_input_arr(&inputs);
 	return (1);
 }
