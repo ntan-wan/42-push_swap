@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 20:02:42 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/31 23:19:19 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/01 09:24:29 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,23 @@ static int	is_number(char *av)
 	return (1);
 }
 
-static int in_int_range(char *str)
+static int	in_int_range(char *str)
 {
 	char	*int_num;
-	char 	*char_num;
+	char	*char_num;
 
 	char_num = str;
 	int_num = ft_itoa(ft_atoi(str));
 	while (is_sign(*int_num))
 		int_num++;
 	while (is_sign(*char_num) || *char_num == '0')
-		char_num++;	
+		char_num++;
 	if (ft_strncmp(int_num, char_num, ft_strlen(char_num)))
+	{
+		free(int_num);
 		return (0);
+	}
+	free(int_num);
 	return (1);
 }
 
@@ -77,6 +81,16 @@ static int	is_valid_zero(char *num)
 	return (1);
 }
 
+void	free_char_arr(char ***arr)
+{
+	int	i;
+
+	i = -1;
+	while ((*arr)[++i])
+		free((*arr)[i]);
+	free(*arr);
+}
+
 static int	have_duplicates(char **av, int *count)
 {
 	int		i;
@@ -85,31 +99,24 @@ static int	have_duplicates(char **av, int *count)
 	char	**input;
 	char	**all_inputs;
 
-	all_inputs = malloc(sizeof(char *) * ((*count) + 1));
-	if (!all_inputs)
-		return (1);
-	all_inputs[*count] = NULL;
 	i = 0;
 	k = -1;
+	all_inputs = malloc(sizeof(char *) * ((*count) + 1));
+	all_inputs[*count] = NULL;
 	while (av[++i])
 	{	
 		j = -1;
 		input = ft_split(av[i], ' ');
 		while (input[++j])
 			all_inputs[++k] = input[j];
+		free(input);
 	}
-	i = -1;
 	if (is_duplicates(all_inputs))
 	{
-		while (all_inputs[++i])
-			free(all_inputs[i]);
-		free(all_inputs);
+		free_char_arr(&all_inputs);
 		return (1);
 	}
-	i = -1;
-	while (all_inputs[++i])
-		free(all_inputs[i]);
-	free(all_inputs);
+	free_char_arr(&all_inputs);
 	return (0);
 }
 
@@ -130,11 +137,11 @@ int	is_input(char **av)
 		while (input[++j])
 		{
 			if (!is_valid_zero(input[j]))
-			return (0);
+				return (0);
 			if (!is_number(input[j]))
-			return (0);
+				return (0);
 			if (!in_int_range(input[j]))
-			return (0);
+				return (0);
 			count++;
 			free(input[j]);
 		}

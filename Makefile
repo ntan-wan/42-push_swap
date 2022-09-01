@@ -30,7 +30,7 @@ $(OBJS_DIR)%.o : $(SRCS_DIR)%.c
 	@echo "$(CYAN)Compiling : $<"
 
 $(NAME) : $(LIBFT_LIB) $(OBJS_PREFIXED)
-	@$(CC)  $(OBJS_PREFIXED) $(LIBFT_DIR)$(LIBFT_LIB) -o $(NAME)
+	@$(CC) $(OBJS_PREFIXED) $(LIBFT_DIR)$(LIBFT_LIB) -o $(NAME)
 	@echo "$(GREEN)push_swap.exe Done!$(COLOR_OFF)"
 clean :
 	@rm -rf $(OBJS_DIR)
