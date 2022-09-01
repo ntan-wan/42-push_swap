@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 20:02:42 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/01 11:31:13 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/01 12:00:01 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,29 @@ void	free_input_arr(char ***arr)
 	free(*arr);
 }
 
+int	get_input_size(char	**av)
+{
+	int		i;
+	int		j;
+	int		size;
+	char	**input;
+
+	i = 0;
+	size = 0;
+	while (av[++i])
+	{
+		j = -1;
+		input = ft_split(av[i], ' ');
+		while (input[++j])
+		{
+			size++;
+			free(input[j]);
+		}
+		free(input);
+	}
+	return (size);
+}
+
 char	**get_all_inputs(char **av, int size)
 {
 	int		i;
@@ -33,7 +56,7 @@ char	**get_all_inputs(char **av, int size)
 	i = 0;
 	j = -1;
 	all_inputs = malloc(sizeof(char *) * (size + 1));
-	all_inputs[count] = NULL;
+	all_inputs[size] = NULL;
 	while (av[++i])
 	{	
 		k = -1;
@@ -48,30 +71,22 @@ char	**get_all_inputs(char **av, int size)
 int	is_input(char **av)
 {
 	int		i;
-	int		j;
-	int		count;
-	char	**input;
+	char	**inputs;
 
-	i = 0;
-	count = 0;
-	while (av[++i])
-	{
-		j = -1;
-		input = ft_split(av[i], ' ');
-		while (input[++j])
-		{
-			if (!is_valid_zero(input[j]))
-				return (0);
-			if (!is_number(input[j]))
-				return (0);
-			if (!is_int_range(input[j]))
-				return (0);
-			count++;
-			free(input[j]);
-		}
-		free(input);
-	}
-	if (dup_check(av, &count))
+	i = -1;
+	inputs = get_all_inputs(av, get_input_size(av));
+	if (is_dup(inputs))
 		return (0);
+	while (inputs[++i])
+	{
+		if (!is_valid_zero(inputs[i]))
+			return (0);
+		if (!is_number(inputs[i]))
+			return (0);
+		if (!is_int_range(inputs[i]))
+			return (0);
+		free(inputs[i]);
+	}
+	free(inputs);
 	return (1);
 }

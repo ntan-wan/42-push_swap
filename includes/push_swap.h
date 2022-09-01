@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:31 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/01 11:26:37 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/01 11:58:24 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	error_exit(char *message);
 /* input */
 int		is_input(char **av);
 void	free_input_arr(char ***arr);
-char	**get_all_inputs(char **av, int count);
+char	**get_all_inputs(char **av, int size);
 
 /* input_utils */
 int	is_sign(char c);
@@ -46,9 +46,6 @@ int	is_number(char *str);
 int	is_int_range(char *str);
 int	is_valid_zero(char *num);
 int	is_dup(char **all_inputs);
-
-/* input_utils_2 */
-int	dup_check(char **av, int *count);
 
 /* stack */
 int		stack_size(t_stk *stack);

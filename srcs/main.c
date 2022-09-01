@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:16 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/01 10:15:09 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/01 11:52:25 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,6 +171,7 @@ int	main(int ac, char **av)
 			push_swap(&stk_a, &stk_b);
 		utils_free_stack(&stk_a);
 		utils_free_stack(&stk_b);*/
+		system("leaks push_swap");
 	}
 	return (0);
 }
