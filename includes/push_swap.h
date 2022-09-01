@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:31 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/31 18:04:12 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/01 10:07:44 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,10 @@ void	error_exit(char *message);
 
 /* input */
 int		is_input(char **av);
+
+/* input_utils */
+void	free_input_arr(char ***arr);
+int		have_duplicates(char **av, int *count);
 
 /* stack */
 int		stack_size(t_stk *stack);
