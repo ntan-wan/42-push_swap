@@ -6,23 +6,61 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 09:34:19 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/01 10:15:21 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/01 11:26:03 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	free_input_arr(char ***arr)
+int	is_sign(char c)
+{
+	return (c == '+' || c == '-');
+}
+
+int	is_valid_zero(char *num)
+{
+	if (num[0] == '-' && ft_atoi(num) == 0)
+		return (0);
+	return (1);
+}
+
+int	is_number(char *str)
 {
 	int	i;
 
-	i = -1;
-	while ((*arr)[++i])
-		free((*arr)[i]);
-	free(*arr);
+	i = 0;
+	if (is_sign(str[i]) && str[i + 1] != '\0')
+		i++;
+	while (str[i] && ft_isdigit(str[i]))
+		i++;
+	if (str[i] != '\0')
+		return (0);
+	return (1);
 }
 
-static int	is_duplicates(char **all_inputs)
+int	is_int_range(char *str)
+{
+	int		i;
+	char	*int_num;
+	char	*char_num;
+
+	i = 0;
+	char_num = str;
+	int_num = ft_itoa(ft_atoi(str));
+	while (is_sign(int_num[i]))
+		i++;
+	while (is_sign(*char_num) || *char_num == '0')
+		char_num++;
+	if (ft_strncmp(&int_num[i], char_num, ft_strlen(char_num)))
+	{
+		free(int_num);
+		return (0);
+	}
+	free(int_num);
+	return (1);
+}
+
+int	is_dup(char **all_inputs)
 {
 	int	i;
 	int	j;
@@ -39,42 +77,5 @@ static int	is_duplicates(char **all_inputs)
 		}
 		i++;
 	}
-	return (0);
-}
-
-static char	**get_all_inputs(char **av, int count)
-{
-	int		i;
-	int		j;
-	int		k;
-	char	**input;
-	char	**all_inputs;
-	
-	i = 0;
-	j = -1;
-	all_inputs = malloc(sizeof(char *) * (count + 1));
-	all_inputs[count] = NULL;
-	while (av[++i])
-	{	
-		k = -1;
-		input = ft_split(av[i], ' ');
-		while (input[++k])
-			all_inputs[++j] = input[k];
-		free(input);
-	}
-	return (all_inputs);
-}
-
-int	have_duplicates(char **av, int *count)
-{
-	char	**all_inputs;
-
-	all_inputs = get_all_inputs(av, *count);
-	if (is_duplicates(all_inputs))
-	{
-		free_input_arr(&all_inputs);
-		return (1);
-	}
-	free_input_arr(&all_inputs);
 	return (0);
 }

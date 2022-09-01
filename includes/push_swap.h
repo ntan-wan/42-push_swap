@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:31 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/01 10:07:44 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/01 11:26:37 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,18 @@ void	error_exit(char *message);
 
 /* input */
 int		is_input(char **av);
+void	free_input_arr(char ***arr);
+char	**get_all_inputs(char **av, int count);
 
 /* input_utils */
-void	free_input_arr(char ***arr);
-int		have_duplicates(char **av, int *count);
+int	is_sign(char c);
+int	is_number(char *str);
+int	is_int_range(char *str);
+int	is_valid_zero(char *num);
+int	is_dup(char **all_inputs);
+
+/* input_utils_2 */
+int	dup_check(char **av, int *count);
 
 /* stack */
 int		stack_size(t_stk *stack);
@@ -48,8 +56,8 @@ t_stk	*stack_fill(int ac, char **av);
 t_stk	*stack_find(t_stk *stack, t_stk *stopper);
 
 /* init */
-void	init_index(t_stk *stack, int size);
 void	init_pos(t_stk *stack);
+void	init_index(t_stk *stack, int size);
 void	init_target_pos(t_stk **stk_a, t_stk **stk_b);
 
 /* do */
