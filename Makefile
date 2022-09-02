@@ -38,7 +38,7 @@ $(NAME) : $(LIBFT_LIB) $(OBJS_PREFIXED)
 
 bonus : $(LIBFT_LIB)
 	@$(CC) $(CFLAGS) $(BONUS_SRCS) $(LIBFT_DIR)$(LIBFT_LIB) -o checker -I$(BONUS_HEADER_PATH)
-	@echo "$(GREEN)checker.exe done!$(COLOR_OFF)"
+	@echo "$(GREEN)checker.exe Done!$(COLOR_OFF)"
 
 clean :
 	@rm -rf $(OBJS_DIR)

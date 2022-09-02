@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:31 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/02 09:13:59 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/02 11:42:32 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,6 @@ typedef struct s_stack
 	struct s_stack	*next;
 }	t_stk;
 
-/* main */
-void	error_exit(char *message);
-
 /* input */
 int		is_input(char **av);
 int		get_input_size(char	**av);
@@ -46,6 +43,7 @@ int		is_sign(char c);
 int		is_number(char *str);
 int		is_int_range(char *str);
 int		is_dup(char **all_inputs);
+void	error_exit(char *message);
 
 /* stack */
 int		stack_size(t_stk *stack);
