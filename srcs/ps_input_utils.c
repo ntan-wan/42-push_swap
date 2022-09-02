@@ -6,11 +6,17 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 09:34:19 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/01 14:33:49 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/02 09:51:46 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+void	error_exit(char *message)
+{
+	ft_putstr_fd(message, 2);
+	exit(EXIT_FAILURE);
+}
 
 int	is_sign(char c)
 {

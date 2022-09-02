@@ -12,6 +12,9 @@ OBJS_PREFIXED = $(addprefix $(OBJS_DIR), $(OBJS))
 LIBFT_DIR = libft/
 LIBFT_LIB = libft.a
 
+BONUS_HEADER_PATH = bonus/includes/
+BONUS_SRCS = $(shell find srcs/ps*.c) $(shell find bonus/srcs/*.c) 
+
 #text color
 COLOR_OFF =\033[0m
 RED =\033[0;31m
@@ -27,11 +30,16 @@ $(LIBFT_LIB) :
 $(OBJS_DIR)%.o : $(SRCS_DIR)%.c
 	@mkdir -p $(OBJS_DIR)
 	@$(CC) $(CFLAGS) -c $< -o $@ -I$(HEADER_DIR)
-	@echo "$(CYAN)Compiling : $<"
+	@echo "$(CYAN)Compiling : $<$(COLOR_OFF)"
 
 $(NAME) : $(LIBFT_LIB) $(OBJS_PREFIXED)
 	@$(CC) $(CFLAGS) $(OBJS_PREFIXED) $(LIBFT_DIR)$(LIBFT_LIB) -o $(NAME)
 	@echo "$(GREEN)push_swap.exe Done!$(COLOR_OFF)"
+
+bonus : $(LIBFT_LIB)
+	@$(CC) $(CFLAGS) $(BONUS_SRCS) $(LIBFT_DIR)$(LIBFT_LIB) -o checker -I$(BONUS_HEADER_PATH)
+	@echo "$(GREEN)checker.exe done!$(COLOR_OFF)"
+
 clean :
 	@rm -rf $(OBJS_DIR)
 	@echo "$(RED)Removed : objs file (push_swap)$(COLOR_OFF)"
@@ -39,8 +47,10 @@ clean :
 fclean : clean
 	@make fclean -C libft
 	@rm -f push_swap
+	@rm -f checker
+	@echo "$(RED)Removed : checker.exe$(COLOR_OFF)"
 	@echo "$(RED)Removed : push_swap.exe$(COLOR_OFF)"
 
 re : fclean all
 
-.PHONY : all clean fclean re
+.PHONY : all clean fclean re bonus

@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:31 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/01 14:33:55 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/02 09:13:59 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,12 @@ t_stk	*find_target_i(t_stk **stack, int target_index);
 t_stk	*find_target_c(t_stk **stack, int cost, int b);
 
 /* utils */
+size_t	utils_abs(int num);
 void	utils_calc_cost(t_stk **stack, int b);
 void	utils_rotate_to_top(t_stk **stack, t_stk *target, int a, int b);
 void	utils_print(char *instruct_a, char *instruct_b, int a, int b);
-size_t	utils_abs(int num);
 void	utils_free_stack(t_stk **stack);
+
+/* bonus */
+t_list	*get_instructions(void);
 #endif

@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:16 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/01 14:48:03 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/02 09:51:53 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,6 @@
 	}
 	ft_printf("\n");
 }*/
-
-void	error_exit(char *message)
-{
-	ft_putstr_fd(message, 2);
-	exit(EXIT_FAILURE);
-}
 
 static void	get_costs(t_stk **stk_a, t_stk **stk_b, int *cost_a, int *cost_b)
 {

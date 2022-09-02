@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 20:02:42 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/01 14:55:16 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/01 15:08:23 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	is_input(char **av)
 	inputs = get_all_inputs(av, get_input_size(av));
 	if (is_dup(inputs))
 		return (0);
-	while (++i < get_input_size(av))
+	while (inputs[++i])
 	{
 		if (!is_number(inputs[i]))
 			return (0);
