@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 09:32:16 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/02 10:44:21 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/02 11:37:37 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,9 @@ t_list	*get_instructions(void)
 	instructions = NULL;
 	while (1)
 	{
-		//remember to free
 		instruction = get_next_line(STDIN);
 		if (!instruction)
 			break ;
-		//remember to free
 		temp = ft_lstnew(instruction);
 		ft_lstadd_back(&instructions, temp);
 	}
