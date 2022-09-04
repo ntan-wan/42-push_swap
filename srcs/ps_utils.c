@@ -6,13 +6,13 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 22:24:31 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/25 18:00:29 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/04 19:46:23 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	utils_rotate_to_top(t_stk **stack, t_stk *target, int a, int b)
+void	utils_rotate_to_top(t_stk **stack, t_stk *target, int a)
 {
 	int		size;
 
@@ -20,9 +20,21 @@ void	utils_rotate_to_top(t_stk **stack, t_stk *target, int a, int b)
 	while (*stack != target)
 	{
 		if (target->pos <= size / 2)
-			do_rotate_left(stack, a, b);
+		{
+			if (a)
+				ft_putstr_fd("ra\n", 1);
+			else
+				ft_putstr_fd("rb\n", 1);
+			do_rotate_left(stack);
+		}
 		else
-			do_rotate_right(stack, a, b);
+		{
+			if (a)
+				ft_putstr_fd("rra\n", 1);
+			else
+				ft_putstr_fd("rrb\n", 1);
+			do_rotate_right(stack);
+		}
 	}
 }
 

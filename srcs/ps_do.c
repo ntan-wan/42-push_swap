@@ -6,13 +6,19 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 13:23:03 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/25 18:22:11 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/04 19:37:59 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	do_swap(t_stk **stack, int a, int b)
+void	do_and_print(t_stk **stk, void (*f)(t_stk **), char *instruc)
+{
+	f(stk);
+	ft_putstr_fd(instruc, 1);
+}
+
+void	do_swap(t_stk **stack)
 {
 	t_stk	*first;
 	t_stk	*second;
@@ -25,12 +31,12 @@ void	do_swap(t_stk **stack, int a, int b)
 	first->next = third;
 	second->prev = NULL;
 	second->next = first;
-	third->prev = first;
+	if (third)
+		third->prev = first;
 	*stack = second;
-	utils_print("sa\n", "sb\n", a, b);
 }
 
-void	do_rotate_left(t_stk **stack, int a, int b)
+void	do_rotate_left(t_stk **stack)
 {
 	t_stk	*head;
 	t_stk	*tail;
@@ -42,10 +48,9 @@ void	do_rotate_left(t_stk **stack, int a, int b)
 	head->prev = tail;
 	head->next = NULL;
 	tail->next = head;
-	utils_print("ra\n", "rb\n", a, b);
 }
 
-void	do_rotate_right(t_stk **stack, int a, int b)
+void	do_rotate_right(t_stk **stack)
 {
 	t_stk	*head;
 	t_stk	*second_bottom;
@@ -59,10 +64,9 @@ void	do_rotate_right(t_stk **stack, int a, int b)
 	second_bottom->next = NULL;
 	tail->prev = NULL;
 	tail->next = head;
-	utils_print("rra\n", "rrb\n", a, b);
 }
 
-void	do_push(t_stk **src, t_stk **dst, int a, int b)
+void	do_push(t_stk **src, t_stk **dst)
 {
 	t_stk	*head_src;
 	t_stk	*head_dst;
@@ -77,5 +81,4 @@ void	do_push(t_stk **src, t_stk **dst, int a, int b)
 	*dst = head_src;
 	if (head_dst)
 		head_dst->prev = head_src;
-	utils_print("pa\n", "pb\n", a, b);
 }

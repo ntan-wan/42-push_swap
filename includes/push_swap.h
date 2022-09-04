@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:31 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/02 11:42:32 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/04 19:46:46 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,11 @@ void	init_index(t_stk *stack, int size);
 void	init_target_pos(t_stk **stk_a, t_stk **stk_b);
 
 /* do */
-void	do_swap(t_stk **stack, int a, int b);
-void	do_push(t_stk **src, t_stk **dst, int a, int b);
-void	do_rotate_left(t_stk **stack, int a, int b);
-void	do_rotate_right(t_stk **stack, int a, int b);
+void	do_swap(t_stk **stack);
+void	do_push(t_stk **src, t_stk **dst);
+void	do_rotate_left(t_stk **stack);
+void	do_rotate_right(t_stk **stack);
+void	do_and_print(t_stk **stk, void (*f)(t_stk **), char *instruc);
 
 /* rotate_both */
 void	rotate_both_left(t_stk **stk_a, t_stk **stk_b);
@@ -80,10 +81,8 @@ t_stk	*find_target_c(t_stk **stack, int cost, int b);
 /* utils */
 size_t	utils_abs(int num);
 void	utils_calc_cost(t_stk **stack, int b);
-void	utils_rotate_to_top(t_stk **stack, t_stk *target, int a, int b);
+void	utils_rotate_to_top(t_stk **stack, t_stk *target, int a);
 void	utils_print(char *instruct_a, char *instruct_b, int a, int b);
 void	utils_free_stack(t_stk **stack);
 
-/* bonus */
-t_list	*get_instructions(void);
 #endif

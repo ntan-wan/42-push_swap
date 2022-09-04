@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:16 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/02 09:51:53 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/04 19:49:27 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,14 +109,21 @@ static void	cheapeast_action(t_stk **stk_a, t_stk **stk_b)
 	i = 0;
 	get_costs(stk_a, stk_b, &cost_a, &cost_b);
 	while ((cost_a - i > 0) && (cost_b - i++ > 0))
+	{
 		rotate_both_left(stk_a, stk_b);
+		ft_putstr_fd("rr\n", 1);
+	}
 	while ((cost_a + i < 0) && (cost_b + i++ < 0))
+	{
 		rotate_both_right(stk_a, stk_b);
+		ft_putstr_fd("rrr\n", 1);
+	}
 	target_a = find_target_c(stk_a, cost_a, 0);
 	target_b = find_target_c(stk_b, cost_b, 1);
-	utils_rotate_to_top(stk_a, target_a, 1, 0);
-	utils_rotate_to_top(stk_b, target_b, 0, 1);
-	do_push(stk_b, stk_a, 1, 0);
+	utils_rotate_to_top(stk_a, target_a, 1);
+	utils_rotate_to_top(stk_b, target_b, 0);
+	do_push(stk_b, stk_a);
+	ft_putstr_fd("pa\n", 1);
 }
 
 static void	push_swap(t_stk **stk_a, t_stk **stk_b)
@@ -135,7 +142,7 @@ static void	push_swap(t_stk **stk_a, t_stk **stk_b)
 		cheapeast_action(stk_a, stk_b);
 	}
 	smallest = find_target_i(stk_a, 0);
-	utils_rotate_to_top(stk_a, smallest, 1, 0);
+	utils_rotate_to_top(stk_a, smallest, 1);
 }
 
 int	main(int ac, char **av)

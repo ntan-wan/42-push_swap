@@ -6,37 +6,28 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 09:32:16 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/02 12:17:16 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/03 20:27:27 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/checker.h"
 
-int	is_instruction(char *instruction)
+int	is_instruction(const char *instruc)
 {
-	if (ft_strncmp("pa\n", instruction, 3))
-		return (0);
-	if (ft_strncmp("pb\n", instruction, 3))
-		return (0);
-	if (ft_strncmp("sa\n", instruction, 3))
-		return (0);
-	if (ft_strncmp("sb\n", instruction, 3))
-		return (0);
-	if (ft_strncmp("ss\n", instruction, 3))
-		return (0);
-	if (ft_strncmp("ra\n", instruction, 3))
-		return (0);
-	if (ft_strncmp("rb\n", instruction, 3))
-		return (0);
-	if (ft_strncmp("rr\n", instruction, 3))
-		return (0);
-	if (ft_strncmp("rra\n", instruction, 4))
-		return (0);
-	if (ft_strncmp("rrb\n", instruction, 4))
-		return (0);
-	if (ft_strncmp("rrr\n", instruction, 4))
-		return (0);
-	return (1);
+	int			i;
+	int			instruc_len;
+	const char	*instrucs[] = {"pa\n", "pb\n", "sa\n", \
+	"sb\n", "ss\n", "ra\n", "rb\n", "rr\n", "rra\n", \
+	"rrb\n", "rrr\n", NULL};
+
+	i = -1;
+	while (instrucs[++i])
+	{
+		instruc_len = ft_strlen(instruc);
+		if (!ft_strncmp(instrucs[i], instruc, instruc_len))
+			return (1);
+	}
+	return (0);
 }
 
 t_list	*get_instructions(void)
@@ -60,13 +51,13 @@ t_list	*get_instructions(void)
 }
 
 
-void	execute_instructions(t_list *instructions, t_stk **stk)
+void	execute_instructions(t_list *instrucs, t_stk **stk_a, t_stk **stk_b)
 {
-	t_list	*ptr_instructions;
-	(void)stk;
-	ptr_instructions = instructions;
-	while (ptr_instructions)
+	t_list	*ptr_instrucs;
+	ptr_instrucs = instrucs;
+	while (ptr_instrucs)
 	{
-		ptr_instructions = ptr_instructions->next;
+		sort_stack((char *)ptr_instrucs->content, stk_a, stk_b);
+		ptr_instrucs = ptr_instrucs->next;
 	}
 }
