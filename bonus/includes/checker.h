@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 20:38:58 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/04 10:19:42 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/04 21:29:06 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_stack
 }	t_stk;
 
 /* function pointer */
-typedef void (*func_one_stk)(t_stk **, int, int);
+typedef void (*func_one_stk)(t_stk **);
 typedef void (*func_two_stks)(t_stk **, t_stk **);
 
 /* instruction */
@@ -43,17 +43,17 @@ void	execute_instructions(t_list *instructions, t_stk **stk_a, t_stk **stk_b);
 int		is_input(char **av);
 
 /* do */
-void	do_swap(t_stk **stack, int a, int b);
-void	do_push(t_stk **src, t_stk **dst, int a, int b);
-void	do_rotate_left(t_stk **stack, int a, int b);
-void	do_rotate_right(t_stk **stack, int a, int b);
+void	do_swap(t_stk **stack);
+void	do_rotate_left(t_stk **stack);
+void	do_rotate_right(t_stk **stack);
+void	do_push(t_stk **src, t_stk **dst);
 
 /* rotate_both */
 void	rotate_both_left(t_stk **stk_a, t_stk **stk_b);
 void	rotate_both_right(t_stk **stk_a, t_stk **stk_b);
 
 /* sort_bonus */
-void	sort_stack(char *instruc, t_stk **stk_a, t_stk **stk_b);
+void	sort_stack(const char *instruc, t_stk **stk_a, t_stk **stk_b);
 
 /* stack */
 t_stk	*stack_fill(char **av);
