@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 13:07:05 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/04 19:52:05 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/05 15:15:25 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,51 @@ int	is_sorted(t_stk *stack)
 		stack = stack->next;
 	}
 	return (1);
+}
+
+void	better_algorithm(t_stk **stk_a, t_stk **stk_b, int num_chunks)
+{
+	int		size;
+	int		count;
+	t_stk	*head_a;
+	t_stk	*tail_a;
+	int		approximity;
+
+	count = 1;
+	size = stack_size(*stk_a);
+	//approximity = size / num_chunks;
+	approximity = 0;
+	while (approximity < 20)
+	{
+		head_a = *stk_a;
+		tail_a = stack_find(*stk_a, NULL);
+		approximity = approximity + 5;
+		//printf("(%d)", approximity);
+		init_pos(*stk_a);
+		utils_calc_cost(stk_a, 0);
+		while (head_a)
+		{
+			if (head_a->index < approximity)
+				break ;
+			head_a = head_a->next;
+		}
+		while (tail_a)
+		{
+			if (tail_a->index < approximity)
+				break ;
+			tail_a = tail_a->prev;
+		}
+		if (utils_abs(head_a->cost_a) < utils_abs(tail_a->cost_a))
+		{
+			utils_rotate_to_top(stk_a, head_a, 1);
+			do_push(stk_a, stk_b);
+		}
+		else
+		{
+			utils_rotate_to_top(stk_a, tail_a, 1);
+			do_push(stk_a, stk_b);
+		}
+	}
 }
 
 void	sort_left_3(t_stk **stk_a, t_stk **stk_b)
@@ -52,8 +97,8 @@ void	sort_left_3(t_stk **stk_a, t_stk **stk_b)
 void	sort_3(t_stk **stack)
 {
 	int		pos;
-	int		index;
 	t_stk	*ptr;
+	int		index;
 	int		highest;
 
 	highest = find_highest_index(*stack);

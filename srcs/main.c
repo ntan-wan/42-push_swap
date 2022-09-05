@@ -6,33 +6,33 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:16 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/04 19:49:27 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/05 15:13:16 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-/*static void	util_print(t_stk **stack)
+static void	util_print(t_stk **stack)
 {
 	t_stk	*ptr;
-	//t_stk	*bottom;
+	t_stk	*bottom;
 
 	ptr = *stack;
-	//bottom = stack_find(*stack);
-	ft_printf("v ");
+	bottom = stack_find(*stack, NULL);
+	ft_printf("T to B ");
 	while (ptr)
 	{
 		ft_printf("|%d|", ptr->value);
 		ptr = ptr->next;
 	}
 	ft_printf("\n");
-	//ft_printf("v ");
-	//while (bottom)
-	//{
-		//ft_printf("|%d|", bottom->value);
-		//bottom = bottom->prev;
-	//}
-	//ft_printf("\n");
+	ft_printf("B to T ");
+	while (bottom)
+	{
+		ft_printf("|%d|", bottom->value);
+		bottom = bottom->prev;
+	}
+	ft_printf("\n");
 	ptr = *stack;
 	ft_printf("i ");
 	while (ptr)
@@ -73,9 +73,9 @@
 		ptr = ptr->next;
 	}
 	ft_printf("\n");
-}*/
+}
 
-static void	get_costs(t_stk **stk_a, t_stk **stk_b, int *cost_a, int *cost_b)
+/*static void	get_costs(t_stk **stk_a, t_stk **stk_b, int *cost_a, int *cost_b)
 {
 	t_stk	*ptr_a;
 	t_stk	*ptr_b;
@@ -143,15 +143,15 @@ static void	push_swap(t_stk **stk_a, t_stk **stk_b)
 	}
 	smallest = find_target_i(stk_a, 0);
 	utils_rotate_to_top(stk_a, smallest, 1);
-}
+}*/
 
 int	main(int ac, char **av)
 {
-	int		size;
+	//int		size;
 	t_stk	*stk_a;
 	t_stk	*stk_b;
 
-	if (ac > MIN_ARGS)
+	/*if (ac > MIN_ARGS)
 	{
 		if (!is_input(av))
 			error_exit("Error\n");
@@ -163,6 +163,11 @@ int	main(int ac, char **av)
 			push_swap(&stk_a, &stk_b);
 		utils_free_stack(&stk_a);
 		utils_free_stack(&stk_b);
-	}
+	}*/
+	(void)ac;
+	stk_a = stack_fill(av);
+	better_algorithm(&stk_a, &stk_b, 4);
+	util_print(&stk_a);
+	util_print(&stk_b);
 	return (0);
 }

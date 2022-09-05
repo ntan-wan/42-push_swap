@@ -29,11 +29,11 @@ $(LIBFT_LIB) :
 
 $(OBJS_DIR)%.o : $(SRCS_DIR)%.c
 	@mkdir -p $(OBJS_DIR)
-	@$(CC) $(CFLAGS) -c $< -o $@ -I$(HEADER_DIR)
+	@$(CC) -c $< -o $@ -I$(HEADER_DIR)
 	@echo "$(CYAN)Compiling : $<$(COLOR_OFF)"
 
 $(NAME) : $(LIBFT_LIB) $(OBJS_PREFIXED)
-	@$(CC) $(CFLAGS) $(OBJS_PREFIXED) $(LIBFT_DIR)$(LIBFT_LIB) -o $(NAME)
+	@$(CC) $(OBJS_PREFIXED) $(LIBFT_DIR)$(LIBFT_LIB) -o $(NAME)
 	@echo "$(GREEN)push_swap.exe Done!$(COLOR_OFF)"
 
 bonus : $(LIBFT_LIB)

@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:31 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/05 11:18:02 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/05 14:42:03 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,6 @@ void	utils_rotate_to_top(t_stk **stack, t_stk *target, int a);
 void	utils_print(char *instruct_a, char *instruct_b, int a, int b);
 void	utils_free_stack(t_stk **stack);
 
+
+void	better_algorithm(t_stk **stk_a, t_stk **stk_b, int num_chunks);
 #endif
