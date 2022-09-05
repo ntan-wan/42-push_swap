@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:31 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/04 19:46:46 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/05 11:18:02 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	do_rotate_right(t_stk **stack);
 void	do_and_print(t_stk **stk, void (*f)(t_stk **), char *instruc);
 
 /* rotate_both */
+void	swap_both(t_stk **stk_a, t_stk **stk_b);
 void	rotate_both_left(t_stk **stk_a, t_stk **stk_b);
 void	rotate_both_right(t_stk **stk_a, t_stk **stk_b);
 

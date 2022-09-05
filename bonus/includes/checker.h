@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 20:38:58 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/04 21:29:06 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/05 11:17:37 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,12 @@ void	do_rotate_right(t_stk **stack);
 void	do_push(t_stk **src, t_stk **dst);
 
 /* rotate_both */
+void	swap_both(t_stk **stk_a, t_stk **stk_b);
 void	rotate_both_left(t_stk **stk_a, t_stk **stk_b);
 void	rotate_both_right(t_stk **stk_a, t_stk **stk_b);
 
 /* sort_bonus */
-void	sort_stack(const char *instruc, t_stk **stk_a, t_stk **stk_b);
+void	sort_stack(char *instruc, t_stk **stk_a, t_stk **stk_b);
 
 /* stack */
 t_stk	*stack_fill(char **av);
