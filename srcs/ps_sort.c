@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 13:07:05 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/05 16:36:37 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/05 17:32:47 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,48 +25,53 @@ int	is_sorted(t_stk *stack)
 
 void	better_algorithm(t_stk **stk_a, t_stk **stk_b, int chunks)
 {
-	int		pushed;
 	int		size;
+	int		pushed;
 	t_stk	*head_a;
 	t_stk	*tail_a;
 	int		approximity;
 
-	pushed = 0;
 	size = stack_size(*stk_a);
 	approximity = size / chunks;
-	while (pushed < size / chunks * 3)
+	//while (pushed < (size / chunks) * (chunks - 1))
+	while (stack_size(*stk_a) > (size / chunks))
 	{
-		head_a = *stk_a;
-		tail_a = stack_find(*stk_a, NULL);
-		printf("(%d)", approximity);
+		pushed = 0;
+		//printf("(%d)", approximity);
 		init_pos(*stk_a);
-		utils_calc_cost(stk_a, 0);
-		while (head_a)
+		while(pushed < (size / chunks))
 		{
-			printf("head -> %d|", head_a->index);
-			if (head_a->index < approximity)
-				break ;
-			head_a = head_a->next;
-		}
-		while (tail_a)
-		{
-			printf("tail -> %d|", tail_a->index);
-			if (tail_a->index < approximity)
-				break ;
-			tail_a = tail_a->prev;
-		}
-		if (utils_abs(head_a->cost_a) < utils_abs(tail_a->cost_a))
-		{
-			utils_rotate_to_top(stk_a, head_a, 1);
-			do_push(stk_a, stk_b);
-		}
-		else
-		{
-			utils_rotate_to_top(stk_a, tail_a, 1);
-			do_push(stk_a, stk_b);
+			head_a = *stk_a;
+			tail_a = stack_find(*stk_a, NULL);
+			utils_calc_cost(stk_a, 0);
+			while (head_a)
+			{
+				//printf("head -> %d|", head_a->index);
+				if (head_a->index < approximity)
+					break ;
+				head_a = head_a->next;
+			}
+			while (tail_a)
+			{
+				//printf("tail -> %d|", tail_a->index);
+				if (tail_a->index < approximity)
+					break ;
+				tail_a = tail_a->prev;
+			}
+			if (utils_abs(head_a->cost_a) < utils_abs(tail_a->cost_a))
+			{
+				utils_rotate_to_top(stk_a, head_a, 1);
+				do_push(stk_a, stk_b);
+			}
+			else
+			{
+				utils_rotate_to_top(stk_a, tail_a, 1);
+				do_push(stk_a, stk_b);
+			}
+			pushed++;
 		}
 		approximity += size / chunks;
-		pushed++;
+	
 	}
 }
 
