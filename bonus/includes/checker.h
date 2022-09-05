@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 20:38:58 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/05 11:17:37 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/05 13:10:03 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ typedef struct s_stack
 }	t_stk;
 
 /* function pointer */
-typedef void (*func_one_stk)(t_stk **);
-typedef void (*func_two_stks)(t_stk **, t_stk **);
+typedef void	(*t_func_do_1_stk)(t_stk **);
+typedef void	(*t_func_do_2_stks)(t_stk **, t_stk **);
 
 /* instruction */
 t_list	*get_instructions(void);
-void	execute_instructions(t_list *instructions, t_stk **stk_a, t_stk **stk_b);
+void	exec_instrucs(t_list *instructions, t_stk **stk_a, t_stk **stk_b);
 
 /* input */
 int		is_input(char **av);
@@ -53,11 +53,18 @@ void	swap_both(t_stk **stk_a, t_stk **stk_b);
 void	rotate_both_left(t_stk **stk_a, t_stk **stk_b);
 void	rotate_both_right(t_stk **stk_a, t_stk **stk_b);
 
+/* sort */
+int		is_sorted(t_stk *stack);
+
 /* sort_bonus */
 void	sort_stack(char *instruc, t_stk **stk_a, t_stk **stk_b);
 
 /* stack */
 t_stk	*stack_fill(char **av);
+int		stack_size(t_stk *stack);
+
+/* init */
+void	init_index(t_stk *stack, int size);
 
 /* input_utils */
 void	error_exit(char *message);
@@ -65,4 +72,8 @@ void	error_exit(char *message);
 /* utils */
 void	utils_free_stack(t_stk **stack);
 
+/* utils_bonus */
+void	print_stack(t_stk *stk);
+void	print_instructions(t_list *instructions);
+void	print_result(t_stk **stk_a, t_stk **stk_b);
 #endif

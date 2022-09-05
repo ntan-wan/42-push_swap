@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 09:32:16 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/05 11:57:27 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/05 13:11:46 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,10 @@ t_list	*get_instructions(void)
 	return (instructions);
 }
 
-
-void	execute_instructions(t_list *instrucs, t_stk **stk_a, t_stk **stk_b)
+void	exec_instrucs(t_list *instrucs, t_stk **stk_a, t_stk **stk_b)
 {
 	t_list	*ptr_instrucs;
+
 	ptr_instrucs = instrucs;
 	while (ptr_instrucs)
 	{
