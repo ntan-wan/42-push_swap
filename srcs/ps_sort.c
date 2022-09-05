@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 13:07:05 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/05 18:42:37 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/05 18:45:35 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	rotate_push(t_stk **src, t_stk **dest, t_stk *target, char *instruc)
 	ft_putstr_fd(instruc, 1);
 }
 
-t_stk	*find_approximity_index_from_top(t_stk **stk_a, int approximity)
+t_stk	*find_approximity_from_top(t_stk **stk_a, int approximity)
 {
 	t_stk	*head_a;
 
@@ -44,7 +44,7 @@ t_stk	*find_approximity_index_from_top(t_stk **stk_a, int approximity)
 	return (NULL);
 }
 
-t_stk	*find_approximity_index_from_bottom(t_stk **stk_a, int approximity)
+t_stk	*find_approximity_from_bottom(t_stk **stk_a, int approximity)
 {
 	t_stk	*tail_a;
 	
@@ -75,8 +75,8 @@ void	divide_stk_a_into_chunks(t_stk **stk_a, t_stk **stk_b, int chunks)
 		{
 			init_pos(*stk_a);
 			utils_calc_cost(stk_a, 0);
-			head_a = find_approximity_index_from_top(stk_a, approximity);
-			tail_a = find_approximity_index_from_bottom(stk_a, approximity);
+			head_a = find_approximity_from_top(stk_a, approximity);
+			tail_a = find_approximity_from_bottom(stk_a, approximity);
 			if (utils_abs(head_a->cost_a) < utils_abs(tail_a->cost_a))
 				rotate_push(stk_a, stk_b, head_a, "pb\n");
 			else
