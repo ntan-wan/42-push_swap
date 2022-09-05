@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 13:31:37 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/05 11:24:14 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/05 11:29:54 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	init_func_2(func_two_stks funcs[])
 	funcs[5] = NULL;
 }
 
-static void	sort_1_stk(t_stk **stk_a, t_stk **stk_b, \
+static void	do_1_stk(t_stk **stk_a, t_stk **stk_b, \
 char *instruc, void (*funcs)(t_stk **))
 {
 	if (ft_strchr(instruc, 'a'))
@@ -42,7 +42,7 @@ char *instruc, void (*funcs)(t_stk **))
 		funcs(stk_b);
 }
 
-static void	sort_2_stks(t_stk **stk_a, t_stk **stk_b, \
+static void	do_2_stks(t_stk **stk_a, t_stk **stk_b, \
 char *instruc, void (*funcs)(t_stk **, t_stk **))
 {
 	if (ft_strchr(instruc, 'a'))
@@ -68,13 +68,13 @@ void	sort_stack(char *instruc, t_stk **stk_a, t_stk **stk_b)
 	while (instrucs_1_stk[++i])
 	{
 		if (!ft_strncmp(instrucs_1_stk[i], instruc, ft_strlen(instruc)))
-			sort_1_stk(stk_a, stk_b, instruc, move_1_stk[i]);
+			do_1_stk(stk_a, stk_b, instruc, move_1_stk[i]);
 	}
 	i = -1;
 	init_func_2(move_2_stks);
 	while (instrucs_2_stks[++i])
 	{
 		if (!ft_strncmp(instrucs_2_stks[i], instruc, ft_strlen(instruc)))
-			sort_2_stks(stk_a, stk_b, instruc, move_2_stks[i]);
+			do_2_stks(stk_a, stk_b, instruc, move_2_stks[i]);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 13:23:03 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/04 19:37:59 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/05 12:19:05 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,18 @@ void	do_swap(t_stk **stack)
 
 	first = *stack;
 	second = first->next;
-	third = second->next;
+	third = NULL;
 	first->prev = second;
+	if (second)
+	{
+		third = second->next;
+		second->prev = NULL;
+		second->next = first;
+		*stack = second;
+	}
 	first->next = third;
-	second->prev = NULL;
-	second->next = first;
 	if (third)
 		third->prev = first;
-	*stack = second;
 }
 
 void	do_rotate_left(t_stk **stack)
@@ -43,11 +47,14 @@ void	do_rotate_left(t_stk **stack)
 
 	head = *stack;
 	tail = stack_find(*stack, NULL);
-	*stack = head->next;
-	head->next->prev = NULL;
-	head->prev = tail;
-	head->next = NULL;
-	tail->next = head;
+	if (head != tail)
+	{
+		*stack = head->next;
+		head->next->prev = NULL;
+		head->prev = tail;
+		head->next = NULL;
+		tail->next = head;
+	}
 }
 
 void	do_rotate_right(t_stk **stack)
@@ -58,12 +65,15 @@ void	do_rotate_right(t_stk **stack)
 
 	head = *stack;
 	tail = stack_find(*stack, NULL);
-	*stack = tail;
-	head->prev = tail;
-	second_bottom = stack_find(head, tail);
-	second_bottom->next = NULL;
-	tail->prev = NULL;
-	tail->next = head;
+	if (head != tail)
+	{
+		*stack = tail;
+		head->prev = tail;
+		second_bottom = stack_find(head, tail);
+		second_bottom->next = NULL;
+		tail->prev = NULL;
+		tail->next = head;
+	}
 }
 
 void	do_push(t_stk **src, t_stk **dst)
@@ -71,6 +81,8 @@ void	do_push(t_stk **src, t_stk **dst)
 	t_stk	*head_src;
 	t_stk	*head_dst;
 
+	if (!*src)
+		return ;
 	head_src = *src;
 	head_dst = *dst;
 	*src = head_src->next;
