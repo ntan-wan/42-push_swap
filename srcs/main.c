@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:16 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/05 16:13:10 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/05 18:23:26 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,7 +169,7 @@ int	main(int ac, char **av)
 	stk_b = NULL;
 	
 	init_index(stk_a, stack_size(stk_a));
-	better_algorithm(&stk_a, &stk_b, 4);
+	divide_stk_a_into_chunks(&stk_a, &stk_b, 4);
 	util_print(&stk_a);
 	util_print(&stk_b);
 	return (0);

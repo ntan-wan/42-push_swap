@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 13:07:05 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/05 17:32:47 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/05 18:42:37 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,42 @@ int	is_sorted(t_stk *stack)
 	return (1);
 }
 
-void	better_algorithm(t_stk **stk_a, t_stk **stk_b, int chunks)
+void	rotate_push(t_stk **src, t_stk **dest, t_stk *target, char *instruc)
+{
+	utils_rotate_to_top(src, target, 1);
+	do_push(src, dest);
+	ft_putstr_fd(instruc, 1);
+}
+
+t_stk	*find_approximity_index_from_top(t_stk **stk_a, int approximity)
+{
+	t_stk	*head_a;
+
+	head_a = *stk_a;
+	while (head_a)
+	{
+		if (head_a->index < approximity)
+			return (head_a);
+		head_a = head_a->next;
+	}
+	return (NULL);
+}
+
+t_stk	*find_approximity_index_from_bottom(t_stk **stk_a, int approximity)
+{
+	t_stk	*tail_a;
+	
+	tail_a = stack_find(*stk_a, NULL);
+	while (tail_a)
+	{
+		if (tail_a->index < approximity)
+			return (tail_a);
+		tail_a = tail_a->prev;
+	}
+	return (NULL);
+}
+
+void	divide_stk_a_into_chunks(t_stk **stk_a, t_stk **stk_b, int chunks)
 {
 	int		size;
 	int		pushed;
@@ -33,45 +68,22 @@ void	better_algorithm(t_stk **stk_a, t_stk **stk_b, int chunks)
 
 	size = stack_size(*stk_a);
 	approximity = size / chunks;
-	//while (pushed < (size / chunks) * (chunks - 1))
 	while (stack_size(*stk_a) > (size / chunks))
 	{
 		pushed = 0;
-		//printf("(%d)", approximity);
-		init_pos(*stk_a);
 		while(pushed < (size / chunks))
 		{
-			head_a = *stk_a;
-			tail_a = stack_find(*stk_a, NULL);
+			init_pos(*stk_a);
 			utils_calc_cost(stk_a, 0);
-			while (head_a)
-			{
-				//printf("head -> %d|", head_a->index);
-				if (head_a->index < approximity)
-					break ;
-				head_a = head_a->next;
-			}
-			while (tail_a)
-			{
-				//printf("tail -> %d|", tail_a->index);
-				if (tail_a->index < approximity)
-					break ;
-				tail_a = tail_a->prev;
-			}
+			head_a = find_approximity_index_from_top(stk_a, approximity);
+			tail_a = find_approximity_index_from_bottom(stk_a, approximity);
 			if (utils_abs(head_a->cost_a) < utils_abs(tail_a->cost_a))
-			{
-				utils_rotate_to_top(stk_a, head_a, 1);
-				do_push(stk_a, stk_b);
-			}
+				rotate_push(stk_a, stk_b, head_a, "pb\n");
 			else
-			{
-				utils_rotate_to_top(stk_a, tail_a, 1);
-				do_push(stk_a, stk_b);
-			}
+				rotate_push(stk_a, stk_b, tail_a, "pb\n");
 			pushed++;
 		}
 		approximity += size / chunks;
-	
 	}
 }
 
