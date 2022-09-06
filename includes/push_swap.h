@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:31 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/06 18:55:21 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/06 19:06:27 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,15 +82,14 @@ t_stk	*find_target_c(t_stk **stack, int cost, int b);
 /* utils */
 size_t	utils_abs(int num);
 void	utils_calc_cost(t_stk **stack, int b);
-void	utils_rotate_to_top(t_stk **stack, t_stk *target, int a);
-void	utils_print(char *instruct_a, char *instruct_b, int a, int b);
 void	utils_free_stack(t_stk **stack);
+void	rotate_to_top_stk_a(t_stk **stk_a , t_stk *target);
+void	rotate_to_top_stk_b(t_stk **stk_b , t_stk *target);
 
 /*chunk_approximity */
 void	split_stk_a_into_chunks(t_stk **stk_a, t_stk **stk_b, int chunks);
 
-void	rotate_to_top_stk_a(t_stk **stk_a , t_stk *target);
-void	cheapeast_action(t_stk **stk_a, t_stk **stk_b);
+void	do_cheapest_action(t_stk **stk_a, t_stk **stk_b);
 void	get_cheapest_costs(t_stk **stk_a, t_stk **stk_b, int *cost_a, int *cost_b);
 void	sort_remaining(t_stk **stk_a, t_stk **stk_b);
 void	push_all_left_3(t_stk **stk_a, t_stk **stk_b);

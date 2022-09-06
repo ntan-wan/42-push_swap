@@ -6,45 +6,11 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 09:13:14 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/06 18:57:30 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/06 19:06:27 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
-void	rotate_to_top_stk_a(t_stk **stk_a , t_stk *target)
-{
-	while (*stk_a != target)
-	{
-		if (target->cost_a < 0)
-		{
-			do_rotate_right(stk_a);
-			ft_putstr_fd("rra\n", 1);
-		}
-		else if (target->cost_a > 0)
-		{
-			do_rotate_left(stk_a);
-			ft_putstr_fd("ra\n", 1);
-		}
-	}
-}
-
-void	rotate_to_top_stk_b(t_stk **stk_b , t_stk *target)
-{
-	while (*stk_b != target)
-	{
-		if (target->cost_b < 0)
-		{
-			do_rotate_right(stk_b);
-			ft_putstr_fd("rrb\n", 1);
-		}
-		else if (target->cost_b > 0)
-		{
-			do_rotate_left(stk_b);
-			ft_putstr_fd("rb\n", 1);
-		} 
-	}
-}
 
 void	push_all_left_3(t_stk **stk_a, t_stk **stk_b)
 {
@@ -81,7 +47,7 @@ void	get_cheapest_costs(t_stk **stk_a, t_stk **stk_b, int *cost_a, int *cost_b)
 	}	
 }
 
-void	cheapeast_action(t_stk **stk_a, t_stk **stk_b)
+void	do_cheapest_action(t_stk **stk_a, t_stk **stk_b)
 {
 	int		i;
 	int		cost_a;
@@ -120,7 +86,7 @@ void	sort_remaining(t_stk **stk_a, t_stk **stk_b)
 		init_target_pos(stk_a, stk_b);
 		utils_calc_cost(stk_a, 0);
 		utils_calc_cost(stk_b, 1);
-		cheapeast_action(stk_a, stk_b);
+		do_cheapest_action(stk_a, stk_b);
 	}
 	init_pos(*stk_a);
 	utils_calc_cost(stk_a, 0);
