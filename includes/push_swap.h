@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:31 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/06 11:25:04 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/06 15:02:19 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	rotate_both_right(t_stk **stk_a, t_stk **stk_b);
 
 /* sort */
 int		is_sorted(t_stk *stack);
-void	sort_left_3(t_stk **stk_a, t_stk **stk_b);
+void	push_all_left_three(t_stk **stk_a, t_stk **stk_b);
 void	sort_3(t_stk **stack);
 
 /* find */
@@ -87,6 +87,7 @@ void	utils_print(char *instruct_a, char *instruct_b, int a, int b);
 void	utils_free_stack(t_stk **stack);
 
 
+void	sort_5(t_stk **stk_a, t_stk **stk_b);
 void	push_all_left_3(t_stk **stk_a, t_stk **stk_b);
 void	better_algo(t_stk **stk_a, t_stk **stk_b);
 void	divide_stk_a_into_chunks(t_stk **stk_a, t_stk **stk_b, int chunks);

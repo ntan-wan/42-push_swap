@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 09:13:14 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/06 12:39:45 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/06 14:15:49 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,19 @@ t_stk	*find_approximity_from_bottom(t_stk **stk_a, int approximity)
 	return (NULL);
 }
 
+void	sort_5(t_stk **stk_a, t_stk **stk_b)
+{
+	int	size;
+
+	size = stack_size(*stk_a);
+	while (size-- > 3)
+	{
+		do_push(stk_a, stk_b);
+		ft_putstr_fd("pb\n", 1);
+	}
+	sort_3(stk_a);
+}
+
 void	divide_stk_a_into_chunks(t_stk **stk_a, t_stk **stk_b, int chunks)
 {
 	int		size;
@@ -63,7 +76,6 @@ void	divide_stk_a_into_chunks(t_stk **stk_a, t_stk **stk_b, int chunks)
 
 	size = stack_size(*stk_a);
 	approximity = size / chunks;
-	//while (*stk_a)
 	while (stack_size(*stk_a) > (size / chunks))
 	{
 		pushed = 0;
