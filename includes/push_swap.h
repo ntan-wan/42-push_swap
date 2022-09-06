@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:31 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/06 09:32:34 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/06 11:25:04 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void	utils_print(char *instruct_a, char *instruct_b, int a, int b);
 void	utils_free_stack(t_stk **stack);
 
 
+void	push_all_left_3(t_stk **stk_a, t_stk **stk_b);
 void	better_algo(t_stk **stk_a, t_stk **stk_b);
 void	divide_stk_a_into_chunks(t_stk **stk_a, t_stk **stk_b, int chunks);
 #endif

@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 09:13:14 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/06 11:09:29 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/06 12:39:45 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	divide_stk_a_into_chunks(t_stk **stk_a, t_stk **stk_b, int chunks)
 
 	size = stack_size(*stk_a);
 	approximity = size / chunks;
+	//while (*stk_a)
 	while (stack_size(*stk_a) > (size / chunks))
 	{
 		pushed = 0;
@@ -134,8 +135,7 @@ void	better_algo(t_stk **stk_a, t_stk **stk_b)
 	t_stk	*target_stk_b;
 
 	divide_stk_a_into_chunks(stk_a, stk_b, 4);
-	push_all_left_3(stk_a, stk_b);
-	sort_3(stk_a);
+	//sort stk_a first
 	while (*stk_b)
 	{
 		init_pos(*stk_a);
