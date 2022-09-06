@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:16 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/05 18:58:18 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/06 11:15:09 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ static void	util_print(t_stk **stack)
 		ft_printf("|%d|", ptr->value);
 		ptr = ptr->next;
 	}
-	ft_printf("\n");
+	/*ft_printf("\n");
 	ft_printf("B to T ");
 	while (bottom)
 	{
 		ft_printf("|%d|", bottom->value);
 		bottom = bottom->prev;
-	}
+	}*/
 	ft_printf("\n");
 	ptr = *stack;
 	ft_printf("i ");
@@ -130,9 +130,8 @@ static void	push_swap(t_stk **stk_a, t_stk **stk_b)
 {
 	t_stk	*smallest;
 
-	//sort_left_3(stk_a, stk_b);
-	//sort_3(stk_a);
-	divide_stk_a_into_chunks(stk_a, stk_b, 4);
+	sort_left_3(stk_a, stk_b);
+	sort_3(stk_a);
 	while (*stk_b)
 	{
 		init_pos(*stk_a);
@@ -161,10 +160,13 @@ int	main(int ac, char **av)
 		size = stack_size(stk_a);
 		init_index(stk_a, size);
 		if (!is_sorted(stk_a))
-			push_swap(&stk_a, &stk_b);
+		 	better_algo(&stk_a, &stk_b);
+			//push_swap(&stk_a, &stk_b);
 		util_print(&stk_a);
+		//util_print(&stk_b);
 		utils_free_stack(&stk_a);
 		utils_free_stack(&stk_b);
 	}
+	//system("leaks push_swap");
 	return (0);
 }
