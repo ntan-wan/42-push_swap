@@ -1,30 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_algo.c                                          :+:      :+:    :+:   */
+/*   ps_sort_rest.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/06 09:13:14 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/06 23:53:58 by ntan-wan         ###   ########.fr       */
+/*   Created: 2022/09/07 01:05:53 by ntan-wan          #+#    #+#             */
+/*   Updated: 2022/09/07 01:05:54 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	push_all_left_3(t_stk **stk_a, t_stk **stk_b)
-{
-	int	size;
-
-	size = stack_size(*stk_a);
-	while (size-- > 3)
-	{
-		do_push(stk_a, stk_b);
-		ft_putstr_fd("pb\n", 1);
-	}
-}
-
-static void	get_cheapest_costs(t_stk **stk_a, t_stk **stk_b, int *cost_a, int *cost_b)
+static void	get_cheapest_cost(t_stk **stk_a, t_stk **stk_b, \
+int *cost_a, int *cost_b)
 {
 	t_stk	*ptr_a;
 	t_stk	*ptr_b;
@@ -47,7 +36,8 @@ static void	get_cheapest_costs(t_stk **stk_a, t_stk **stk_b, int *cost_a, int *c
 	}	
 }
 
-static void	do_optimize_move(t_stk **stk_a, t_stk **stk_b, int cost_a, int cost_b)
+static void	do_optimize_move(t_stk **stk_a, t_stk **stk_b, \
+int cost_a, int cost_b)
 {
 	int	i;
 
@@ -64,14 +54,14 @@ static void	do_optimize_move(t_stk **stk_a, t_stk **stk_b, int cost_a, int cost_
 	}	
 }
 
-void	do_cheapest_action(t_stk **stk_a, t_stk **stk_b)
+static void	do_cheapest_action(t_stk **stk_a, t_stk **stk_b)
 {
 	int		cost_a;
 	int		cost_b;
 	t_stk	*target_a;
 	t_stk	*target_b;
 
-	get_cheapest_costs(stk_a, stk_b, &cost_a, &cost_b);
+	get_cheapest_cost(stk_a, stk_b, &cost_a, &cost_b);
 	do_optimize_move(stk_a, stk_b, cost_a, cost_b);
 	target_a = find_target_c(stk_a, cost_a, 0);
 	target_b = find_target_c(stk_b, cost_b, 1);
@@ -81,10 +71,10 @@ void	do_cheapest_action(t_stk **stk_a, t_stk **stk_b)
 	ft_putstr_fd("pa\n", 1);
 }
 
-void	sort_remaining(t_stk **stk_a, t_stk **stk_b)
+void	sort_rest(t_stk **stk_a, t_stk **stk_b)
 {
 	t_stk	*smallest;
-	
+
 	while (*stk_b)
 	{
 		init_pos(*stk_a);

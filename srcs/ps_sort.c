@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 13:07:05 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/06 23:11:38 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/07 01:16:37 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,31 +23,17 @@ int	is_sorted(t_stk *stack)
 	return (1);
 }
 
-/*void	push_all_left_three(t_stk **stk_a, t_stk **stk_b)
+void	sort_push_3_left(t_stk **stk_a, t_stk **stk_b)
 {
 	int	size;
-	int	pushed;
 
-	pushed = 0;
 	size = stack_size(*stk_a);
-	while (size > 3 && pushed < size / 2)
-	{
-		if ((*stk_a)->index < size / 2)
-		{
-			do_push(stk_a, stk_b);
-			ft_putstr_fd("pb\n", 1);
-			pushed++;
-			size--;
-		}
-		else
-			do_and_print(stk_a, do_rotate_left, "ra\n");
-	}
 	while (size-- > 3)
 	{
 		do_push(stk_a, stk_b);
 		ft_putstr_fd("pb\n", 1);
 	}
-}*/
+}
 
 void	sort_3(t_stk **stack)
 {
@@ -75,3 +61,29 @@ void	sort_3(t_stk **stack)
 		}
 	}
 }
+
+/*void	push_all_left_three(t_stk **stk_a, t_stk **stk_b)
+{
+	int	size;
+	int	pushed;
+
+	pushed = 0;
+	size = stack_size(*stk_a);
+	while (size > 3 && pushed < size / 2)
+	{
+		if ((*stk_a)->index < size / 2)
+		{
+			do_push(stk_a, stk_b);
+			ft_putstr_fd("pb\n", 1);
+			pushed++;
+			size--;
+		}
+		else
+			do_and_print(stk_a, do_rotate_left, "ra\n");
+	}
+	while (size-- > 3)
+	{
+		do_push(stk_a, stk_b);
+		ft_putstr_fd("pb\n", 1);
+	}
+}*/
