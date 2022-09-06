@@ -6,13 +6,13 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 22:24:31 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/04 19:46:23 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/06 18:58:06 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	utils_rotate_to_top(t_stk **stack, t_stk *target, int a)
+/*void	utils_rotate_to_top(t_stk **stack, t_stk *target, int a)
 {
 	int		size;
 
@@ -36,7 +36,7 @@ void	utils_rotate_to_top(t_stk **stack, t_stk *target, int a)
 			do_rotate_right(stack);
 		}
 	}
-}
+}*/
 
 void	utils_calc_cost(t_stk **stk, int b)
 {

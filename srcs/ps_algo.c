@@ -6,94 +6,11 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 09:13:14 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/06 14:15:49 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/06 18:57:30 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
-void	rotate_push(t_stk **src, t_stk **dest, t_stk *target, char *instruc)
-{
-	utils_rotate_to_top(src, target, 1);
-	do_push(src, dest);
-	ft_putstr_fd(instruc, 1);
-}
-
-t_stk	*find_approximity_from_top(t_stk **stk_a, int approximity)
-{
-	t_stk	*head_a;
-
-	head_a = *stk_a;
-	while (head_a)
-	{
-		if (head_a->index < approximity)
-		{
-			//printf(" head(%d)", head_a->cost_a);
-			return (head_a);
-		}
-		head_a = head_a->next;
-	}
-	return (NULL);
-}
-
-t_stk	*find_approximity_from_bottom(t_stk **stk_a, int approximity)
-{
-	t_stk	*tail_a;
-
-	tail_a = stack_find(*stk_a, NULL);
-	while (tail_a)
-	{
-		if (tail_a->index < approximity)
-		{
-			//printf("tail(%d)", tail_a->cost_a);
-			return (tail_a);
-		}
-		tail_a = tail_a->prev;
-	}
-	return (NULL);
-}
-
-void	sort_5(t_stk **stk_a, t_stk **stk_b)
-{
-	int	size;
-
-	size = stack_size(*stk_a);
-	while (size-- > 3)
-	{
-		do_push(stk_a, stk_b);
-		ft_putstr_fd("pb\n", 1);
-	}
-	sort_3(stk_a);
-}
-
-void	divide_stk_a_into_chunks(t_stk **stk_a, t_stk **stk_b, int chunks)
-{
-	int		size;
-	int		pushed;
-	t_stk	*head_a;
-	t_stk	*tail_a;
-	int		approximity;
-
-	size = stack_size(*stk_a);
-	approximity = size / chunks;
-	while (stack_size(*stk_a) > (size / chunks))
-	{
-		pushed = 0;
-		while (pushed < (size / chunks))
-		{
-			init_pos(*stk_a);
-			utils_calc_cost(stk_a, 0);
-			head_a = find_approximity_from_top(stk_a, approximity);
-			tail_a = find_approximity_from_bottom(stk_a, approximity);
-			if (utils_abs(head_a->cost_a) < utils_abs(tail_a->cost_a))
-				rotate_push(stk_a, stk_b, head_a, "pb\n");
-			else
-				rotate_push(stk_a, stk_b, tail_a, "pb\n");
-			pushed++;
-		}
-		approximity += size / chunks;
-	}
-}
 
 void	rotate_to_top_stk_a(t_stk **stk_a , t_stk *target)
 {
@@ -141,24 +58,72 @@ void	push_all_left_3(t_stk **stk_a, t_stk **stk_b)
 	}
 }
 
-void	better_algo(t_stk **stk_a, t_stk **stk_b)
+void	get_cheapest_costs(t_stk **stk_a, t_stk **stk_b, int *cost_a, int *cost_b)
 {
-	t_stk	*target_stk_a;
-	t_stk	*target_stk_b;
+	t_stk	*ptr_a;
+	t_stk	*ptr_b;
+	size_t	cheapest;
 
-	divide_stk_a_into_chunks(stk_a, stk_b, 4);
-	//sort stk_a first
+	cheapest = INT_MAX;
+	ptr_b = *stk_b;
+	while (ptr_b)
+	{
+		ptr_a = *stk_a;
+		while (ptr_a && ptr_a->pos != ptr_b->target_pos)
+			ptr_a = ptr_a->next;
+		if (utils_abs(ptr_a->cost_a) + utils_abs(ptr_b->cost_b) < cheapest)
+		{
+			cheapest = utils_abs(ptr_a->cost_a) + utils_abs(ptr_b->cost_b);
+			*cost_a = ptr_a->cost_a;
+			*cost_b = ptr_b->cost_b;
+		}
+		ptr_b = ptr_b->next;
+	}	
+}
+
+void	cheapeast_action(t_stk **stk_a, t_stk **stk_b)
+{
+	int		i;
+	int		cost_a;
+	int		cost_b;
+	t_stk	*target_a;
+	t_stk	*target_b;
+
+	i = 0;
+	get_cheapest_costs(stk_a, stk_b, &cost_a, &cost_b);
+	while ((cost_a - i > 0) && (cost_b - i++ > 0))
+	{
+		rotate_both_left(stk_a, stk_b);
+		ft_putstr_fd("rr\n", 1);
+	}
+	while ((cost_a + i < 0) && (cost_b + i++ < 0))
+	{
+		rotate_both_right(stk_a, stk_b);
+		ft_putstr_fd("rrr\n", 1);
+	}
+	target_a = find_target_c(stk_a, cost_a, 0);
+	target_b = find_target_c(stk_b, cost_b, 1);
+	rotate_to_top_stk_a(stk_a, target_a);
+	rotate_to_top_stk_b(stk_b, target_b);
+	do_push(stk_b, stk_a);
+	ft_putstr_fd("pa\n", 1);
+}
+
+void	sort_remaining(t_stk **stk_a, t_stk **stk_b)
+{
+	t_stk	*smallest;
+	
 	while (*stk_b)
 	{
 		init_pos(*stk_a);
 		init_pos(*stk_b);
+		init_target_pos(stk_a, stk_b);
 		utils_calc_cost(stk_a, 0);
 		utils_calc_cost(stk_b, 1);
-		target_stk_a = find_target_i(stk_a, find_lowest_index(*stk_a));
-		target_stk_b = find_target_i(stk_b, find_highest_index(*stk_b));
-		rotate_to_top_stk_a(stk_a, target_stk_a);
-		rotate_to_top_stk_b(stk_b, target_stk_b);
-		do_push(stk_b, stk_a);
-		ft_putstr_fd("pa\n", 1);
+		cheapeast_action(stk_a, stk_b);
 	}
+	init_pos(*stk_a);
+	utils_calc_cost(stk_a, 0);
+	smallest = find_target_i(stk_a, 0);
+	rotate_to_top_stk_a(stk_a, smallest);
 }
