@@ -6,18 +6,11 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 18:22:48 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/06 18:52:54 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/06 22:56:49 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
-static void	rotate_push_from_stk_a(t_stk **stk_a, t_stk **stk_b, t_stk *target)
-{
-	rotate_to_top_stk_a(stk_a, target);
-	do_push(stk_a, stk_b);
-	ft_putstr_fd("pb\n", 1);
-}
 
 static t_stk	*find_approximity_from_top(t_stk **stk_a, int approximity)
 {
@@ -45,6 +38,13 @@ static t_stk	*find_approximity_from_bottom(t_stk **stk_a, int approximity)
 		tail_a = tail_a->prev;
 	}
 	return (NULL);
+}
+
+static void	rotate_push_from_stk_a(t_stk **stk_a, t_stk **stk_b, t_stk *target)
+{
+	rotate_to_top_stk_a(stk_a, target);
+	do_push(stk_a, stk_b);
+	ft_putstr_fd("pb\n", 1);
 }
 
 void	split_stk_a_into_chunks(t_stk **stk_a, t_stk **stk_b, int chunks)

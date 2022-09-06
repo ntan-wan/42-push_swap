@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 09:13:14 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/06 19:06:27 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/06 23:53:58 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	push_all_left_3(t_stk **stk_a, t_stk **stk_b)
 	}
 }
 
-void	get_cheapest_costs(t_stk **stk_a, t_stk **stk_b, int *cost_a, int *cost_b)
+static void	get_cheapest_costs(t_stk **stk_a, t_stk **stk_b, int *cost_a, int *cost_b)
 {
 	t_stk	*ptr_a;
 	t_stk	*ptr_b;
@@ -47,16 +47,11 @@ void	get_cheapest_costs(t_stk **stk_a, t_stk **stk_b, int *cost_a, int *cost_b)
 	}	
 }
 
-void	do_cheapest_action(t_stk **stk_a, t_stk **stk_b)
+static void	do_optimize_move(t_stk **stk_a, t_stk **stk_b, int cost_a, int cost_b)
 {
-	int		i;
-	int		cost_a;
-	int		cost_b;
-	t_stk	*target_a;
-	t_stk	*target_b;
+	int	i;
 
 	i = 0;
-	get_cheapest_costs(stk_a, stk_b, &cost_a, &cost_b);
 	while ((cost_a - i > 0) && (cost_b - i++ > 0))
 	{
 		rotate_both_left(stk_a, stk_b);
@@ -66,7 +61,18 @@ void	do_cheapest_action(t_stk **stk_a, t_stk **stk_b)
 	{
 		rotate_both_right(stk_a, stk_b);
 		ft_putstr_fd("rrr\n", 1);
-	}
+	}	
+}
+
+void	do_cheapest_action(t_stk **stk_a, t_stk **stk_b)
+{
+	int		cost_a;
+	int		cost_b;
+	t_stk	*target_a;
+	t_stk	*target_b;
+
+	get_cheapest_costs(stk_a, stk_b, &cost_a, &cost_b);
+	do_optimize_move(stk_a, stk_b, cost_a, cost_b);
 	target_a = find_target_c(stk_a, cost_a, 0);
 	target_b = find_target_c(stk_b, cost_b, 1);
 	rotate_to_top_stk_a(stk_a, target_a);

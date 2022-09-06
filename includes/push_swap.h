@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:31 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/06 19:06:27 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/06 23:53:09 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ void	rotate_to_top_stk_b(t_stk **stk_b , t_stk *target);
 void	split_stk_a_into_chunks(t_stk **stk_a, t_stk **stk_b, int chunks);
 
 void	do_cheapest_action(t_stk **stk_a, t_stk **stk_b);
-void	get_cheapest_costs(t_stk **stk_a, t_stk **stk_b, int *cost_a, int *cost_b);
 void	sort_remaining(t_stk **stk_a, t_stk **stk_b);
 void	push_all_left_3(t_stk **stk_a, t_stk **stk_b);
 void	better_algo(t_stk **stk_a, t_stk **stk_b);

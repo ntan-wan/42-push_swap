@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 13:07:05 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/06 14:40:54 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/06 23:11:38 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	is_sorted(t_stk *stack)
 	return (1);
 }
 
-void	push_all_left_three(t_stk **stk_a, t_stk **stk_b)
+/*void	push_all_left_three(t_stk **stk_a, t_stk **stk_b)
 {
 	int	size;
 	int	pushed;
@@ -47,7 +47,7 @@ void	push_all_left_three(t_stk **stk_a, t_stk **stk_b)
 		do_push(stk_a, stk_b);
 		ft_putstr_fd("pb\n", 1);
 	}
-}
+}*/
 
 void	sort_3(t_stk **stack)
 {
