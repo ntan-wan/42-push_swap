@@ -6,74 +6,11 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:16 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/07 01:21:34 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/09 15:42:18 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
-/*static void	util_print(t_stk **stack)
-{
-	t_stk	*ptr;
-	t_stk	*bottom;
-
-	ptr = *stack;
-	bottom = stack_find(*stack, NULL);
-	ft_printf("T to B ");
-	while (ptr)
-	{
-		ft_printf("|%d|", ptr->value);
-		ptr = ptr->next;
-	}
-	ft_printf("\n");
-	ft_printf("B to T ");
-	while (bottom)
-	{
-		ft_printf("|%d|", bottom->value);
-		bottom = bottom->prev;
-	}
-	ft_printf("\n");
-	ptr = *stack;
-	ft_printf("i ");
-	while (ptr)
-	{
-		ft_printf("|%d|", ptr->index);
-		ptr = ptr->next;
-	}
-	ft_printf("\n");
-	ptr = *stack;
-	ft_printf("p ");
-	while (ptr)
-	{
-		ft_printf("|%d|", ptr->pos);
-		ptr = ptr->next;
-	}
-	ft_printf("\n");
-	ptr = *stack;
-	ft_printf("t ");
-	while (ptr)
-	{
-		ft_printf("|%d|", ptr->target_pos);
-		ptr = ptr->next;
-	}
-	ft_printf("\n");
-	ptr = *stack;
-	ft_printf("a ");
-	while (ptr)
-	{
-		ft_printf("|%d|", ptr->cost_a);
-		ptr = ptr->next;
-	}
-	ft_printf("\n");
-	ptr = *stack;
-	ft_printf("b ");
-	while (ptr)
-	{
-		ft_printf("|%d|", ptr->cost_b);
-		ptr = ptr->next;
-	}
-	ft_printf("\n");
-}*/
 
 static void	push_swap(t_stk **stk_a, t_stk **stk_b)
 {
