@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 20:02:42 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/01 15:08:23 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/12 16:19:30 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,19 +73,21 @@ char	**get_all_inputs(char **av, int size)
 int	is_input(char **av)
 {
 	int		i;
+	int		validity;
 	char	**inputs;
 
 	i = -1;
+	validity = 1;
 	inputs = get_all_inputs(av, get_input_size(av));
 	if (is_dup(inputs))
-		return (0);
+		validity = 0;
 	while (inputs[++i])
 	{
 		if (!is_number(inputs[i]))
-			return (0);
+			validity = 0;
 		if (!is_int_range(inputs[i]))
-			return (0);
+			validity = 0;
 	}
 	free_input_arr(&inputs);
-	return (1);
+	return (validity);
 }
