@@ -6,34 +6,18 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 08:31:17 by ntan-wan          #+#    #+#             */
-<<<<<<< HEAD
 /*   Updated: 2022/08/31 15:25:11 by ntan-wan         ###   ########.fr       */
-=======
-/*   Updated: 2022/08/24 17:02:01 by ntan-wan         ###   ########.fr       */
->>>>>>> b4a64b9f8cd97342e4db64b352ff768ece992bc1
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-<<<<<<< HEAD
 void	init_index(t_stk *stack, int size)
 {
 	int		value;
 	t_stk	*highest;
 	t_stk	*ptr;
 
-=======
-void	init_index(t_stack *stack)
-{
-	int		value;
-	int		size;
-	t_stack	*highest;
-	t_stack	*ptr;
-
-	// do error checking here
-	size = stack_size(stack);
->>>>>>> b4a64b9f8cd97342e4db64b352ff768ece992bc1
 	while (size--)
 	{
 		value = INT_MIN;
