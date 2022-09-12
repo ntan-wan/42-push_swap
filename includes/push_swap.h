@@ -6,7 +6,11 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:31 by ntan-wan          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/09/07 01:22:00 by ntan-wan         ###   ########.fr       */
+=======
+/*   Updated: 2022/08/24 18:52:12 by ntan-wan         ###   ########.fr       */
+>>>>>>> b4a64b9f8cd97342e4db64b352ff768ece992bc1
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +55,14 @@ t_stk	*stack_fill(char **av);
 t_stk	*stack_find(t_stk *stack, t_stk *stopper);
 
 /* init */
+<<<<<<< HEAD
 void	init_pos(t_stk *stack);
 void	init_index(t_stk *stack, int size);
 void	init_target_pos(t_stk **stk_a, t_stk **stk_b);
+=======
+void	init_index(t_stack *stack);
+void	init_pos(t_stack *stack);
+>>>>>>> b4a64b9f8cd97342e4db64b352ff768ece992bc1
 
 /* do */
 void	do_swap(t_stk **stack);
@@ -68,6 +77,7 @@ void	rotate_both_left(t_stk **stk_a, t_stk **stk_b);
 void	rotate_both_right(t_stk **stk_a, t_stk **stk_b);
 
 /* sort */
+<<<<<<< HEAD
 void	sort_3(t_stk **stack);
 int		is_sorted(t_stk *stack);
 void	sort_push_3_left(t_stk **stk_a, t_stk **stk_b);
@@ -92,4 +102,20 @@ void	split_stk_a_into_chunks(t_stk **stk_a, t_stk **stk_b, int chunks);
 /* sort_rest */
 void	sort_rest(t_stk **stk_a, t_stk **stk_b);
 
+=======
+int		is_sorted(t_stack *stack);
+void	sort_left_3(t_stack **stack_a, t_stack **stack_b);
+void	sort_3(t_stack **stack);
+
+/* find */
+void	find_target_pos(t_stack **stack_a, t_stack **stack_b);
+int		find_highest(t_stack *stack);
+int		find_lowest(t_stack *stack);
+
+/* util */
+void	utils_rotate(t_stack **stack, int cost, int a, int b);
+void	utils_calc_cost(t_stack **stack, int b);
+void	utils_print(char *instruct_a, char *instruct_b, int a, int b);
+size_t 	utils_absolutes(int num);
+>>>>>>> b4a64b9f8cd97342e4db64b352ff768ece992bc1
 #endif
