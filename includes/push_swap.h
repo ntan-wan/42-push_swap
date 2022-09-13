@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:31 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/07 01:22:00 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/13 08:39:03 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	rotate_to_top_stk_a(t_stk **stk_a, t_stk *target);
 void	rotate_to_top_stk_b(t_stk **stk_b, t_stk *target);
 
 /*chunk*/
-void	split_stk_a_into_chunks(t_stk **stk_a, t_stk **stk_b, int chunks);
+void	split_stk_a(t_stk **stk_a, t_stk **stk_b, int chunks, int size);
 
 /* sort_rest */
 void	sort_rest(t_stk **stk_a, t_stk **stk_b);

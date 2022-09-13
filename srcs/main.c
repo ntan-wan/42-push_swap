@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:24:16 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/09 15:42:18 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/13 08:39:03 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ static void	push_swap(t_stk **stk_a, t_stk **stk_b)
 
 	size = stack_size(*stk_a);
 	if (size <= 5)
-		split_stk_a_into_chunks(stk_a, stk_b, 1);
+		split_stk_a(stk_a, stk_b, 1, size);
 	else if (size > 5 && size <= 100)
-		split_stk_a_into_chunks(stk_a, stk_b, 2);
+		split_stk_a(stk_a, stk_b, 2, size);
 	else
-		split_stk_a_into_chunks(stk_a, stk_b, 5);
+		split_stk_a(stk_a, stk_b, 5, size);
 	sort_push_3_left(stk_a, stk_b);
 	sort_3(stk_a);
 	sort_rest(stk_a, stk_b);

@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 00:01:44 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/07 00:01:46 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/13 08:39:03 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,21 @@ static void	rotate_push_from_stk_a(t_stk **stk_a, t_stk **stk_b, t_stk *target)
 	ft_putstr_fd("pb\n", 1);
 }
 
-void	split_stk_a_into_chunks(t_stk **stk_a, t_stk **stk_b, int chunks)
+void	do_lower_idx(t_stk **stk_a, t_stk **stk_b, t_stk *head_a, t_stk *tail_a)
 {
-	int		size;
+	if (tail_a->index < head_a->index)
+		rotate_push_from_stk_a(stk_a, stk_b, tail_a);
+	else
+		rotate_push_from_stk_a(stk_a, stk_b, head_a);
+}
+
+void	split_stk_a(t_stk **stk_a, t_stk **stk_b, int chunks, int size)
+{
 	int		pushed;
 	t_stk	*head_a;
 	t_stk	*tail_a;
 	int		approximity;
 
-	size = stack_size(*stk_a);
 	approximity = size / chunks;
 	while (stack_size(*stk_a) > (size / chunks))
 	{
@@ -68,6 +74,8 @@ void	split_stk_a_into_chunks(t_stk **stk_a, t_stk **stk_b, int chunks)
 			tail_a = find_approximity_from_bottom(stk_a, approximity);
 			if (utils_abs(head_a->cost_a) < utils_abs(tail_a->cost_a))
 				rotate_push_from_stk_a(stk_a, stk_b, head_a);
+			else if (utils_abs(head_a->cost_a) == utils_abs(tail_a->cost_a))
+				do_lower_idx(stk_a, stk_b, head_a, tail_a);
 			else
 				rotate_push_from_stk_a(stk_a, stk_b, tail_a);
 			pushed++;
