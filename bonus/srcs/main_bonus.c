@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 20:15:57 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/12 16:12:22 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/11/10 10:43:30 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int	main(int ac, char **av)
 	{
 		if (!is_input(av))
 			error_exit("Error\n");
+		instructions = get_instructions();
 		stk_a = stack_fill(av);
 		stk_b = NULL;
-		instructions = get_instructions();
 		exec_instrucs(instructions, &stk_a, &stk_b);
 		print_result(&stk_a, &stk_b);
 		utils_free_stack(&stk_a);

@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 09:32:16 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/12 16:06:48 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/11/10 10:57:14 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,12 @@ t_list	*get_instructions(void)
 		if (!instruction)
 			break ;
 		if (!is_instruction(instruction))
+		{
+			free(instruction);
+			instruction = NULL;
+			ft_lstclear(&instructions, free);
 			error_exit("Error\n");
+		}
 		temp = ft_lstnew(instruction);
 		ft_lstadd_back(&instructions, temp);
 	}

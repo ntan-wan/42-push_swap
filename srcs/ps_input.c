@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 20:02:42 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/12 16:19:30 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/11/10 09:22:28 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,10 @@ char	**get_all_inputs(char **av, int size)
 	while (av[++i])
 	{	
 		if (av[i][0] == '\0')
+		{
+			free(all_inputs);
 			error_exit("Error\n");
+		}
 		k = -1;
 		input = ft_split(av[i], ' ');
 		while (input[++k])
